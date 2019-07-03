@@ -4,5 +4,9 @@
   "alias": "jamescarr.dev",
   "builds": [
   	{ "src": "package.json", "use": "@now/static-build" }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.+)", "status": 301, "dest": "/", "headers": { "Location": "/" } }
   ]
 }
