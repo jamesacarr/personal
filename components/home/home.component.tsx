@@ -11,7 +11,6 @@ interface Props {
 
 const Home = ({ contactRef }: Props): JSX.Element => {
   const onClick = (): void => {
-    console.log('onClick!', contactRef);
     if (contactRef && contactRef.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' });
     }
