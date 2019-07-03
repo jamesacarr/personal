@@ -17,7 +17,11 @@ const Container = (): JSX.Element => {
     <>
       <Head>
         <title>James Carr</title>
-        <link rel="preload" href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" />
+        <meta name="description" content="Hello, I'm James Carr. I'm a full-stack web developer." />
+        <link as="font" href="/static/fonts/raleway-v13-latin-regular.woff" rel="preload" crossOrigin="" />
+        <link as="font" href="/static/fonts/raleway-v13-latin-regular.woff2" rel="preload" crossOrigin="" />
+        <link as="font" href="/static/fonts/raleway-v13-latin-700.woff" rel="preload" crossOrigin="" />
+        <link as="font" href="/static/fonts/raleway-v13-latin-700.woff2" rel="preload" crossOrigin="" />
       </Head>
 
       <ThemeProvider theme={{ theme }}>

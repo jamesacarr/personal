@@ -1,71 +1,92 @@
+import { css } from '@emotion/core';
+
 import { CSSFunc } from '../../types';
 
-export const globalStyles: CSSFunc = ({ theme }) => ({
-  html: {
-    fontSize: '8pt',
-
-    [theme.breakpoint.xsmall]: {
-      fontSize: '10pt',
+export const globalStyles: CSSFunc = ({ theme }) =>
+  css(
+    {
+      /* Raleway-regular - latin */
+      '@font-face': {
+        fontFamily: "'Raleway'",
+        fontStyle: 'normal',
+        fontWeight: 400,
+        src:
+          "local('Raleway'), local('Raleway-Regular'), url('/static/fonts/raleway-v13-latin-regular.woff2') format('woff2'), url('/static/fonts/raleway-v13-latin-regular.woff') format('woff')",
+      },
     },
-
-    [theme.breakpoint.small]: {
-      fontSize: '11pt',
+    {
+      /* Raleway-700 - latin */
+      '@font-face': {
+        fontFamily: "'Raleway'",
+        fontStyle: 'normal',
+        fontWeight: 700,
+        src:
+          "local('Raleway Bold'), local('Raleway-Bold'), url('/static/fonts/raleway-v13-latin-700.woff2') format('woff2'), url('/static/fonts/raleway-v13-latin-700.woff') format('woff')",
+      },
     },
+    {
+      html: {
+        fontSize: '9pt',
 
-    [theme.breakpoint.medium]: {
-      fontSize: '12pt',
-    },
+        [theme.breakpoint.xsmall]: {
+          fontSize: '11pt',
+        },
 
-    [theme.breakpoint.large]: {
-      fontSize: '14pt',
-    },
+        [theme.breakpoint.small]: {
+          fontSize: '12pt',
+        },
 
-    [theme.breakpoint.xlarge]: {
-      fontSize: '16pt',
-    },
-  },
+        [theme.breakpoint.large]: {
+          fontSize: '14pt',
+        },
 
-  body: {
-    fontFamily: "'Raleway', sans-serif",
-    fontSize: '1rem',
-    lineHeight: 1.65,
-    margin: 0,
-    textAlign: 'center',
-  },
+        [theme.breakpoint.xlarge]: {
+          fontSize: '16pt',
+        },
+      },
 
-  'h1, h2, h3, h4, h5, h6': {
-    fontWeight: 400,
-    lineHeight: 1.5,
-    margin: `0 0 1rem 0`,
-  },
+      body: {
+        fontFamily: "'Raleway', sans-serif",
+        fontSize: '1rem',
+        lineHeight: 1.65,
+        margin: 0,
+        textAlign: 'center',
+      },
 
-  h1: {
-    fontSize: '2rem',
-    lineHeight: 1.3,
-  },
+      'h1, h2, h3, h4, h5, h6': {
+        fontWeight: 400,
+        lineHeight: 1.5,
+        margin: `0 0 1rem 0`,
+      },
 
-  h2: {
-    fontSize: '1.2rem',
-    lineHeight: 1.4,
-  },
+      h1: {
+        fontSize: '2rem',
+        lineHeight: 1.3,
+      },
 
-  h3: {
-    fontSize: '1rem',
-  },
+      h2: {
+        fontSize: '1.2rem',
+        lineHeight: 1.4,
+      },
 
-  h4: {
-    fontSize: '0.8rem',
-  },
+      h3: {
+        fontSize: '1rem',
+      },
 
-  h5: {
-    fontSize: '0.7rem',
-  },
+      h4: {
+        fontSize: '0.8rem',
+      },
 
-  h6: {
-    fontSize: '0.6rem',
-  },
+      h5: {
+        fontSize: '0.7rem',
+      },
 
-  '*, *:before, *:after': {
-    boxSizing: 'border-box',
-  },
-});
+      h6: {
+        fontSize: '0.6rem',
+      },
+
+      '*, *:before, *:after': {
+        boxSizing: 'border-box',
+      },
+    }
+  );

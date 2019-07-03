@@ -1,4 +1,4 @@
-import { CSSObject } from '@emotion/core';
+import { CSSObject, SerializedStyles } from '@emotion/core';
 import { OptionsObject } from 'notistack';
 
 export interface FormValues {
@@ -11,7 +11,7 @@ export interface CSSProps {
   theme: Theme;
 }
 
-export type CSSFunc = (props: CSSProps) => CSSObject;
+export type CSSFunc = (props: CSSProps) => CSSObject | SerializedStyles;
 
 export type EnqueueSnackbar = (
   message: string | React.ReactNode,

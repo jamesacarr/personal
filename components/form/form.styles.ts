@@ -1,7 +1,7 @@
-import { css, SerializedStyles } from '@emotion/core';
-import { CSSFunc, CSSProps } from '../../types';
+import { css } from '@emotion/core';
+import { CSSFunc } from '../../types';
 
-type ButtonStyle = (submitting?: boolean) => (props: CSSProps) => SerializedStyles;
+type ButtonStyle = (submitting?: boolean) => CSSFunc;
 export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
   css(
     {
