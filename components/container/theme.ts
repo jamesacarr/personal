@@ -88,6 +88,10 @@ const theme: Theme = {
     teal800: '#C6F7E2',
     teal900: '#EFFCF6',
   },
+
+  font: {
+    family: "'Raleway', sans-serif",
+  },
 };
 
 export default theme;

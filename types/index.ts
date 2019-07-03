@@ -31,4 +31,8 @@ export interface Theme {
   color: {
     readonly [key: string]: string;
   };
+
+  font: {
+    readonly family: string;
+  };
 }

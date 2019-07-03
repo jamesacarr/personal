@@ -5,7 +5,7 @@ export const headerStyles: CSSFunc = ({ theme }) => ({
 
   h1: {
     borderBottom: `2px solid ${theme.color.neutral900}`,
-    margin: '2rem auto',
+    margin: '0 auto 2rem auto',
     width: 'fit-content',
   },
 });

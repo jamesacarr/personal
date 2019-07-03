@@ -9,7 +9,7 @@ export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
       border: 0,
       borderRadius: '4px',
       color: theme.color.neutral600,
-      fontSize: '1rem',
+      fontSize: '1.2rem',
       margin: '0.1rem',
       padding: '0.5rem 1rem',
       transition: 'all .3s',
@@ -67,7 +67,8 @@ export const inputStyles: InputStyle = error => ({ theme }) => ({
   border: `1px solid ${error ? theme.color.red400 : theme.color.neutral000}`,
   borderRadius: '4px',
   color: theme.color.neutral900,
-  fontSize: '0.8rem',
+  fontFamily: theme.font.family,
+  fontSize: '1rem',
   margin: '0.1rem',
   minWidth: 'inherit',
   outline: 'none',
@@ -81,6 +82,7 @@ export const inputStyles: InputStyle = error => ({ theme }) => ({
 
   '&::placeholder': {
     color: theme.color.neutral600,
+    fontFamily: theme.font.family,
   },
 
   '&:not(input)': {

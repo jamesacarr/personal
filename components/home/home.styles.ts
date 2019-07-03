@@ -3,6 +3,7 @@ import { CSSFunc } from '../../types';
 export const buttonStyles: CSSFunc = ({ theme }) => ({
   border: `2px solid ${theme.color.neutral900}`,
   borderRadius: '4px',
+  fontSize: '1.2rem',
   marginTop: '2rem',
   padding: '0.5rem 1rem',
   transition: 'all .3s',

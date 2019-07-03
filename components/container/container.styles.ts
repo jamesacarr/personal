@@ -26,17 +26,9 @@ export const globalStyles: CSSFunc = ({ theme }) =>
     },
     {
       html: {
-        fontSize: '9pt',
+        fontSize: '12pt',
 
-        [theme.breakpoint.xsmall]: {
-          fontSize: '11pt',
-        },
-
-        [theme.breakpoint.small]: {
-          fontSize: '12pt',
-        },
-
-        [theme.breakpoint.large]: {
+        [theme.breakpoint.medium]: {
           fontSize: '14pt',
         },
 
@@ -46,7 +38,7 @@ export const globalStyles: CSSFunc = ({ theme }) =>
       },
 
       body: {
-        fontFamily: "'Raleway', sans-serif",
+        fontFamily: theme.font.family,
         fontSize: '1rem',
         lineHeight: 1.65,
         margin: 0,
