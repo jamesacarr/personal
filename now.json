@@ -2,6 +2,7 @@
   "version": 2,
   "name": "personal",
   "alias": "jamescarr.dev",
+  "regions": ["sfo1", "syd1"],
   "builds": [
   	{ "src": "package.json", "use": "@now/static-build" }
   ],
