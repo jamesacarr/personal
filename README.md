@@ -2,7 +2,7 @@
 
 My personal website.
 
-The website it build in Typescript using [Next.js](https://nextjs.org/) and deployed with [Now](https://zeit.co/now).
+The website is built in Typescript using [Next.js](https://nextjs.org/) and deployed with [Now](https://zeit.co/now).
 
 ## Development
 
