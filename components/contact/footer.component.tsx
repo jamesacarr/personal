@@ -9,10 +9,10 @@ import Icon from './icon.component';
 const Footer = (): JSX.Element => (
   <footer css={footerStyles}>
     <div>
-      <Icon href="https://www.linkedin.com/in/james-a-carr/">
+      <Icon href="https://www.linkedin.com/in/james-a-carr/" label="LinkedIn">
         <LinkedinIcon size="1.5rem" />
       </Icon>
-      <Icon href="https://github.com/jamesacarr">
+      <Icon href="https://github.com/jamesacarr" label="GitHub">
         <GithubCircleIcon size="1.5rem" />
       </Icon>
     </div>

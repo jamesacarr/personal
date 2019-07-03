@@ -34,15 +34,23 @@ const FormContainer = ({ enqueueSnackbar }: WithSnackbarProps): JSX.Element => (
   <Formik initialValues={initialValues} validate={validator} onSubmit={submitMessage(enqueueSnackbar)}>
     {({ errors, touched, isSubmitting }) => (
       <Form css={formStyles}>
-        <Field css={inputStyles(Boolean(errors.name && touched.name))} type="text" name="name" placeholder="Name" />
+        <Field
+          css={inputStyles(Boolean(errors.name && touched.name))}
+          aria-label="Your name"
+          type="text"
+          name="name"
+          placeholder="Name"
+        />
         <Field
           css={inputStyles(Boolean(errors.email && touched.email))}
-          type="email"
+          aria-label="Email address"
           name="email"
           placeholder="Email"
+          type="email"
         />
         <Field
           css={inputStyles(Boolean(errors.message && touched.message))}
+          aria-label="Message"
           component="textarea"
           name="message"
           placeholder="Your Message"
