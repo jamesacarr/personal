@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import { Formik, Form, Field, FormikActions } from 'formik';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
+import axios from 'axios';
 
 import { EnqueueSnackbar, FormValues } from '../../types';
 import { buttonStyles, formStyles, inputStyles } from './form.styles';
@@ -9,7 +10,7 @@ import validator from './validator';
 
 type SubmitFunc = (
   enqueueSnackbar: EnqueueSnackbar
-) => (values: FormValues, actions: FormikActions<FormValues>) => void;
+) => (values: FormValues, actions: FormikActions<FormValues>) => Promise<void>;
 
 const initialValues: FormValues = {
   name: '',
@@ -17,13 +18,11 @@ const initialValues: FormValues = {
   message: '',
 };
 
-const submitMessage: SubmitFunc = enqueueSnackbar => (values, { setSubmitting, resetForm }): void => {
-  setTimeout(() => {
-    console.log(JSON.stringify(values, null, 2));
-    setSubmitting(false);
-    resetForm();
-    enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 1000 });
-  }, 3000);
+const submitMessage: SubmitFunc = enqueueSnackbar => async (values, { setSubmitting, resetForm }) => {
+  await axios.post('https://api.jamescarr.dev/contact', values);
+  enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 1000 });
+  resetForm();
+  setSubmitting(false);
 };
 
 const FormContainer = ({ enqueueSnackbar }: WithSnackbarProps): JSX.Element => (
