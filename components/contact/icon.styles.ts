@@ -8,7 +8,7 @@ export const wrapperStyles: CSSFunc = ({ theme }) => ({
   display: 'inline-block',
   margin: '0.3rem',
   padding: '0.3rem',
-  transition: 'all .5s',
+  transition: 'all .3s',
 
   svg: {
     verticalAlign: 'sub',

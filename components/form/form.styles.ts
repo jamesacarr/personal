@@ -12,7 +12,7 @@ export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
       fontSize: '1rem',
       margin: '0.1rem',
       padding: '0.5rem 1rem',
-      transition: 'all .5s',
+      transition: 'all .3s',
       width: '100%',
 
       '&:hover': {
@@ -73,7 +73,7 @@ export const inputStyles: InputStyle = error => ({ theme }) => ({
   outline: 'none',
   padding: '0.5rem 1rem',
   width: '100%',
-  transition: 'border-color .5s',
+  transition: 'border-color .3s',
 
   '&:focus': {
     borderColor: theme.color.primary500,

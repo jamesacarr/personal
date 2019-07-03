@@ -18,7 +18,7 @@ const Contact = ({ scrollRef }: Props): JSX.Element => (
 
     <div css={headerStyles}>
       <h1>CONTACT</h1>
-      <h3>Have a question or want to work together?</h3>
+      <h3>Have a question or just want to get in touch?</h3>
     </div>
 
     <Form />

@@ -5,7 +5,7 @@ export const buttonStyles: CSSFunc = ({ theme }) => ({
   borderRadius: '4px',
   marginTop: '2rem',
   padding: '0.5rem 1rem',
-  transition: 'all .5s',
+  transition: 'all .3s',
 
   '&:hover': {
     backgroundColor: theme.color.primary500,
@@ -20,7 +20,7 @@ export const buttonStyles: CSSFunc = ({ theme }) => ({
 
 export const iconStyles = {
   marginLeft: '0.5rem',
-  transition: 'transform .5s',
+  transition: 'transform .3s',
   verticalAlign: 'sub',
 };
 

@@ -19,10 +19,15 @@ const initialValues: FormValues = {
 };
 
 const submitMessage: SubmitFunc = enqueueSnackbar => async (values, { setSubmitting, resetForm }) => {
-  await axios.post('https://api.jamescarr.dev/contact', values);
-  enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 1000 });
-  resetForm();
-  setSubmitting(false);
+  try {
+    await axios.post('https://api.jamescarr.dev/contact', values);
+    enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
+    resetForm();
+  } catch {
+    enqueueSnackbar('Unable to send message', { variant: 'error', autoHideDuration: 2000 });
+  } finally {
+    setSubmitting(false);
+  }
 };
 
 const FormContainer = ({ enqueueSnackbar }: WithSnackbarProps): JSX.Element => (
