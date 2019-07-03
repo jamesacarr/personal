@@ -17,7 +17,7 @@ const Container = (): JSX.Element => {
     <>
       <Head>
         <title>James Carr</title>
-        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet" />
+        <link rel="preload" href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" />
       </Head>
 
       <ThemeProvider theme={{ theme }}>
