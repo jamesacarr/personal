@@ -23,22 +23,20 @@ export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
       },
     },
     submitting && {
-      animationName: 'color',
-      animationDuration: '1s',
-      animationIterationCount: 'infinite',
-      animationTimingFunction: 'ease-in',
+      animation: 'color 1s ease-in-out infinite',
       backgroundColor: theme.color.primary500,
       borderColor: theme.color.primary500,
       color: theme.color.neutral900,
-
+    },
+    {
       '@keyframes color': {
         '0%': {
           backgroundColor: theme.color.primary500,
           borderColor: theme.color.primary500,
         },
         '50%': {
-          backgroundColor: theme.color.primary200,
-          borderColor: theme.color.primary200,
+          backgroundColor: theme.color.primary300,
+          borderColor: theme.color.primary300,
         },
         '100': {
           backgroundColor: theme.color.primary500,
