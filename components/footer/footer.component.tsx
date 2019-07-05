@@ -18,9 +18,9 @@ const Footer: FC = () => (
       </Icon>
     </div>
 
-    <h4 css={copyrightStyles}>
+    <span css={copyrightStyles}>
       James Carr <span>&copy; 2019</span>
-    </h4>
+    </span>
   </footer>
 );
 

@@ -46,7 +46,7 @@ export const globalStyles: CSSFunc = ({ theme }) =>
         textAlign: 'center',
       },
 
-      'h1, h2, h3, h4, h5, h6': {
+      'h1, h2': {
         fontWeight: 400,
         lineHeight: 1.5,
         margin: `0 0 1rem 0`,
@@ -60,22 +60,6 @@ export const globalStyles: CSSFunc = ({ theme }) =>
       h2: {
         fontSize: '1.2rem',
         lineHeight: 1.4,
-      },
-
-      h3: {
-        fontSize: '1rem',
-      },
-
-      h4: {
-        fontSize: '0.8rem',
-      },
-
-      h5: {
-        fontSize: '0.7rem',
-      },
-
-      h6: {
-        fontSize: '0.6rem',
       },
 
       '*, *:before, *:after': {

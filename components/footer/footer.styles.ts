@@ -2,6 +2,7 @@ import { CSSFunc } from '../../types';
 
 export const copyrightStyles: CSSFunc = ({ theme }) => ({
   color: theme.color.neutral600,
+  fontSize: '0.8rem',
   margin: 0,
   textTransform: 'uppercase',
 
