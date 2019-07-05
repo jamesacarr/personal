@@ -18,10 +18,10 @@ const Container = (): JSX.Element => {
       <Head>
         <title>James Carr</title>
         <meta name="description" content="Hello, I'm James Carr. I'm a full-stack web developer." />
-        <link as="font" href="/static/fonts/raleway-v13-latin-regular.woff" rel="preload" crossOrigin="" />
-        <link as="font" href="/static/fonts/raleway-v13-latin-regular.woff2" rel="preload" crossOrigin="" />
-        <link as="font" href="/static/fonts/raleway-v13-latin-700.woff" rel="preload" crossOrigin="" />
-        <link as="font" href="/static/fonts/raleway-v13-latin-700.woff2" rel="preload" crossOrigin="" />
+        <link rel="preload" href="/static/fonts/raleway-v13-latin-regular.woff" as="font" crossOrigin="" />
+        <link rel="preload" href="/static/fonts/raleway-v13-latin-regular.woff2" as="font" crossOrigin="" />
+        <link rel="preload" href="/static/fonts/raleway-v13-latin-700.woff" as="font" crossOrigin="" />
+        <link rel="preload" href="/static/fonts/raleway-v13-latin-700.woff2" as="font" crossOrigin="" />
       </Head>
 
       <ThemeProvider theme={{ theme }}>
