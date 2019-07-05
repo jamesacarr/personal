@@ -2,8 +2,8 @@
 import { jsx } from '@emotion/core';
 import { FC, RefObject } from 'react';
 
-import Form from '../form/form.component';
-import Footer from './footer.component';
+import Form from '../form';
+import Footer from '../footer';
 import { headerStyles, svgStyles, wrapperStyles } from './contact.styles';
 
 interface Props {

@@ -4,8 +4,8 @@ import GithubCircleIcon from 'mdi-react/GithubCircleIcon';
 import LinkedinIcon from 'mdi-react/LinkedinIcon';
 import { FC } from 'react';
 
+import Icon from '../icon';
 import { copyrightStyles, footerStyles } from './footer.styles';
-import Icon from './icon.component';
 
 const Footer: FC = () => (
   <footer css={footerStyles}>

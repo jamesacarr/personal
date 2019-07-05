@@ -1,34 +1,18 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Formik, Form, Field, FormikActions } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { FC } from 'react';
-import axios from 'axios';
 
-import { EnqueueSnackbar, FormValues } from '../../types';
+import { FormValues } from '../../types';
 import { buttonStyles, formStyles, inputStyles } from './form.styles';
+import submitMessage from './submit-message';
 import validator from './validator';
-
-type SubmitFunc = (
-  enqueueSnackbar: EnqueueSnackbar
-) => (values: FormValues, actions: FormikActions<FormValues>) => Promise<void>;
 
 const initialValues: FormValues = {
   name: '',
   email: '',
   message: '',
-};
-
-const submitMessage: SubmitFunc = enqueueSnackbar => async (values, { setSubmitting, resetForm }) => {
-  try {
-    await axios.post('https://api.jamescarr.dev/contact', values);
-    enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
-    resetForm();
-  } catch {
-    enqueueSnackbar('Unable to send message', { variant: 'error', autoHideDuration: 2000 });
-  } finally {
-    setSubmitting(false);
-  }
 };
 
 const FormContainer: FC<WithSnackbarProps> = ({ enqueueSnackbar }) => (
