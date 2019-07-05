@@ -38,6 +38,7 @@ export const globalStyles: CSSFunc = ({ theme }) =>
       },
 
       body: {
+        backgroundColor: theme.color.neutral000,
         fontFamily: theme.font.family,
         fontSize: '1rem',
         lineHeight: 1.65,
