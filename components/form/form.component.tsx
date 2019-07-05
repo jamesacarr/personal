@@ -20,6 +20,7 @@ const FormContainer: FC<WithSnackbarProps> = ({ enqueueSnackbar }) => (
     {({ errors, touched, isSubmitting }) => (
       <Form css={formStyles}>
         <Field
+          required
           css={inputStyles(Boolean(errors.name && touched.name))}
           aria-label="Your name"
           type="text"
@@ -27,6 +28,7 @@ const FormContainer: FC<WithSnackbarProps> = ({ enqueueSnackbar }) => (
           placeholder="Name"
         />
         <Field
+          required
           css={inputStyles(Boolean(errors.email && touched.email))}
           aria-label="Email address"
           name="email"
@@ -34,6 +36,7 @@ const FormContainer: FC<WithSnackbarProps> = ({ enqueueSnackbar }) => (
           type="email"
         />
         <Field
+          required
           css={inputStyles(Boolean(errors.message && touched.message))}
           aria-label="Message"
           component="textarea"
