@@ -5,6 +5,7 @@ type ButtonStyle = (submitting?: boolean) => CSSFunc;
 export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
   css(
     {
+      appearance: 'none',
       backgroundColor: theme.color.neutral000,
       border: 0,
       borderRadius: '4px',
@@ -17,7 +18,6 @@ export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
 
       '&:hover': {
         backgroundColor: theme.color.primary500,
-        borderColor: theme.color.primary500,
         color: theme.color.neutral900,
         cursor: 'pointer',
       },
@@ -25,7 +25,6 @@ export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
     submitting && {
       animation: 'color 1s ease-in-out infinite',
       backgroundColor: theme.color.primary500,
-      borderColor: theme.color.primary500,
       color: theme.color.neutral900,
     },
     {
@@ -61,6 +60,7 @@ export const formStyles: CSSFunc = ({ theme }) => ({
 
 type InputStyle = (error?: boolean) => CSSFunc;
 export const inputStyles: InputStyle = error => ({ theme }) => ({
+  appearance: 'none',
   backgroundColor: theme.color.neutral000,
   border: `1px solid ${error ? theme.color.red400 : theme.color.neutral000}`,
   borderRadius: '4px',
