@@ -5,7 +5,7 @@ export const wrapperStyles: CSSFunc = ({ theme }) => ({
   border: `1px solid ${theme.color.neutral600}`,
   borderRadius: '4px',
   color: theme.color.neutral600,
-  display: 'inline-block',
+  display: 'inline-flex',
   margin: '0.3rem',
   padding: '0.3rem',
   transition: 'all .3s',
