@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import { Formik, Form, Field, FormikActions } from 'formik';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
+import { FC } from 'react';
 import axios from 'axios';
 
 import { EnqueueSnackbar, FormValues } from '../../types';
@@ -30,7 +31,7 @@ const submitMessage: SubmitFunc = enqueueSnackbar => async (values, { setSubmitt
   }
 };
 
-const FormContainer = ({ enqueueSnackbar }: WithSnackbarProps): JSX.Element => (
+const FormContainer: FC<WithSnackbarProps> = ({ enqueueSnackbar }) => (
   <Formik initialValues={initialValues} validate={validator} onSubmit={submitMessage(enqueueSnackbar)}>
     {({ errors, touched, isSubmitting }) => (
       <Form css={formStyles}>

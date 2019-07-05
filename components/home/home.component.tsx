@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
-import { RefObject } from 'react';
+import { FC, RefObject } from 'react';
 
 import { buttonStyles, iconStyles, textStyles, wrapperStyles } from './home.styles';
 
@@ -9,7 +9,7 @@ interface Props {
   contactRef: RefObject<HTMLElement>;
 }
 
-const Home = ({ contactRef }: Props): JSX.Element => {
+const Home: FC<Props> = ({ contactRef }) => {
   const onClick = (): void => {
     if (contactRef && contactRef.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' });

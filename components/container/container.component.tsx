@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { createRef } from 'react';
+import { createRef, FC } from 'react';
 import { jsx, Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import { SnackbarProvider } from 'notistack';
@@ -10,7 +10,7 @@ import Home from '../home';
 import { globalStyles } from './container.styles';
 import theme from './theme';
 
-const Container = (): JSX.Element => {
+const Container: FC = () => {
   const contactRef = createRef<HTMLElement>();
 
   return (
