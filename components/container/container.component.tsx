@@ -18,6 +18,7 @@ const Container: FC = () => {
       <Head>
         <title>James Carr</title>
         <meta name="description" content="Hello, I'm James Carr. I'm a full-stack web developer." />
+        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,viewport-fit=cover" />
         <link rel="preload" href="/static/fonts/raleway-v13-latin-regular.woff" as="font" crossOrigin="" />
         <link rel="preload" href="/static/fonts/raleway-v13-latin-regular.woff2" as="font" crossOrigin="" />
         <link rel="preload" href="/static/fonts/raleway-v13-latin-700.woff" as="font" crossOrigin="" />
