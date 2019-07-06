@@ -14,12 +14,10 @@ export const copyrightStyles: CSSFunc = ({ theme }) => ({
 export const footerStyles: CSSFunc = ({ theme }) => ({
   alignItems: 'center',
   backgroundColor: theme.color.neutral000,
-  bottom: 0,
   display: 'flex',
   flexDirection: 'column',
   height: '5rem',
   justifyContent: 'space-around',
-  left: 0,
-  position: 'absolute',
+  marginTop: theme.spacing.large,
   width: '100%',
 });

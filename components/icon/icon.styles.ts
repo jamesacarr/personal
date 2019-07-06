@@ -6,8 +6,8 @@ export const wrapperStyles: CSSFunc = ({ theme }) => ({
   borderRadius: '4px',
   color: theme.color.neutral600,
   display: 'inline-flex',
-  margin: '0.3rem',
-  padding: '0.3rem',
+  margin: theme.spacing.small,
+  padding: theme.spacing.small,
   transition: 'all .3s',
 
   svg: {

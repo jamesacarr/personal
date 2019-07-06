@@ -92,6 +92,12 @@ const theme: Theme = {
   font: {
     family: "'Raleway', sans-serif",
   },
+
+  spacing: {
+    small: '0.5rem',
+    base: '1rem',
+    large: '2rem',
+  },
 };
 
 export default theme;

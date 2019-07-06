@@ -4,8 +4,8 @@ export const buttonStyles: CSSFunc = ({ theme }) => ({
   border: `2px solid ${theme.color.neutral900}`,
   borderRadius: '4px',
   fontSize: '1.2rem',
-  marginTop: '2rem',
-  padding: '0.5rem 1rem',
+  marginTop: theme.spacing.large,
+  padding: `${theme.spacing.small} ${theme.spacing.base}`,
   transition: 'all .3s',
 
   '&:hover': {
@@ -19,11 +19,11 @@ export const buttonStyles: CSSFunc = ({ theme }) => ({
   },
 });
 
-export const iconStyles = {
-  marginLeft: '0.5rem',
+export const iconStyles: CSSFunc = ({ theme }) => ({
+  marginLeft: theme.spacing.small,
   transition: 'transform .3s',
   verticalAlign: 'sub',
-};
+});
 
 export const textStyles: CSSFunc = ({ theme }) => ({
   h1: {

@@ -49,7 +49,7 @@ export const globalStyles: CSSFunc = ({ theme }) =>
       'h1, h2': {
         fontWeight: 400,
         lineHeight: 1.5,
-        margin: `0 0 1rem 0`,
+        margin: `0 0 ${theme.spacing.base} 0`,
       },
 
       h1: {

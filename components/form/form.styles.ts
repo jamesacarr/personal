@@ -12,7 +12,7 @@ export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
       color: theme.color.neutral600,
       fontSize: '1.2rem',
       margin: '0.1rem',
-      padding: '0.5rem 1rem',
+      padding: `${theme.spacing.small} ${theme.spacing.base}`,
       transition: 'all .3s',
       width: '100%',
 
@@ -70,7 +70,7 @@ export const inputStyles: InputStyle = error => ({ theme }) => ({
   margin: '0.1rem',
   minWidth: 'inherit',
   outline: 'none',
-  padding: '0.5rem 1rem',
+  padding: `${theme.spacing.small} ${theme.spacing.base}`,
   width: '100%',
   transition: 'border-color .3s',
 

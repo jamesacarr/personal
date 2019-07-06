@@ -29,4 +29,10 @@ export interface Theme {
   font: {
     readonly family: string;
   };
+
+  spacing: {
+    readonly small: string;
+    readonly base: string;
+    readonly large: string;
+  };
 }
