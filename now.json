@@ -4,7 +4,7 @@
   "alias": "jamescarr.dev",
   "regions": ["sfo1", "syd1"],
   "builds": [
-  	{ "src": "package.json", "use": "@now/static-build" }
+    { "src": "package.json", "use": "@now/next" }
   ],
   "routes": [
     { "handle": "filesystem" },
