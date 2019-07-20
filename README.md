@@ -21,4 +21,4 @@ All code pushed to `master` will be automatically deployed. Branches will be dep
 
 ## License
 
-© James Carr
+© James Carr 2019
