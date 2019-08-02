@@ -19,10 +19,19 @@ const Container: FC = () => {
         <title>James Carr</title>
         <meta name="description" content="Hello, I'm James Carr. I'm a full-stack web developer." />
         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,viewport-fit=cover" />
+
         <link rel="preload" href="/static/fonts/raleway-v13-latin-regular.woff" as="font" crossOrigin="" />
         <link rel="preload" href="/static/fonts/raleway-v13-latin-regular.woff2" as="font" crossOrigin="" />
         <link rel="preload" href="/static/fonts/raleway-v13-latin-700.woff" as="font" crossOrigin="" />
         <link rel="preload" href="/static/fonts/raleway-v13-latin-700.woff2" as="font" crossOrigin="" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/static/icons/android-chrome-512x512.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/android-chrome-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png" />
+        <link rel="manifest" href="/static/icons/site.webmanifest" />
+        <link rel="shortcut icon" href="/static/icons/favicon.ico" />
       </Head>
 
       <ThemeProvider theme={{ theme }}>
@@ -31,7 +40,6 @@ const Container: FC = () => {
 
           <main>
             <Home contactRef={contactRef} />
-            {/* <About /> */}
             <Contact scrollRef={contactRef} />
           </main>
         </SnackbarProvider>
