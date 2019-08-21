@@ -7,7 +7,7 @@ export const copyrightStyles: CSSFunc = ({ theme }) => ({
   textTransform: 'uppercase',
 
   span: {
-    color: theme.color.teal400,
+    color: theme.color.yellow500,
   },
 });
 
