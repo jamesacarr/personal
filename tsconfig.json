@@ -27,6 +27,7 @@
     "**/*.test.ts"
   ],
   "include": [
+    "next.config.js",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
