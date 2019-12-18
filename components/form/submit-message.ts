@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FormikActions } from 'formik';
+import { FormikHelpers } from 'formik';
 import { OptionsObject } from 'notistack';
 
 import { FormValues } from '../../types';
@@ -11,7 +11,7 @@ export type EnqueueSnackbar = (
 
 type SubmitFunc = (
   enqueueSnackbar: EnqueueSnackbar
-) => (values: FormValues, actions: FormikActions<FormValues>) => Promise<void>;
+) => (values: FormValues, actions: FormikHelpers<FormValues>) => Promise<void>;
 
 const submitMessage: SubmitFunc = enqueueSnackbar => async (values, { setSubmitting, resetForm }) => {
   try {

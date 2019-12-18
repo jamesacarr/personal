@@ -3,20 +3,31 @@ import { jsx } from '@emotion/core';
 import { Formik, Form, Field } from 'formik';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { FC } from 'react';
+import { object, string } from 'yup';
 
 import { FormValues } from '../../types';
 import { buttonStyles, formStyles, inputStyles } from './form.styles';
+import ReCAPTCHAField from './recaptcha-field';
 import submitMessage from './submit-message';
-import validator from './validator';
 
 const initialValues: FormValues = {
   name: '',
   email: '',
   message: '',
+  token: '',
 };
 
+const validationSchema = object().shape({
+  name: string().required('Required'),
+  email: string()
+    .email('Invalid email')
+    .required('Required'),
+  message: string().required('Required'),
+  token: string().required('Required'),
+});
+
 const FormContainer: FC<WithSnackbarProps> = ({ enqueueSnackbar }) => (
-  <Formik initialValues={initialValues} validate={validator} onSubmit={submitMessage(enqueueSnackbar)}>
+  <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitMessage(enqueueSnackbar)}>
     {({ errors, touched, isSubmitting }) => (
       <Form css={formStyles}>
         <Field
@@ -43,6 +54,7 @@ const FormContainer: FC<WithSnackbarProps> = ({ enqueueSnackbar }) => (
           name="message"
           placeholder="Your Message"
         />
+        <ReCAPTCHAField />
         <input
           css={buttonStyles(isSubmitting)}
           type="submit"
