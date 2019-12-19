@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "private": true,
   "engines": {
-    "node": "10.x"
+    "node": "12.x"
   },
   "scripts": {
     "dev": "now dev",
