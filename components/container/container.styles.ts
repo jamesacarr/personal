@@ -11,7 +11,7 @@ export const globalStyles: CSSFunc = ({ theme }) =>
         fontStyle: 'normal',
         fontWeight: 400,
         src:
-          "local('Raleway'), local('Raleway-Regular'), url('/static/fonts/raleway-v13-latin-regular.woff2') format('woff2'), url('/static/fonts/raleway-v13-latin-regular.woff') format('woff')",
+          "local('Raleway'), local('Raleway-Regular'), url('/fonts/raleway-v13-latin-regular.woff2') format('woff2'), url('/fonts/raleway-v13-latin-regular.woff') format('woff')",
       },
     },
     {
@@ -21,7 +21,7 @@ export const globalStyles: CSSFunc = ({ theme }) =>
         fontStyle: 'normal',
         fontWeight: 700,
         src:
-          "local('Raleway Bold'), local('Raleway-Bold'), url('/static/fonts/raleway-v13-latin-700.woff2') format('woff2'), url('/static/fonts/raleway-v13-latin-700.woff') format('woff')",
+          "local('Raleway Bold'), local('Raleway-Bold'), url('/fonts/raleway-v13-latin-700.woff2') format('woff2'), url('/fonts/raleway-v13-latin-700.woff') format('woff')",
       },
     },
     {

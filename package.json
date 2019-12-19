@@ -54,6 +54,13 @@
         "error",
         2
       ],
+      "@typescript-eslint/quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true
+        }
+      ],
       "react/prop-types": 0
     }
   },
