@@ -5,6 +5,11 @@
   "builds": [
     { "src": "package.json", "use": "@now/next" }
   ],
+  "build": {
+    "env": {
+      "RECAPTCHA_SITE_KEY": "@recaptcha-personal-production-v2-invisible-site-key"
+    }
+  },
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.+)", "status": 301, "dest": "/", "headers": { "Location": "/" } }

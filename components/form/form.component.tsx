@@ -1,14 +1,16 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Formik, Form, Field } from 'formik';
-import { withSnackbar, WithSnackbarProps } from 'notistack';
+import axios from 'axios';
+import { Formik, FormikHelpers, Form, Field } from 'formik';
+import { useSnackbar } from 'notistack';
 import { FC } from 'react';
 import { object, string } from 'yup';
 
 import { FormValues } from '../../types';
 import { buttonStyles, formStyles, inputStyles } from './form.styles';
 import ReCAPTCHAField from './recaptcha-field';
-import submitMessage from './submit-message';
+
+type SubmitFunc = (values: FormValues, actions: FormikHelpers<FormValues>) => Promise<void>;
 
 const initialValues: FormValues = {
   name: '',
@@ -26,44 +28,60 @@ const validationSchema = object().shape({
   token: string().required('Required'),
 });
 
-const FormContainer: FC<WithSnackbarProps> = ({ enqueueSnackbar }) => (
-  <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitMessage(enqueueSnackbar)}>
-    {({ errors, touched, isSubmitting }) => (
-      <Form css={formStyles}>
-        <Field
-          required
-          css={inputStyles(Boolean(errors.name && touched.name))}
-          aria-label="Your name"
-          type="text"
-          name="name"
-          placeholder="Name"
-        />
-        <Field
-          required
-          css={inputStyles(Boolean(errors.email && touched.email))}
-          aria-label="Email address"
-          name="email"
-          placeholder="Email"
-          type="email"
-        />
-        <Field
-          required
-          css={inputStyles(Boolean(errors.message && touched.message))}
-          aria-label="Message"
-          component="textarea"
-          name="message"
-          placeholder="Your Message"
-        />
-        <ReCAPTCHAField />
-        <input
-          css={buttonStyles(isSubmitting)}
-          type="submit"
-          value={isSubmitting ? 'SUBMITTING' : 'SUBMIT'}
-          disabled={isSubmitting}
-        />
-      </Form>
-    )}
-  </Formik>
-);
+const FormContainer: FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
 
-export default withSnackbar(FormContainer);
+  const submitForm: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
+    try {
+      await axios.post('https://api.jamescarr.dev/contact', values);
+      enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
+      resetForm();
+    } catch {
+      enqueueSnackbar('Unable to send message', { variant: 'error', autoHideDuration: 2000 });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <Formik validateOnMount initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
+      {({ errors, touched, isSubmitting, isValid }) => (
+        <Form css={formStyles}>
+          <ReCAPTCHAField />
+          <Field
+            required
+            css={inputStyles(Boolean(errors.name && touched.name))}
+            aria-label="Your name"
+            type="text"
+            name="name"
+            placeholder="Name"
+          />
+          <Field
+            required
+            css={inputStyles(Boolean(errors.email && touched.email))}
+            aria-label="Email address"
+            name="email"
+            placeholder="Email"
+            type="email"
+          />
+          <Field
+            required
+            css={inputStyles(Boolean(errors.message && touched.message))}
+            aria-label="Message"
+            component="textarea"
+            name="message"
+            placeholder="Your Message"
+          />
+          <input
+            css={buttonStyles(isSubmitting)}
+            type="submit"
+            value={isSubmitting ? 'SUBMITTING' : 'SUBMIT'}
+            disabled={isSubmitting || !isValid}
+          />
+        </Form>
+      )}
+    </Formik>
+  );
+};
+
+export default FormContainer;

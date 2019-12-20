@@ -6,7 +6,7 @@ export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
   css(
     {
       appearance: 'none',
-      backgroundColor: theme.color.neutral000,
+      backgroundColor: theme.color.neutral500,
       border: 0,
       borderRadius: '4px',
       color: theme.color.neutral600,
@@ -16,10 +16,14 @@ export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
       transition: 'all .3s',
       width: '100%',
 
-      '&:hover': {
-        backgroundColor: theme.color.primary500,
-        color: theme.color.neutral900,
-        cursor: 'pointer',
+      '&:not(:disabled)': {
+        backgroundColor: theme.color.neutral000,
+
+        '&:hover': {
+          backgroundColor: theme.color.primary500,
+          color: theme.color.neutral900,
+          cursor: 'pointer',
+        },
       },
     },
     submitting && {
