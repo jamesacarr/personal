@@ -7,7 +7,7 @@ import generatePayload from './generate-payload';
 const sendMessage = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const url = process.env.SLACK_CONTACT_WEBHOOK ?? '';
   if (!url) {
-    errorHandler(res, 500, 'Internal server error');
+    errorHandler(req, res, 500, 'Internal server error');
     return;
   }
 
@@ -15,7 +15,7 @@ const sendMessage = async (req: NextApiRequest, res: NextApiResponse): Promise<v
     await axios.post(url, generatePayload(req.body));
     res.json({ success: true });
   } catch {
-    errorHandler(res, 500, 'Internal server error');
+    errorHandler(req, res, 500, 'Internal server error');
   }
 };
 

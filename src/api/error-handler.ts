@@ -1,7 +1,8 @@
-import { NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-const errorHandler = (res: NextApiResponse, code: number, message: string): void => {
-  console.log('Error:', code, message);
+const errorHandler = (req: NextApiRequest, res: NextApiResponse, code: number, message: string): void => {
+  console.error('Error:', code, message);
+  console.error(req.body);
   res.status(code).json({ error: { code, message } });
 };
 

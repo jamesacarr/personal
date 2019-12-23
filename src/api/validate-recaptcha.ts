@@ -17,16 +17,16 @@ const validateReCAPTCHA: Validator = async (req, res) => {
     });
 
     if (!response.data.success) {
-      errorHandler(res, 401, 'Invalid ReCAPTCHA token');
+      errorHandler(req, res, 401, 'Invalid ReCAPTCHA token');
       return false;
     }
 
     if (response.data.score && response.data.score < 0.5) {
-      errorHandler(res, 401, 'Low ReCAPTCHA score');
+      errorHandler(req, res, 401, 'Low ReCAPTCHA score');
       return false;
     }
   } catch {
-    errorHandler(res, 500, 'Internal server error');
+    errorHandler(req, res, 500, 'Internal server error');
     return false;
   }
 

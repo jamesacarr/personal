@@ -6,32 +6,32 @@ const EMAIL_REGEX = /^(?:(?:[^<>()[\]\\.,;:\s@"]+(?:\.[^<>()[\]\\.,;:\s@"]+)*)|(
 
 const validateBody = (req: NextApiRequest, res: NextApiResponse): boolean => {
   if (!req.body || typeof req.body !== 'object') {
-    errorHandler(res, 400, 'Invalid format');
+    errorHandler(req, res, 400, 'Invalid format');
     return false;
   }
 
   if (!req.body.name) {
-    errorHandler(res, 400, 'Missing field: name');
+    errorHandler(req, res, 400, 'Missing field: name');
     return false;
   }
 
   if (!req.body.email) {
-    errorHandler(res, 400, 'Missing field: email');
+    errorHandler(req, res, 400, 'Missing field: email');
     return false;
   }
 
   if (!EMAIL_REGEX.test(req.body.email)) {
-    errorHandler(res, 400, 'Invalid field: email');
+    errorHandler(req, res, 400, 'Invalid field: email');
     return false;
   }
 
   if (!req.body.message) {
-    errorHandler(res, 400, 'Missing field: message');
+    errorHandler(req, res, 400, 'Missing field: message');
     return false;
   }
 
   if (!req.body.token) {
-    errorHandler(res, 400, 'Missing field: token');
+    errorHandler(req, res, 400, 'Missing field: token');
     return false;
   }
 

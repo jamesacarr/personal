@@ -4,7 +4,7 @@ import errorHandler from '../error-handler';
 
 const validateMethod = (req: NextApiRequest, res: NextApiResponse): boolean => {
   if (req.method !== 'POST') {
-    errorHandler(res, 404, 'Not Found');
+    errorHandler(req, res, 404, 'Not Found');
     return false;
   }
 
