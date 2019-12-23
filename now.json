@@ -7,7 +7,7 @@
   ],
   "build": {
     "env": {
-      "RECAPTCHA_SITE_KEY": "@recaptcha-personal-production-v2-invisible-site-key"
+      "RECAPTCHA_SITE_KEY": "@recaptcha-personal-production-v3-site-key"
     }
   },
   "routes": [

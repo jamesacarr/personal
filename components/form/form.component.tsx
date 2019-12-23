@@ -8,7 +8,7 @@ import { object, string } from 'yup';
 
 import { FormValues } from '../../types';
 import { buttonStyles, formStyles, inputStyles } from './form.styles';
-import ReCAPTCHAField from './recaptcha-field';
+import useRecaptcha from './use-recaptcha';
 
 type SubmitFunc = (values: FormValues, actions: FormikHelpers<FormValues>) => Promise<void>;
 
@@ -16,7 +16,6 @@ const initialValues: FormValues = {
   name: '',
   email: '',
   message: '',
-  token: '',
 };
 
 const validationSchema = object().shape({
@@ -25,15 +24,15 @@ const validationSchema = object().shape({
     .email('Invalid email')
     .required('Required'),
   message: string().required('Required'),
-  token: string().required('Required'),
 });
 
 const FormContainer: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { token } = useRecaptcha();
 
   const submitForm: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
     try {
-      await axios.post('https://api.jamescarr.dev/contact', values);
+      await axios.post('https://api.jamescarr.dev/contact', { ...values, token });
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
     } catch {
@@ -47,7 +46,6 @@ const FormContainer: FC = () => {
     <Formik validateOnMount initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
       {({ errors, touched, isSubmitting, isValid }) => (
         <Form css={formStyles}>
-          <ReCAPTCHAField />
           <Field
             required
             css={inputStyles(Boolean(errors.name && touched.name))}

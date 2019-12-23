@@ -12,6 +12,7 @@ import theme from './theme';
 
 const Container: FC = () => {
   const contactRef = createRef<HTMLElement>();
+  const recaptchaURL = `https://www.google.com/recaptcha/api.js?render=${process.env.RECAPTCHA_SITE_KEY ?? ''}`;
 
   return (
     <>
@@ -32,6 +33,8 @@ const Container: FC = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
         <link rel="manifest" href="/icons/site.webmanifest" />
         <link rel="shortcut icon" href="/icons/favicon.ico" />
+
+        <script src={recaptchaURL} />
       </Head>
 
       <ThemeProvider theme={{ theme }}>
