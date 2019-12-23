@@ -32,7 +32,7 @@ const FormContainer: FC = () => {
 
   const submitForm: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
     try {
-      await axios.post('https://api.jamescarr.dev/contact', { ...values, token });
+      await axios.post('/api/contact', { ...values, token });
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
     } catch {
