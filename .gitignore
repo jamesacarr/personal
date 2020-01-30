@@ -29,4 +29,5 @@ node_modules/
 
 # Next.js
 .next
+.env.build
 dist
