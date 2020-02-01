@@ -7,6 +7,7 @@
   ],
   "build": {
     "env": {
+      "GOOGLE_ANALYTICS_TRACKING_ID": "@google-analytics-tracking-id",
       "RECAPTCHA_SECRET_KEY": "@recaptcha-personal-production-v3-secret-key",
       "RECAPTCHA_SITE_KEY": "@recaptcha-personal-production-v3-site-key",
       "SLACK_CONTACT_WEBHOOK": "@slack-contact-webhook"

@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
 import { FC, RefObject } from 'react';
+import ReactGA from 'react-ga';
 
 import { buttonStyles, iconStyles, textStyles, wrapperStyles } from './home.styles';
 
@@ -11,8 +12,9 @@ interface Props {
 
 const Home: FC<Props> = ({ contactRef }) => {
   const onClick = (): void => {
-    if (contactRef && contactRef.current) {
+    if (contactRef?.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' });
+      ReactGA.event({ category: 'Navigation', action: 'Scroll to Contact' });
     }
   };
 

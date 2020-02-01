@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Formik, FormikHelpers, Form, Field } from 'formik';
 import { useSnackbar } from 'notistack';
 import { FC } from 'react';
+import ReactGA from 'react-ga';
 import { object, string } from 'yup';
 
 import { FormValues } from '../../types';
@@ -33,9 +34,11 @@ const FormContainer: FC = () => {
   const submitForm: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
     try {
       await axios.post('/api/contact', { ...values, token });
+      ReactGA.event({ category: 'Contact', action: 'Submit Form' });
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
     } catch {
+      ReactGA.exception({ description: 'Submit Form failed' });
       enqueueSnackbar('Unable to send message', { variant: 'error', autoHideDuration: 2000 });
     } finally {
       setSubmitting(false);

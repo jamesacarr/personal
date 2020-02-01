@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { FC } from 'react';
+import { OutboundLink } from 'react-ga';
 
 import { wrapperStyles } from './icon.styles';
 
@@ -11,9 +12,9 @@ interface Props {
 }
 
 const Icon: FC<Props> = ({ children, href, label }) => (
-  <a css={wrapperStyles} href={href} aria-label={`Visit my ${label} account`}>
+  <OutboundLink css={wrapperStyles} eventLabel={label} to={href} aria-label={`Visit my ${label} account`}>
     {children}
-  </a>
+  </OutboundLink>
 );
 
 export default Icon;
