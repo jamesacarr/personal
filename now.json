@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "personal",
-  "regions": ["sfo1", "syd1"],
+  "regions": ["syd1"],
   "builds": [
     { "src": "package.json", "use": "@now/next" }
   ],
