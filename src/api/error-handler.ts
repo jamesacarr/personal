@@ -1,8 +1,21 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { INTERNAL_SERVER_ERROR, NOT_FOUND } from 'http-status-codes';
+import { NextApiResponse } from 'next';
 
-const errorHandler = (req: NextApiRequest, res: NextApiResponse, code: number, message: string): void => {
-  console.error('Error:', code, message);
-  console.error(req.body);
+type ErrorMessageArray = {
+  [code: number]: string;
+};
+
+const ERROR_MESSAGES: ErrorMessageArray = {
+  [NOT_FOUND]: 'Not Found',
+  [INTERNAL_SERVER_ERROR]: 'Internal Server Error',
+};
+
+const messageForCode = (code: number): string => {
+  return ERROR_MESSAGES[code] || ERROR_MESSAGES[INTERNAL_SERVER_ERROR];
+};
+
+const errorHandler = (res: NextApiResponse, code: number, customMessage?: string): void => {
+  const message = customMessage ? customMessage : messageForCode(code);
   res.status(code).json({ error: { code, message } });
 };
 

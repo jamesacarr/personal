@@ -1,3 +1,4 @@
+import { BAD_REQUEST } from 'http-status-codes';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import errorHandler from '../error-handler';
@@ -6,32 +7,32 @@ const EMAIL_REGEX = /^(?:(?:[^<>()[\]\\.,;:\s@"]+(?:\.[^<>()[\]\\.,;:\s@"]+)*)|(
 
 const validateBody = (req: NextApiRequest, res: NextApiResponse): boolean => {
   if (!req.body || typeof req.body !== 'object') {
-    errorHandler(req, res, 400, 'Invalid format');
+    errorHandler(res, BAD_REQUEST, 'Invalid format');
     return false;
   }
 
   if (!req.body.name) {
-    errorHandler(req, res, 400, 'Missing field: name');
+    errorHandler(res, BAD_REQUEST, 'Missing field: name');
     return false;
   }
 
   if (!req.body.email) {
-    errorHandler(req, res, 400, 'Missing field: email');
+    errorHandler(res, BAD_REQUEST, 'Missing field: email');
     return false;
   }
 
   if (!EMAIL_REGEX.test(req.body.email)) {
-    errorHandler(req, res, 400, 'Invalid field: email');
+    errorHandler(res, BAD_REQUEST, 'Invalid field: email');
     return false;
   }
 
   if (!req.body.message) {
-    errorHandler(req, res, 400, 'Missing field: message');
+    errorHandler(res, BAD_REQUEST, 'Missing field: message');
     return false;
   }
 
   if (!req.body.token) {
-    errorHandler(req, res, 400, 'Missing field: token');
+    errorHandler(res, BAD_REQUEST, 'Missing field: token');
     return false;
   }
 
