@@ -37,9 +37,10 @@ const FormContainer: FC = () => {
       ReactGA.event({ category: 'Contact', action: 'Submit Form' });
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
-    } catch {
+    } catch (error) {
+      const message = ['Unable to send message', error.response?.data?.error?.message].filter(Boolean).join(': ');
       ReactGA.exception({ description: 'Submit Form failed' });
-      enqueueSnackbar('Unable to send message', { variant: 'error', autoHideDuration: 2000 });
+      enqueueSnackbar(message, { variant: 'error', autoHideDuration: 2000 });
     } finally {
       setSubmitting(false);
     }
