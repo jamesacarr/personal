@@ -31,3 +31,4 @@ node_modules/
 .next
 .env.build
 dist
+.now
