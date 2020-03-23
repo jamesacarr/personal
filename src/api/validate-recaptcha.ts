@@ -6,23 +6,23 @@ import errorHandler from './error-handler';
 
 type Validator = (req: NextApiRequest, res: NextApiResponse) => Promise<boolean>;
 
-const validateReCAPTCHA: Validator = async (req, res) => {
-  const response = await axios.request({
+const validateReCAPTCHA: Validator = async (request, response) => {
+  const verification = await axios.request({
     url: 'https://www.google.com/recaptcha/api/siteverify',
     method: 'POST',
     params: {
       secret: process.env.RECAPTCHA_SECRET_KEY,
-      response: req.body.token,
+      response: request.body.token,
     },
   });
 
-  if (!response.data.success) {
-    errorHandler(res, UNAUTHORIZED, 'Invalid ReCAPTCHA token');
+  if (!verification.data.success) {
+    errorHandler(response, UNAUTHORIZED, 'Invalid ReCAPTCHA token');
     return false;
   }
 
-  if (response.data.score && response.data.score < 0.6) {
-    errorHandler(res, UNAUTHORIZED, 'Low ReCAPTCHA score');
+  if (verification.data.score && verification.data.score < 0.6) {
+    errorHandler(response, UNAUTHORIZED, 'Low ReCAPTCHA score');
     return false;
   }
 

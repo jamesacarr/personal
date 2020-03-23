@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import GithubCircleIcon from 'mdi-react/GithubCircleIcon';
+import GithubIcon from 'mdi-react/GithubIcon';
 import LinkedinIcon from 'mdi-react/LinkedinIcon';
 import { FC } from 'react';
 
@@ -14,7 +14,7 @@ const Footer: FC = () => (
         <LinkedinIcon size="1.5rem" />
       </Icon>
       <Icon href="https://github.com/jamesacarr" label="GitHub">
-        <GithubCircleIcon size="1.5rem" />
+        <GithubIcon size="1.5rem" />
       </Icon>
     </div>
 

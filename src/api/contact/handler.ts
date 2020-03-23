@@ -7,26 +7,26 @@ import validateBody from './validate-body';
 import validateMethod from './validate-method';
 import sendMessage from './send-message';
 
-type Handler = (req: NextApiRequest, res: NextApiResponse) => void | Promise<void>;
+type Handler = (request: NextApiRequest, response: NextApiResponse) => void | Promise<void>;
 
-const contactHandler: Handler = async (req, res) => {
+const contactHandler: Handler = async (request, response) => {
   try {
-    if (!validateMethod(req, res)) {
+    if (!validateMethod(request, response)) {
       return;
     }
 
-    if (!validateBody(req, res)) {
+    if (!validateBody(request, response)) {
       return;
     }
 
-    const validToken = await validateReCAPTCHA(req, res);
+    const validToken = await validateReCAPTCHA(request, response);
     if (!validToken) {
       return;
     }
 
-    await sendMessage(req, res);
+    await sendMessage(request, response);
   } catch {
-    errorHandler(res, INTERNAL_SERVER_ERROR);
+    errorHandler(response, INTERNAL_SERVER_ERROR);
   }
 };
 

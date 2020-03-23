@@ -3,9 +3,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import errorHandler from '../error-handler';
 
-const validateMethod = (req: NextApiRequest, res: NextApiResponse): boolean => {
-  if (req.method !== 'POST') {
-    errorHandler(res, NOT_FOUND);
+const validateMethod = (request: NextApiRequest, response: NextApiResponse): boolean => {
+  if (request.method !== 'POST') {
+    errorHandler(response, NOT_FOUND);
     return false;
   }
 
