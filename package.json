@@ -40,7 +40,8 @@
       "xo-react"
     ],
     "extensions": [
-      "ts"
+      "ts",
+      "tsx"
     ],
     "env": [
       "browser",
