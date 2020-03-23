@@ -21,7 +21,7 @@ const validateReCAPTCHA: Validator = async (req, res) => {
     return false;
   }
 
-  if (response.data.score && response.data.score < 0.5) {
+  if (response.data.score && response.data.score < 0.6) {
     errorHandler(res, UNAUTHORIZED, 'Low ReCAPTCHA score');
     return false;
   }
