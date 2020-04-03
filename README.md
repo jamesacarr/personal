@@ -1,5 +1,7 @@
 # Personal
 
+![Build status](https://github.com/jamesacarr/personal/workflows/build/badge.svg)
+
 My personal website.
 
 The website is built in Typescript using [Next.js](https://nextjs.org/) and deployed with [Now](https://zeit.co/now).
