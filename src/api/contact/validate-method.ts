@@ -1,9 +1,10 @@
 import { NOT_FOUND } from 'http-status-codes';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 
+import { APIRequest, APIResponse } from '../../types';
 import errorHandler from '../error-handler';
 
-const validateMethod = (request: NextApiRequest, response: NextApiResponse): boolean => {
+const validateMethod = (request: APIRequest, response: NextApiResponse<APIResponse>): boolean => {
   if (request.method !== 'POST') {
     errorHandler(response, NOT_FOUND);
     return false;

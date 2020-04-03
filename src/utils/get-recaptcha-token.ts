@@ -12,6 +12,10 @@ interface ReCaptchaExecuteOptions {
 }
 
 const getRecaptchaToken = async (action: string): Promise<string | null> => {
+  if (typeof window === 'undefined') {
+    return Promise.resolve(null);
+  }
+
   const siteKey = process.env.RECAPTCHA_SITE_KEY ?? '';
   if (!siteKey) {
     return Promise.resolve(null);

@@ -17,12 +17,14 @@ const Container: FC = () => {
   return (
     <ThemeProvider theme={{ theme }}>
       <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
-        <Global styles={globalStyles} />
+        <>
+          <Global styles={globalStyles} />
 
-        <main>
-          <Home contactRef={contactRef} />
-          <Contact scrollRef={contactRef} />
-        </main>
+          <main>
+            <Home contactRef={contactRef} />
+            <Contact scrollRef={contactRef} />
+          </main>
+        </>
       </SnackbarProvider>
     </ThemeProvider>
   );

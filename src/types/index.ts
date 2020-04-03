@@ -1,11 +1,30 @@
+import { NextApiRequest } from 'next';
 import { CSSObject, SerializedStyles } from '@emotion/core';
 
 export interface FormValues {
-  name?: string;
-  email?: string;
-  message?: string;
-  token?: string;
+  name: string;
+  email: string;
+  message: string;
+  token: string;
 }
+
+export interface APIRequest extends NextApiRequest {
+  body: FormValues;
+}
+
+export type APIResponseSuccess = {
+  success: true;
+};
+
+export type APIResponseError = {
+  success: false;
+  error: {
+    code: number;
+    message: string;
+  };
+};
+
+export type APIResponse = APIResponseSuccess | APIResponseError;
 
 export interface CSSProps {
   theme: Theme;

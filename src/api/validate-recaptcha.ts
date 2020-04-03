@@ -1,13 +1,22 @@
 import axios from 'axios';
 import { UNAUTHORIZED } from 'http-status-codes';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 
+import { APIRequest, APIResponse } from '../types';
 import errorHandler from './error-handler';
 
-type Validator = (req: NextApiRequest, res: NextApiResponse) => Promise<boolean>;
+type Validator = (request: APIRequest, response: NextApiResponse<APIResponse>) => Promise<boolean>;
+
+type RecaptchaResponse = {
+  success: boolean;
+  score: number;
+  action: string;
+  challenge_ts: string;
+  hostname: string;
+};
 
 const validateReCAPTCHA: Validator = async (request, response) => {
-  const verification = await axios.request({
+  const verification = await axios.request<RecaptchaResponse>({
     url: 'https://www.google.com/recaptcha/api/siteverify',
     method: 'POST',
     params: {

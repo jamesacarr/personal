@@ -1,13 +1,14 @@
 import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 
+import { APIRequest, APIResponse } from '../../types';
 import errorHandler from '../error-handler';
 import validateReCAPTCHA from '../validate-recaptcha';
 import validateBody from './validate-body';
 import validateMethod from './validate-method';
 import sendMessage from './send-message';
 
-type Handler = (request: NextApiRequest, response: NextApiResponse) => void | Promise<void>;
+type Handler = (request: APIRequest, response: NextApiResponse<APIResponse>) => void | Promise<void>;
 
 const contactHandler: Handler = async (request, response) => {
   try {
