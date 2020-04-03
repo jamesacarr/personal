@@ -1,6 +1,4 @@
-import { Theme } from '../../types';
-
-const theme: Theme = {
+const theme = {
   breakpoint: {
     // Smartphones, portrait iPhone, portrait 480x320 phones (Android)
     xxsmall: '@media (min-width:320px)',

@@ -4,15 +4,22 @@ import { useSnackbar } from 'notistack';
 import ReactGA from 'react-ga';
 
 import { ContactRequestBody, ContactResponseBody } from '../../api/contact';
-import { FormValues } from '../../types';
 import { getRecaptchaToken } from '../../utils';
+import validationSchema from './validation-schema';
 
-type SubmitFunc = (values: FormValues, actions: FormikHelpers<FormValues>) => Promise<void>;
+type SubmitFunc = (values: ContactRequestBody, actions: FormikHelpers<ContactRequestBody>) => Promise<void>;
 
-const useSubmitForm = () => {
+const initialValues = {
+  name: '',
+  email: '',
+  message: '',
+  token: '',
+};
+
+const useFormProps = () => {
   const { enqueueSnackbar } = useSnackbar();
 
-  const submitForm: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
+  const onSubmit: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
     try {
       const token = await getRecaptchaToken('contact');
       await axios.post<ContactRequestBody, ContactResponseBody>('/api/contact', { ...values, token });
@@ -29,7 +36,7 @@ const useSubmitForm = () => {
     }
   };
 
-  return submitForm;
+  return { initialValues, onSubmit, validationSchema };
 };
 
-export default useSubmitForm;
+export default useFormProps;

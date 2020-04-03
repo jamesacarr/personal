@@ -1,93 +1,93 @@
 import { css } from '@emotion/core';
-import { CSSFunc } from '../../types';
 
-type ButtonStyle = (submitting?: boolean) => CSSFunc;
-export const buttonStyles: ButtonStyle = submitting => ({ theme }) =>
-  css(
-    {
-      appearance: 'none',
-      backgroundColor: theme.color.neutral500,
-      border: 0,
-      borderRadius: '4px',
-      color: theme.color.neutral600,
-      fontSize: '1.2rem',
-      margin: '0.1rem',
-      padding: `${theme.spacing.small} ${theme.spacing.base}`,
-      transition: 'all .3s',
-      width: '100%',
+import theme from '../theme';
 
-      '&:not(:disabled)': {
-        backgroundColor: theme.color.neutral000,
+export const buttonStyles = css`
+  appearance: none;
+  background-color: ${theme.color.neutral500};
+  border: 0;
+  border-radius: 4px;
+  color: ${theme.color.neutral600};
+  font-size: 1.2rem;
+  margin: 0.1rem;
+  padding: ${theme.spacing.small} ${theme.spacing.base};
+  transition: all 0.3s;
+  width: 100%;
 
-        '&:hover': {
-          backgroundColor: theme.color.primary500,
-          color: theme.color.neutral900,
-          cursor: 'pointer',
-        },
-      },
-    },
-    submitting && {
-      animation: 'color 1s ease-in-out infinite',
-      backgroundColor: theme.color.primary500,
-      color: theme.color.neutral900,
-    },
-    {
-      '@keyframes color': {
-        '0%': {
-          backgroundColor: theme.color.primary500,
-          borderColor: theme.color.primary500,
-        },
-        '50%': {
-          backgroundColor: theme.color.primary300,
-          borderColor: theme.color.primary300,
-        },
-        '100': {
-          backgroundColor: theme.color.primary500,
-          borderColor: theme.color.primary500,
-        },
-      },
+  &:not(:disabled) {
+    background-color: ${theme.color.neutral000};
+
+    &:hover {
+      background-color: ${theme.color.primary500};
+      color: ${theme.color.neutral900};
+      cursor: pointer;
     }
-  );
+  }
 
-export const formStyles: CSSFunc = ({ theme }) => ({
-  alignItems: 'center',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  margin: '40px auto 0 auto',
-  minWidth: '95%',
+  @keyframes color {
+    0% {
+      background-color: ${theme.color.primary500};
+      border-color: ${theme.color.primary500};
+    }
+    50% {
+      background-color: ${theme.color.primary300};
+      border-color: ${theme.color.primary300};
+    }
+    100% {
+      background-color: ${theme.color.primary500};
+      border-color: ${theme.color.primary500};
+    }
+  }
+`;
 
-  [theme.breakpoint.small]: {
-    minWidth: '500px',
-  },
-});
+export const buttonStylesSubmitting = css`
+  animation: color 1s ease-in-out infinite;
+  background-color: ${theme.color.primary500};
+  color: ${theme.color.neutral900};
+`;
 
-type InputStyle = (error?: boolean) => CSSFunc;
-export const inputStyles: InputStyle = error => ({ theme }) => ({
-  appearance: 'none',
-  backgroundColor: theme.color.neutral000,
-  border: `1px solid ${error ? theme.color.red400 : theme.color.neutral000}`,
-  borderRadius: '4px',
-  color: theme.color.neutral900,
-  fontFamily: theme.font.family,
-  fontSize: '1rem',
-  margin: '0.1rem',
-  minWidth: 'inherit',
-  outline: 'none',
-  padding: `${theme.spacing.small} ${theme.spacing.base}`,
-  width: '100%',
-  transition: 'border-color .3s',
+export const formStyles = css`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px auto 0 auto;
+  min-width: 95%;
 
-  '&:focus': {
-    borderColor: theme.color.primary500,
-  },
+  ${theme.breakpoint.small} {
+    min-width: 500px;
+  }
+`;
 
-  '&::placeholder': {
-    color: theme.color.neutral600,
-    fontFamily: theme.font.family,
-  },
+export const inputStyles = css`
+  appearance: none;
+  background-color: ${theme.color.neutral000};
+  border: 1px solid ${theme.color.neutral000};
+  border-radius: 4px;
+  color: ${theme.color.neutral900};
+  font-family: ${theme.font.family};
+  font-size: 1rem;
+  margin: 0.1rem;
+  min-width: inherit;
+  outline: none;
+  padding: ${theme.spacing.small} ${theme.spacing.base};
+  width: 100%;
+  transition: border-color 0.3s;
 
-  '&:not(input)': {
-    minHeight: '6rem',
-  },
-});
+  &:focus {
+    border-color: ${theme.color.primary500};
+  }
+
+  &::placeholder {
+    color: ${theme.color.neutral600};
+    font-family: ${theme.font.family};
+  }
+
+  &:not(input) {
+    min-height: 6rem;
+  }
+`;
+
+export const inputStylesError = css`
+  border: 1px solid ${theme.color.red400};
+`;

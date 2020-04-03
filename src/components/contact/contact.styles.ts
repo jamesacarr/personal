@@ -1,29 +1,31 @@
-import { CSSFunc } from '../../types';
+import { css } from '@emotion/core';
 
-export const headerStyles: CSSFunc = ({ theme }) => ({
-  color: theme.color.neutral900,
+import theme from '../theme';
 
-  h1: {
-    borderBottom: `2px solid ${theme.color.neutral900}`,
-    margin: `${theme.spacing.large} auto`,
-    width: 'fit-content',
-  },
-});
+export const headerStyles = css`
+  color: ${theme.color.neutral900};
 
-export const svgStyles: CSSFunc = ({ theme }) => ({
-  fill: theme.color.neutral000,
-  stroke: theme.color.neutral000,
-  height: 75,
-  width: '100%',
-});
+  h1 {
+    border-bottom: 2px solid ${theme.color.neutral900};
+    margin: ${theme.spacing.large} auto;
+    width: fit-content;
+  }
+`;
 
-export const wrapperStyles: CSSFunc = ({ theme }) => ({
-  alignItems: 'center',
-  backgroundColor: theme.color.neutral300,
-  color: theme.color.neutral100,
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh',
-  justifyContent: 'space-between',
-  position: 'relative',
-});
+export const svgStyles = css`
+  fill: ${theme.color.neutral000};
+  stroke: ${theme.color.neutral000};
+  height: 75px;
+  width: 100%;
+`;
+
+export const wrapperStyles = css`
+  align-items: center;
+  background-color: ${theme.color.neutral300};
+  color: ${theme.color.neutral100};
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+  position: relative;
+`;

@@ -1,46 +1,48 @@
-import { CSSFunc } from '../../types';
+import { css } from '@emotion/core';
 
-export const buttonStyles: CSSFunc = ({ theme }) => ({
-  border: `2px solid ${theme.color.neutral900}`,
-  borderRadius: '4px',
-  fontSize: '1.2rem',
-  marginTop: theme.spacing.large,
-  padding: `${theme.spacing.small} ${theme.spacing.base}`,
-  transition: 'all .3s',
+import theme from '../theme';
 
-  '&:hover': {
-    backgroundColor: theme.color.primary500,
-    borderColor: theme.color.primary500,
-    cursor: 'pointer',
+export const buttonStyles = css`
+  border: 2px solid ${theme.color.neutral900};
+  border-radius: 4px;
+  font-size: 1.2rem;
+  margin-top: ${theme.spacing.large};
+  padding: ${theme.spacing.small} ${theme.spacing.base};
+  transition: all 0.3s;
 
-    svg: {
-      transform: 'rotate(90deg)',
-    },
-  },
-});
+  &:hover {
+    background-color: ${theme.color.primary500};
+    border-color: ${theme.color.primary500};
+    cursor: pointer;
 
-export const iconStyles: CSSFunc = ({ theme }) => ({
-  marginLeft: theme.spacing.small,
-  transition: 'transform .3s',
-  verticalAlign: 'sub',
-});
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+`;
 
-export const textStyles: CSSFunc = ({ theme }) => ({
-  h1: {
-    margin: 0,
-  },
+export const iconStyles = css`
+  margin-left: ${theme.spacing.small};
+  transition: transform 0.3s;
+  vertical-align: sub;
+`;
 
-  span: {
-    color: theme.color.yellow500,
-  },
-});
+export const textStyles = css`
+  h1 {
+    margin: 0;
+  }
 
-export const wrapperStyles: CSSFunc = ({ theme }) => ({
-  alignItems: 'center',
-  backgroundColor: theme.color.neutral000,
-  color: theme.color.neutral900,
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100vh',
-  justifyContent: 'center',
-});
+  span {
+    color: ${theme.color.yellow500};
+  }
+`;
+
+export const wrapperStyles = css`
+  align-items: center;
+  background-color: ${theme.color.neutral000};
+  color: ${theme.color.neutral900};
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+`;
