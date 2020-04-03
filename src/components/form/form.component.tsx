@@ -8,8 +8,8 @@ import ReactGA from 'react-ga';
 import { object, string } from 'yup';
 
 import { FormValues } from '../../types';
+import { getRecaptchaToken } from '../../utils';
 import { buttonStyles, formStyles, inputStyles } from './form.styles';
-import useRecaptcha from './use-recaptcha';
 
 type SubmitFunc = (values: FormValues, actions: FormikHelpers<FormValues>) => Promise<void>;
 
@@ -29,10 +29,10 @@ const validationSchema = object().shape({
 
 const FormContainer: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const { token } = useRecaptcha();
 
   const submitForm: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
     try {
+      const token = await getRecaptchaToken('contact');
       await axios.post('/api/contact', { ...values, token });
       ReactGA.event({ category: 'Contact', action: 'Submit Form' });
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
