@@ -1,12 +1,11 @@
 import { BAD_REQUEST } from 'http-status-codes';
-import { NextApiResponse } from 'next';
 
-import { APIRequest, APIResponse } from '../../types';
 import errorHandler from '../error-handler';
+import { Validator } from './types';
 
 const EMAIL_REGEX = /^(?:(?:[^<>()[\]\\.,;:\s@"]+(?:\.[^<>()[\]\\.,;:\s@"]+)*)|(?:".+"))@(?:(?:\[(?:\d{1,3}\.){3}\d{1,3}])|(?:(?:[a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$/;
 
-const validateBody = (request: APIRequest, response: NextApiResponse<APIResponse>): boolean => {
+const validateBody: Validator = (request, response) => {
   if (!request.body || typeof request.body !== 'object') {
     errorHandler(response, BAD_REQUEST, 'Invalid format');
     return false;

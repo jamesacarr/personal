@@ -1,6 +1,6 @@
-import { FormValues } from '../../types';
+import { ContactRequestBody } from './types';
 
-const generatePayload = (body: FormValues): object => {
+const generatePayload = (body: ContactRequestBody): object => {
   return {
     text: 'You have a new message from the contact form:',
     attachments: [

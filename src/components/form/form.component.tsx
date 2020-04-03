@@ -1,17 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import axios from 'axios';
-import { Formik, FormikHelpers, Form, Field } from 'formik';
-import { useSnackbar } from 'notistack';
+import { Formik, Form, Field } from 'formik';
 import { FC } from 'react';
-import ReactGA from 'react-ga';
-import { object, string } from 'yup';
 
-import { APIResponse, FormValues } from '../../types';
-import { getRecaptchaToken } from '../../utils';
+import { FormValues } from '../../types';
 import { buttonStyles, formStyles, inputStyles } from './form.styles';
-
-type SubmitFunc = (values: FormValues, actions: FormikHelpers<FormValues>) => Promise<void>;
+import useSubmitForm from './use-submit-form';
+import validationSchema from './validation-schema';
 
 const initialValues: FormValues = {
   name: '',
@@ -20,33 +15,8 @@ const initialValues: FormValues = {
   token: '',
 };
 
-const validationSchema = object().shape({
-  name: string().required('Required'),
-  email: string()
-    .email('Invalid email')
-    .required('Required'),
-  message: string().required('Required'),
-});
-
 const FormContainer: FC = () => {
-  const { enqueueSnackbar } = useSnackbar();
-
-  const submitForm: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
-    try {
-      const token = await getRecaptchaToken('contact');
-      await axios.post<FormValues, APIResponse>('/api/contact', { ...values, token });
-      ReactGA.event({ category: 'Contact', action: 'Submit Form' });
-      enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
-      resetForm();
-    } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const message = ['Unable to send message', error.response?.data?.error?.message].filter(Boolean).join(': ');
-      ReactGA.exception({ description: 'Submit Form failed' });
-      enqueueSnackbar(message, { variant: 'error', autoHideDuration: 2000 });
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  const submitForm = useSubmitForm();
 
   return (
     <Formik validateOnMount initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
