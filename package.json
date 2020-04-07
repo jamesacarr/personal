@@ -37,12 +37,7 @@
     "space": true,
     "prettier": true,
     "extends": [
-      "xo-typescript",
       "xo-react"
-    ],
-    "extensions": [
-      "ts",
-      "tsx"
     ],
     "env": [
       "browser",
@@ -51,21 +46,18 @@
       "node"
     ],
     "rules": {
-      "@typescript-eslint/indent": [
-        "error",
-        2
-      ],
-      "@typescript-eslint/prefer-readonly-parameter-types": 0,
-      "@typescript-eslint/quotes": [
-        "error",
-        "single",
-        {
-          "avoidEscape": true
-        }
-      ],
-      "react/prop-types": 0,
       "unicorn/string-content": 0
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.tsx"
+        ],
+        "rules": {
+          "react/prop-types": 0
+        }
+      }
+    ]
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
@@ -91,7 +83,6 @@
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
     "eslint-config-xo-react": "^0.23.0",
-    "eslint-config-xo-typescript": "^0.27.0",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.1",

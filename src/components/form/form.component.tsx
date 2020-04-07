@@ -6,11 +6,18 @@ import { FC } from 'react';
 import { buttonStyles, buttonStylesSubmitting, formStyles, inputStyles, inputStylesError } from './form.styles';
 import useFormProps from './use-form-props';
 
+const INITIAL_VALUES = {
+  name: '',
+  email: '',
+  message: '',
+  token: '',
+};
+
 const FormContainer: FC = () => {
   const props = useFormProps();
 
   return (
-    <Formik validateOnMount {...props}>
+    <Formik validateOnMount initialValues={INITIAL_VALUES} {...props}>
       {({ errors, touched, isSubmitting, isValid }) => (
         <Form css={formStyles}>
           <Field

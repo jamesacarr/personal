@@ -7,19 +7,17 @@ import { ContactRequestBody, ContactResponseBody } from '../../api/contact';
 import { getRecaptchaToken } from '../../utils';
 import validationSchema from './validation-schema';
 
-type SubmitFunc = (values: ContactRequestBody, actions: FormikHelpers<ContactRequestBody>) => Promise<void>;
+type OnSubmit = (values: ContactRequestBody, actions: FormikHelpers<ContactRequestBody>) => Promise<void>;
 
-const initialValues = {
-  name: '',
-  email: '',
-  message: '',
-  token: '',
+type UseFormProps = () => {
+  onSubmit: OnSubmit;
+  validationSchema: typeof validationSchema;
 };
 
-const useFormProps = () => {
+const useFormProps: UseFormProps = () => {
   const { enqueueSnackbar } = useSnackbar();
 
-  const onSubmit: SubmitFunc = async (values, { setSubmitting, resetForm }) => {
+  const onSubmit: OnSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const token = await getRecaptchaToken('contact');
       await axios.post<ContactRequestBody, ContactResponseBody>('/api/contact', { ...values, token });
@@ -27,7 +25,6 @@ const useFormProps = () => {
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
     } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const message = ['Unable to send message', error.response?.data?.error?.message].filter(Boolean).join(': ');
       ReactGA.exception({ description: 'Submit Form failed' });
       enqueueSnackbar(message, { variant: 'error', autoHideDuration: 2000 });
@@ -36,7 +33,7 @@ const useFormProps = () => {
     }
   };
 
-  return { initialValues, onSubmit, validationSchema };
+  return { onSubmit, validationSchema };
 };
 
 export default useFormProps;
