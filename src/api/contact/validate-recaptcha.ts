@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { ContactRequest } from './types';
 import { UnauthorizedError } from '../lib/errors';
 
 type RecaptchaResponse = {
@@ -11,13 +10,13 @@ type RecaptchaResponse = {
   hostname: string;
 };
 
-const validateReCAPTCHA = async (request: ContactRequest): Promise<void> => {
+const validateReCAPTCHA = async (token: string): Promise<void> => {
   const verification = await axios.request<RecaptchaResponse>({
     url: 'https://www.google.com/recaptcha/api/siteverify',
     method: 'POST',
     params: {
       secret: process.env.RECAPTCHA_SECRET_KEY,
-      response: request.body.token,
+      response: token,
     },
   });
 

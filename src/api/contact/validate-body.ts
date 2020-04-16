@@ -1,30 +1,30 @@
 import { BadRequestError } from '../lib/errors';
-import { ContactRequest } from './types';
+import { ContactRequestBody } from './types';
 
 const EMAIL_REGEX = /^(?:(?:[^<>()[\]\\.,;:\s@"]+(?:\.[^<>()[\]\\.,;:\s@"]+)*)|(?:".+"))@(?:(?:\[(?:\d{1,3}\.){3}\d{1,3}])|(?:(?:[a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$/;
 
-const validateBody = (request: ContactRequest): void => {
-  if (!request.body || typeof request.body !== 'object') {
+const validateBody = (body: ContactRequestBody): void => {
+  if (!body || typeof body !== 'object') {
     throw new BadRequestError('Invalid format');
   }
 
-  if (!request.body.name) {
+  if (!body.name) {
     throw new BadRequestError('Missing field: name');
   }
 
-  if (!request.body.email) {
+  if (!body.email) {
     throw new BadRequestError('Missing field: email');
   }
 
-  if (!EMAIL_REGEX.test(request.body.email)) {
+  if (!EMAIL_REGEX.test(body.email)) {
     throw new BadRequestError('Invalid field: email');
   }
 
-  if (!request.body.message) {
+  if (!body.message) {
     throw new BadRequestError('Missing field: message');
   }
 
-  if (!request.body.token) {
+  if (!body.token) {
     throw new BadRequestError('Missing field: token');
   }
 };

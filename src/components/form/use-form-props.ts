@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { FormikHelpers } from 'formik';
 import { useSnackbar } from 'notistack';
 import ReactGA from 'react-ga';
 
-import { ContactRequestBody, ContactResponseBody } from '../../api/contact';
+import { ContactRequestBody, ContactResponseBody, ErrorResponseBody } from '../../api/types';
 import { getRecaptchaToken } from '../../utils';
 import validationSchema from './validation-schema';
 
@@ -12,6 +12,10 @@ type OnSubmit = (values: ContactRequestBody, actions: FormikHelpers<ContactReque
 type UseFormProps = () => {
   onSubmit: OnSubmit;
   validationSchema: typeof validationSchema;
+};
+
+const isAxiosError = (error: Error | AxiosError<ErrorResponseBody>): error is AxiosError<ErrorResponseBody> => {
+  return (error as AxiosError<ErrorResponseBody>).isAxiosError;
 };
 
 const useFormProps: UseFormProps = () => {
@@ -25,7 +29,8 @@ const useFormProps: UseFormProps = () => {
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
     } catch (error) {
-      const message = ['Unable to send message', error.response?.data?.error?.message].filter(Boolean).join(': ');
+      const errorMessage = isAxiosError(error) ? error.response?.data.error.message : '';
+      const message = ['Unable to send message', errorMessage].filter(Boolean).join(': ');
       ReactGA.exception({ description: 'Submit Form failed' });
       enqueueSnackbar(message, { variant: 'error', autoHideDuration: 2000 });
     } finally {

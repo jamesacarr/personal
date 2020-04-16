@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { ResponseBody } from '../types';
 
 export interface ContactRequestBody {
   name: string;
@@ -7,12 +7,4 @@ export interface ContactRequestBody {
   token: string;
 }
 
-export interface ContactRequest extends NextApiRequest {
-  body: ContactRequestBody;
-}
-
-export type ContactResponseBody = {
-  success: true;
-};
-
-export type ContactResponse = NextApiResponse<ContactResponseBody>;
+export type ContactResponseBody = ResponseBody<void>;

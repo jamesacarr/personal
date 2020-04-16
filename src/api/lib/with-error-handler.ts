@@ -1,14 +1,17 @@
-import { NextApiResponse, NextApiRequest } from 'next';
+import { APIRequest, APIResponse, Handler } from '../types';
+import { HTTPError, InternalServerError } from './errors';
 
-import { InternalServerError } from './errors';
+type ErrorHandler<Request = any, Response = any> = (
+  handler: Handler<Request, Response>
+) => (request: APIRequest<Request>, response: APIResponse<Response>) => Promise<void>;
 
-type Handler = (request: NextApiRequest, response: NextApiResponse) => void | Promise<void>;
-
-const withErrorHandler = (handler: Handler): Handler => async (request, response) => {
+const withErrorHandler: ErrorHandler = (handler) => async (request, response) => {
   try {
-    return await handler(request, response);
+    const data = await handler(request);
+    response.status(200).json({ success: true, data });
   } catch (caughtError) {
-    const httpError = caughtError.isHttpError ? caughtError : new InternalServerError();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const httpError: HTTPError = caughtError.isHttpError ? caughtError : new InternalServerError();
     const { statusCode, error, message } = httpError;
 
     response.status(statusCode).json({
