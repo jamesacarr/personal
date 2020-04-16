@@ -23,10 +23,6 @@ const validateBody = (body: ContactRequestBody): void => {
   if (!body.message) {
     throw new BadRequestError('Missing field: message');
   }
-
-  if (!body.token) {
-    throw new BadRequestError('Missing field: token');
-  }
 };
 
 export default validateBody;

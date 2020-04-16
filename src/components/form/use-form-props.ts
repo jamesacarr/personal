@@ -4,7 +4,6 @@ import { useSnackbar } from 'notistack';
 import ReactGA from 'react-ga';
 
 import { ContactRequestBody, ContactResponseBody, ErrorResponseBody } from '../../api/types';
-import { getRecaptchaToken } from '../../utils';
 import validationSchema from './validation-schema';
 
 type OnSubmit = (values: ContactRequestBody, actions: FormikHelpers<ContactRequestBody>) => Promise<void>;
@@ -23,8 +22,7 @@ const useFormProps: UseFormProps = () => {
 
   const onSubmit: OnSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const token = await getRecaptchaToken('contact');
-      await axios.post<ContactRequestBody, ContactResponseBody>('/api/contact', { ...values, token });
+      await axios.post<ContactRequestBody, ContactResponseBody>('/api/contact', values);
       ReactGA.event({ category: 'Contact', action: 'Submit Form' });
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();

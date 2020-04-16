@@ -10,7 +10,6 @@ const INITIAL_VALUES = {
   name: '',
   email: '',
   message: '',
-  token: '',
 };
 
 const FormContainer: FC = () => {

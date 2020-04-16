@@ -3,8 +3,6 @@ import ReactGA from 'react-ga';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-const RECAPTCHA_URL = `https://www.google.com/recaptcha/api.js?render=${process.env.RECAPTCHA_SITE_KEY ?? ''}`;
-
 ReactGA.initialize(process.env.GOOGLE_ANALYTICS_TRACKING_ID ?? '');
 
 const MyApp: FC<any> = ({ Component, pageProps }) => {
@@ -32,8 +30,6 @@ const MyApp: FC<any> = ({ Component, pageProps }) => {
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
         <link rel="manifest" href="/icons/site.webmanifest" />
         <link rel="shortcut icon" href="/favicon.ico" />
-
-        <script src={RECAPTCHA_URL} />
       </Head>
       <Component {...pageProps} />
     </>
