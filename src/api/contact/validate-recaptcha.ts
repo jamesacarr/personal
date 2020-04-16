@@ -1,10 +1,7 @@
 import axios from 'axios';
-import { UNAUTHORIZED } from 'http-status-codes';
 
-import { APIRequest, ErrorResponse } from './types';
-import errorHandler from './error-handler';
-
-type RecaptchaValidator = (request: APIRequest, response: ErrorResponse) => Promise<boolean>;
+import { ContactRequest } from './types';
+import { UnauthorizedError } from '../lib/errors';
 
 type RecaptchaResponse = {
   success: boolean;
@@ -14,7 +11,7 @@ type RecaptchaResponse = {
   hostname: string;
 };
 
-const validateReCAPTCHA: RecaptchaValidator = async (request, response) => {
+const validateReCAPTCHA = async (request: ContactRequest): Promise<void> => {
   const verification = await axios.request<RecaptchaResponse>({
     url: 'https://www.google.com/recaptcha/api/siteverify',
     method: 'POST',
@@ -25,16 +22,12 @@ const validateReCAPTCHA: RecaptchaValidator = async (request, response) => {
   });
 
   if (!verification.data.success) {
-    errorHandler(response, UNAUTHORIZED, 'Invalid ReCAPTCHA token');
-    return false;
+    throw new UnauthorizedError('Invalid ReCAPTCHA token');
   }
 
   if (verification.data.score && verification.data.score < 0.6) {
-    errorHandler(response, UNAUTHORIZED, 'Low ReCAPTCHA score');
-    return false;
+    throw new UnauthorizedError('Low ReCAPTCHA score');
   }
-
-  return true;
 };
 
 export default validateReCAPTCHA;

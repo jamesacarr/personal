@@ -1,15 +1,10 @@
-import { NOT_FOUND } from 'http-status-codes';
+import { NotFoundError } from '../lib/errors';
+import { ContactRequest } from './types';
 
-import errorHandler from '../error-handler';
-import { Validator } from './types';
-
-const validateMethod: Validator = (request, response) => {
+const validateMethod = (request: ContactRequest): void => {
   if (request.method !== 'POST') {
-    errorHandler(response, NOT_FOUND);
-    return false;
+    throw new NotFoundError();
   }
-
-  return true;
 };
 
 export default validateMethod;

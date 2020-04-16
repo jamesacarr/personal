@@ -1,33 +1,19 @@
-import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
+import withErrorHandler from '../lib/with-error-handler';
 
-import errorHandler from '../error-handler';
-import validateReCAPTCHA from '../validate-recaptcha';
 import validateBody from './validate-body';
 import validateMethod from './validate-method';
+import validateReCAPTCHA from './validate-recaptcha';
 import sendMessage from './send-message';
 import { ContactRequest, ContactResponse } from './types';
 
-type Handler = (request: ContactRequest, response: ContactResponse) => void | Promise<void>;
+type Handler = (request: ContactRequest, response: ContactResponse) => Promise<void>;
 
 const contactHandler: Handler = async (request, response) => {
-  try {
-    if (!validateMethod(request, response)) {
-      return;
-    }
-
-    if (!validateBody(request, response)) {
-      return;
-    }
-
-    const validToken = await validateReCAPTCHA(request, response);
-    if (!validToken) {
-      return;
-    }
-
-    await sendMessage(request, response);
-  } catch {
-    errorHandler(response, INTERNAL_SERVER_ERROR);
-  }
+  validateMethod(request);
+  validateBody(request);
+  await validateReCAPTCHA(request);
+  await sendMessage(request);
+  response.json({ success: true });
 };
 
-export default contactHandler;
+export default withErrorHandler(contactHandler);
