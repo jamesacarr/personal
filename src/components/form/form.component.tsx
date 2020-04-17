@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core';
 import { Formik, Form, Field } from 'formik';
 import { FC } from 'react';
 
+import { schema } from '../../api/contact';
 import { buttonStyles, buttonStylesSubmitting, formStyles, inputStyles, inputStylesError } from './form.styles';
 import useFormProps from './use-form-props';
 
@@ -13,10 +14,10 @@ const INITIAL_VALUES = {
 };
 
 const FormContainer: FC = () => {
-  const props = useFormProps();
+  const onSubmit = useFormProps();
 
   return (
-    <Formik validateOnMount initialValues={INITIAL_VALUES} {...props}>
+    <Formik validateOnMount initialValues={INITIAL_VALUES} validationSchema={schema} onSubmit={onSubmit}>
       {({ errors, touched, isSubmitting, isValid }) => (
         <Form css={formStyles}>
           <Field

@@ -1,27 +1,21 @@
+import { ValidationError } from 'yup';
+
 import { BadRequestError } from '../lib/errors';
+import schema from './schema';
 import { ContactRequestBody } from './types';
 
-const EMAIL_REGEX = /^(?:(?:[^<>()[\]\\.,;:\s@"]+(?:\.[^<>()[\]\\.,;:\s@"]+)*)|(?:".+"))@(?:(?:\[(?:\d{1,3}\.){3}\d{1,3}])|(?:(?:[a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$/;
+const getErrorMessage = (error: ValidationError) =>
+  error.type === 'required' ? `${error.path} required` : error.message.toLowerCase();
 
-const validateBody = (body: ContactRequestBody): void => {
-  if (!body || typeof body !== 'object') {
-    throw new BadRequestError('Invalid format');
-  }
+const validateBody = async (body: any): Promise<ContactRequestBody> => {
+  try {
+    return await schema.validate(body);
+  } catch (error) {
+    if (ValidationError.isError(error)) {
+      throw new BadRequestError(`Bad Request: ${getErrorMessage(error)}`);
+    }
 
-  if (!body.name) {
-    throw new BadRequestError('Missing field: name');
-  }
-
-  if (!body.email) {
-    throw new BadRequestError('Missing field: email');
-  }
-
-  if (!EMAIL_REGEX.test(body.email)) {
-    throw new BadRequestError('Invalid field: email');
-  }
-
-  if (!body.message) {
-    throw new BadRequestError('Missing field: message');
+    throw error;
   }
 };
 

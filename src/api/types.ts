@@ -20,11 +20,5 @@ export type SuccessResponseBody<T> = {
 };
 
 export type ResponseBody<T> = SuccessResponseBody<T> | ErrorResponseBody;
-
-export interface APIRequest<T = any> extends NextApiRequest {
-  body: T;
-}
-
 export type APIResponse<T = any> = NextApiResponse<ResponseBody<T>>;
-
-export type Handler<Request, Response> = (request: APIRequest<Request>) => Response | Promise<Response>;
+export type Handler<T> = (request: NextApiRequest) => T | Promise<T>;

@@ -1,11 +1,8 @@
-import { APIRequest, APIResponse, Handler } from '../types';
+import { NextApiRequest } from 'next';
+import { Handler, APIResponse } from '../types';
 import { HTTPError, InternalServerError } from './errors';
 
-type ErrorHandler<Request = any, Response = any> = (
-  handler: Handler<Request, Response>
-) => (request: APIRequest<Request>, response: APIResponse<Response>) => Promise<void>;
-
-const withErrorHandler: ErrorHandler = (handler) => async (request, response) => {
+const withErrorHandler = <T>(handler: Handler<T>) => async (request: NextApiRequest, response: APIResponse<T>) => {
   try {
     const data = await handler(request);
     response.status(200).json({ success: true, data });

@@ -1,9 +1,7 @@
+import { InferType } from 'yup';
+
 import { ResponseBody } from '../types';
+import schema from './schema';
 
-export interface ContactRequestBody {
-  name: string;
-  email: string;
-  message: string;
-}
-
+export type ContactRequestBody = InferType<typeof schema>;
 export type ContactResponseBody = ResponseBody<void>;

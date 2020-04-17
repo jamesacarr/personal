@@ -1,6 +1,6 @@
 import { NotFoundError } from '../lib/errors';
 
-const validateMethod = (method: string | undefined): void => {
+const validateMethod = (method: string): void => {
   if (method !== 'POST') {
     throw new NotFoundError();
   }
