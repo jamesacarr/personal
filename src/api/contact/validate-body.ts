@@ -4,15 +4,23 @@ import { BadRequestError } from '../lib/errors';
 import schema from './schema';
 import { ContactRequestBody } from './types';
 
-const getErrorMessage = (error: ValidationError) =>
-  error.type === 'required' ? `${error.path} required` : error.message.toLowerCase();
+const getErrorMessage = (error: ValidationError) => {
+  switch (error.type) {
+    case 'email':
+      return error.message.toLowerCase();
+    case 'typeError':
+      return 'invalid body';
+    default:
+      return `${error.path} ${error.message.toLowerCase()}`;
+  }
+};
 
 const validateBody = async (body: any): Promise<ContactRequestBody> => {
   try {
     return await schema.validate(body);
   } catch (error) {
     if (ValidationError.isError(error)) {
-      throw new BadRequestError(`Bad Request: ${getErrorMessage(error)}`);
+      throw new BadRequestError(getErrorMessage(error));
     }
 
     throw error;

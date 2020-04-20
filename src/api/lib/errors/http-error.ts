@@ -10,6 +10,7 @@ class HTTPError extends Error {
 
     this.statusCode = (this.constructor as typeof HTTPError).STATUS_CODE;
     this.error = getStatusText(this.statusCode);
+    this.message = this.message || this.error;
     Object.setPrototypeOf(this, new.target.prototype);
   }
 

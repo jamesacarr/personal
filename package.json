@@ -15,7 +15,11 @@
     "dev:next": "next",
     "lint": "xo --fix",
     "typecheck": "tsc -p ./tsconfig.json --noEmit",
-    "now-build": "next build"
+    "now-build": "next build",
+    "test": "jest",
+    "test:ci": "jest --ci --reports=default --reporters=jest-junit",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "husky": {
     "hooks": {
@@ -26,6 +30,27 @@
     "*.{js,ts?(x)}": [
       "yarn lint"
     ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx,ts,tsx}",
+      "!**/__mocks__/**",
+      "!**/node_modules/**",
+      "!coverage/**",
+      "!.next/**",
+      "!.now/**"
+    ],
+    "coverageDirectory": "coverage",
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.test.json"
+      }
+    },
+    "preset": "ts-jest"
+  },
+  "jest-junit": {
+    "outputDirectory": "reports",
+    "outputName": "./test-results.xml"
   },
   "prettier": {
     "bracketSpacing": true,
@@ -46,7 +71,8 @@
       "node"
     ],
     "rules": {
-      "@typescript-eslint/prefer-readonly-parameter-types": 0
+      "@typescript-eslint/prefer-readonly-parameter-types": 0,
+      "react/jsx-fragments": ["error", "element"]
     },
     "overrides": [
       {
@@ -77,6 +103,7 @@
     "yup": "^0.28.0"
   },
   "devDependencies": {
+    "@types/jest": "^25.2.1",
     "@types/qs": "^6.9.1",
     "@types/react": "^16.8.22",
     "@types/yup": "^0.26.26",
@@ -86,7 +113,11 @@
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.1",
+    "jest": "^25.3.0",
+    "jest-junit": "^10.0.0",
     "lint-staged": "^10.0.4",
+    "node-mocks-http": "^1.8.1",
+    "ts-jest": "^25.3.1",
     "typescript": "^3.5.2",
     "xo": "^0.29.1"
   }

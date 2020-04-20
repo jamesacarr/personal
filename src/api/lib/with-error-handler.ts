@@ -16,7 +16,7 @@ const withErrorHandler = <T>(handler: Handler<T>) => async (request: NextApiRequ
       error: {
         statusCode,
         error,
-        message: message || error,
+        message,
       },
     });
   }

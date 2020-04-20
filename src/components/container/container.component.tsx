@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { createRef, FC } from 'react';
+import { createRef, FC, Fragment } from 'react';
 import { jsx, Global } from '@emotion/core';
 import { SnackbarProvider } from 'notistack';
 
@@ -12,14 +12,14 @@ const Container: FC = () => {
 
   return (
     <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
-      <>
+      <Fragment>
         <Global styles={globalStyles} />
 
         <main>
           <Home contactRef={contactRef} />
           <Contact scrollRef={contactRef} />
         </main>
-      </>
+      </Fragment>
     </SnackbarProvider>
   );
 };
