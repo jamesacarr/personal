@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import ReactGA from 'react-ga';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -12,7 +12,7 @@ const MyApp: FC<any> = ({ Component, pageProps }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <Head>
         <title>James Carr</title>
         <meta name="description" content="Hello, I'm James Carr. I'm a full-stack web developer." />
@@ -32,7 +32,7 @@ const MyApp: FC<any> = ({ Component, pageProps }) => {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
-    </>
+    </Fragment>
   );
 };
 
