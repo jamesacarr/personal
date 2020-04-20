@@ -72,7 +72,10 @@
     ],
     "rules": {
       "@typescript-eslint/prefer-readonly-parameter-types": 0,
-      "react/jsx-fragments": ["error", "element"]
+      "react/jsx-fragments": [
+        "error",
+        "element"
+      ]
     },
     "overrides": [
       {
