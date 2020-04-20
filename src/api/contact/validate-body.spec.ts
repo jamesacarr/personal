@@ -33,7 +33,7 @@ describe('validateBody', () => {
     await expect(validateBody(body)).rejects.toThrow(new BadRequestError('invalid email'));
   });
 
-  it('re-throws non-validation errors', async () => {
+  it('rethrows non-validation errors', async () => {
     const body = { name: 'John Doe', email: 'test@test.com', message: 'this is for a test' };
     const mock = jest.spyOn(schema, 'validate').mockImplementation(async () => {
       throw new Error('Test');

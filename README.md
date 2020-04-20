@@ -1,6 +1,6 @@
 # Personal
 
-![Build status](https://github.com/jamesacarr/personal/workflows/build/badge.svg)
+[![Test status](https://github.com/jamesacarr/personal/workflows/tests/badge.svg)](https://github.com/jamesacarr/personal/actions?query=workflow%3Atests)
 
 My personal website.
 

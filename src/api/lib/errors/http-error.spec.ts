@@ -1,24 +1,26 @@
 import HTTPError from './http-error';
 
 describe('HTTPError', () => {
-  it('sets status code to 500', () => {
-    const error = new HTTPError();
-    expect(error.statusCode).toEqual(500);
-  });
+  describe('.constructor', () => {
+    it('sets status code to 500', () => {
+      const error = new HTTPError();
+      expect(error.statusCode).toEqual(500);
+    });
 
-  it('sets error correctly', () => {
-    const error = new HTTPError();
-    expect(error.error).toEqual('Server Error');
-  });
+    it('sets error correctly', () => {
+      const error = new HTTPError();
+      expect(error.error).toEqual('Server Error');
+    });
 
-  it('sets default message when none supplied', () => {
-    const error = new HTTPError();
-    expect(error.message).toEqual('Server Error');
-  });
+    it('sets default message when none supplied', () => {
+      const error = new HTTPError();
+      expect(error.message).toEqual('Server Error');
+    });
 
-  it('sets message when provided', () => {
-    const error = new HTTPError('Testing');
-    expect(error.message).toEqual('Testing');
+    it('sets message when provided', () => {
+      const error = new HTTPError('Testing');
+      expect(error.message).toEqual('Testing');
+    });
   });
 
   describe('.isHttpError', () => {
