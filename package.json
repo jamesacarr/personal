@@ -14,11 +14,11 @@
     "dev": "now dev",
     "dev:next": "next",
     "lint": "xo --fix",
-    "lint:ci": "xo",
-    "typecheck": "tsc -p ./tsconfig.json --noEmit",
+    "lint:ci": "xo --reporter @jamesacarr/github-actions",
+    "typecheck": "tsc -p ./tsconfig.json",
     "now-build": "next build",
     "test": "jest",
-    "test:ci": "jest --ci",
+    "test:ci": "jest --ci --testLocationInResults --reporters=@jamesacarr/jest-reporter-github-actions",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -103,6 +103,8 @@
     "yup": "^0.28.0"
   },
   "devDependencies": {
+    "@jamesacarr/eslint-formatter-github-actions": "^0.0.1",
+    "@jamesacarr/jest-reporter-github-actions": "^0.0.1",
     "@types/jest": "^25.2.1",
     "@types/qs": "^6.9.1",
     "@types/react": "^16.8.22",

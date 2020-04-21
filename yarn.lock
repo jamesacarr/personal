@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@actions/core@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.3.tgz#e844b4fa0820e206075445079130868f95bfca95"
+  integrity sha512-Wp4xnyokakM45Uuj4WLUxdsa8fJjKVl1fDTsPbTEcTcuu0Nb26IPQbOtjmnfaCPGcaoPOOqId8H9NapZ8gii4w==
+
 "@ampproject/toolbox-core@^2.2.0", "@ampproject/toolbox-core@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@ampproject/toolbox-core/-/toolbox-core-2.3.0.tgz#f27bd17e01fdc6725c440aefa844f63466c0f37e"
@@ -1082,6 +1087,20 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
+
+"@jamesacarr/eslint-formatter-github-actions@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@jamesacarr/eslint-formatter-github-actions/-/eslint-formatter-github-actions-0.0.1.tgz#5dd5ab5784b81cb2ee7f4926a0f67ea604ba013b"
+  integrity sha512-Ip700UJ/aN93D3Tn0Qm2h5wBdnZIyC778rkPGEWoJBy4XL+EMiE5juv3P1PlVYcF2b4cnSGvwD6DeDuDZf5+yA==
+  dependencies:
+    "@actions/core" "^1.2.3"
+
+"@jamesacarr/jest-reporter-github-actions@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@jamesacarr/jest-reporter-github-actions/-/jest-reporter-github-actions-0.0.1.tgz#789ad6b4300d4ed057a8d15deea0c876a548a755"
+  integrity sha512-tj1sZTh00KA78Lkt1NGuGxZ32QN1fjrI+92rS8M7U9OMX8KFmt5lgGmmXQDgQd0ej3kJ3iG7JDrWiL3dBUywlA==
+  dependencies:
+    "@actions/core" "^1.2.3"
 
 "@jest/console@^25.4.0":
   version "25.4.0"
