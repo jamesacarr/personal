@@ -9,8 +9,9 @@ const schema = object().shape({
     .required('Required')
     .test({
       name: 'words',
-      message: `must be at least ${MIN_WORDS} words`,
-      test: (value: string | undefined) => (value ? value.trim().split(' ').filter(Boolean).length >= 5 : false),
+      message: `Must be at least ${MIN_WORDS} words`,
+      test: (value: string | undefined) =>
+        value ? value.trim().split(' ').filter(Boolean).length >= MIN_WORDS : false,
     }),
 });
 
