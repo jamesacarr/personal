@@ -51,12 +51,12 @@ export const globalStyles = css`
 
   h1 {
     font-size: 2rem;
-    line-height: 1.3;
+    line-height: 1.4;
   }
 
   h2 {
     font-size: 1.2rem;
-    line-height: 1.4;
+    line-height: 1.3;
   }
 
   *,
