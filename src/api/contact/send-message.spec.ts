@@ -7,17 +7,15 @@ jest.mock('./generate-payload', () => jest.fn().mockImplementation(() => 'payloa
 const SlackWebhookMock = SlackWebhook as jest.Mock<SlackWebhook>;
 
 describe('sendMessage', () => {
-  it('calls generatePayload with the body', () => {
+  it('calls generatePayload with the body', async () => {
     const body = { name: 'John Doe', email: 'test@test.com', message: 'testing' };
-    sendMessage(body);
+    await sendMessage(body);
     expect(generatePayload).toHaveBeenCalledWith(body);
   });
 
-  it('calls webhook with payload', () => {
+  it('calls webhook with payload', async () => {
     const body = { name: 'John Doe', email: 'test@test.com', message: 'testing' };
-
-    sendMessage(body);
-
+    await sendMessage(body);
     const instance = SlackWebhookMock.mock.instances[0];
     expect(instance.send).toHaveBeenCalledWith('payload');
   });

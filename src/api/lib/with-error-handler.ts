@@ -7,7 +7,6 @@ const withErrorHandler = <T>(handler: Handler<T>) => async (request: NextApiRequ
     const data = await handler(request);
     response.status(200).json({ success: true, data });
   } catch (caughtError) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const httpError: HTTPError = caughtError.isHttpError ? caughtError : new InternalServerError();
     const { statusCode, error, message } = httpError;
 
