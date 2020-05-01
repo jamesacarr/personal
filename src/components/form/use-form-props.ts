@@ -17,7 +17,7 @@ const useOnSubmit = (): OnSubmit => {
   return async (values, { setSubmitting, resetForm }) => {
     try {
       await axios.post<ContactRequestBody, ContactResponseBody>('/api/contact', values);
-      ReactGA.event({ category: 'Contact', action: 'Submit Form' });
+      ReactGA.event({ category: 'contact', action: 'submit' });
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
     } catch (error) {

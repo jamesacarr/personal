@@ -14,7 +14,7 @@ const Home: FC<Props> = ({ contactRef }) => {
   const onClick = (): void => {
     if (contactRef?.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' });
-      ReactGA.event({ category: 'Navigation', action: 'Scroll to Contact' });
+      ReactGA.event({ category: 'navigation', action: 'click', label: 'Scroll' });
     }
   };
 
