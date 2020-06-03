@@ -25,6 +25,7 @@ const Field: FC<Props> = ({ name, multiline = false, type = 'text' }) => {
           required
           css={[fieldStyles, showError && errorStyles]}
           placeholder={placeholder}
+          aria-label={placeholder}
           type={type}
           {...field}
         />
