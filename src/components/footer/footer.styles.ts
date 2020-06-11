@@ -20,6 +20,5 @@ export const footerStyles = css`
   flex-direction: column;
   height: 5rem;
   justify-content: space-around;
-  margin-top: ${theme.spacing.large};
   width: 100%;
 `;

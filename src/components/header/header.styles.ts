@@ -40,7 +40,6 @@ export const textStyles = css`
 export const wrapperStyles = css`
   align-items: center;
   background-color: ${theme.color.neutral000};
-  color: ${theme.color.neutral900};
   display: flex;
   flex-direction: column;
   height: 100vh;

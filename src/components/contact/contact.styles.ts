@@ -2,30 +2,26 @@ import { css } from '@emotion/core';
 
 import theme from '../theme';
 
-export const headerStyles = css`
-  color: ${theme.color.neutral900};
-
-  h1 {
-    border-bottom: 2px solid ${theme.color.neutral900};
-    margin: ${theme.spacing.large} auto;
-    width: fit-content;
-  }
+export const contentStyles = css`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-evenly;
 `;
 
-export const svgStyles = css`
-  fill: ${theme.color.neutral000};
-  stroke: ${theme.color.neutral000};
-  height: 75px;
-  width: 100%;
+export const headerStyles = css`
+  border-bottom: 2px solid ${theme.color.neutral900};
+  margin: ${theme.spacing.large} auto;
+  width: fit-content;
 `;
 
 export const wrapperStyles = css`
   align-items: center;
-  background-color: ${theme.color.neutral300};
-  color: ${theme.color.neutral100};
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  justify-content: space-between;
+  background-color: ${theme.color.neutral300};
+  min-height: calc(100vh - 5rem);
+  padding-bottom: ${theme.spacing.large};
   position: relative;
 `;

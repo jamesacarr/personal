@@ -3,8 +3,8 @@ import { jsx } from '@emotion/core';
 import { FC, RefObject } from 'react';
 
 import Form from '../form';
-import Footer from '../footer';
-import { headerStyles, svgStyles, wrapperStyles } from './contact.styles';
+import SectionHeader from '../section-header';
+import { contentStyles, headerStyles, wrapperStyles } from './contact.styles';
 
 interface Props {
   scrollRef: RefObject<HTMLElement>;
@@ -12,18 +12,16 @@ interface Props {
 
 const Contact: FC<Props> = ({ scrollRef }) => (
   <section ref={scrollRef} css={wrapperStyles}>
-    <svg preserveAspectRatio="none" viewBox="0 0 100 102" xmlns="http://www.w3.org/2000/svg" css={svgStyles}>
-      <path d="M0 0 L50 100 L100 0 Z" />
-    </svg>
+    <SectionHeader />
 
-    <div css={headerStyles}>
-      <h1>CONTACT</h1>
-      <h2>Have a question or just want to get in touch?</h2>
+    <div css={contentStyles}>
+      <header>
+        <h1 css={headerStyles}>CONTACT</h1>
+        <h2>Have a question or just want to get in touch?</h2>
+      </header>
+
+      <Form />
     </div>
-
-    <Form />
-
-    <Footer />
   </section>
 );
 

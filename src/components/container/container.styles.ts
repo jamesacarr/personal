@@ -35,10 +35,12 @@ export const globalStyles = css`
 
   body {
     background-color: ${theme.color.neutral000};
+    color: ${theme.color.neutral900};
     font-family: ${theme.font.family};
     font-size: 1rem;
     line-height: 1.65;
     margin: 0;
+    min-height: 200vh;
     text-align: center;
   }
 

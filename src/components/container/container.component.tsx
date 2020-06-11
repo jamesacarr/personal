@@ -1,25 +1,19 @@
 /** @jsx jsx */
-import { createRef, FC, Fragment } from 'react';
+import { FC } from 'react';
 import { jsx, Global } from '@emotion/core';
 import { SnackbarProvider } from 'notistack';
 
-import Contact from '../contact';
-import Home from '../home';
+import Footer from '../footer';
 import { globalStyles } from './container.styles';
 
-const Container: FC = () => {
-  const contactRef = createRef<HTMLElement>();
-
+const Container: FC = ({ children }) => {
   return (
     <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
-      <Fragment>
-        <Global styles={globalStyles} />
+      <Global styles={globalStyles} />
 
-        <main>
-          <Home contactRef={contactRef} />
-          <Contact scrollRef={contactRef} />
-        </main>
-      </Fragment>
+      <main>{children}</main>
+
+      <Footer />
     </SnackbarProvider>
   );
 };
