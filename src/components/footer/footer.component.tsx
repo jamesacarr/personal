@@ -19,7 +19,7 @@ const Footer: FC = () => (
     </div>
 
     <span css={copyrightStyles}>
-      James Carr <span>&copy; 2019</span>
+      James Carr <span>&copy; 2020</span>
     </span>
   </footer>
 );
