@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@actions/core@^1.2.3":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.4.tgz#96179dbf9f8d951dd74b40a0dbd5c22555d186ab"
-  integrity sha512-YJCEq8BE3CdN8+7HPZ/4DxJjk/OkZV2FFIf+DlZTC/4iBlzYCD5yjRR6eiOS5llO11zbRltIRuKAjMKaWTE6cg==
+"@actions/core@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.6.tgz#a78d49f41a4def18e88ce47c2cac615d5694bf09"
+  integrity sha512-ZQYitnqiyBc3D+k7LsgSBmMDVkOVidaagDG7j3fOym77jNunWRuYx7VSHa9GNfFZh+zh61xsCjRj4JxMZlDqTA==
 
 "@ampproject/toolbox-core@2.7.4", "@ampproject/toolbox-core@^2.7.1-alpha.0":
   version "2.7.4"
@@ -492,19 +492,19 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@jamesacarr/eslint-formatter-github-actions@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@jamesacarr/eslint-formatter-github-actions/-/eslint-formatter-github-actions-0.0.2.tgz#13148e15bf00534601f80589e1f9258c8873ea93"
-  integrity sha512-Ht0H8lCNwR0ZDFjy3iQgfQ6lHD9TBlVjH8/ZNZt8puvvnmrrseGE8LnwsCKbwqNC7Pje4yPpKp2K4BuQhfBK5A==
-  dependencies:
-    "@actions/core" "^1.2.3"
-
-"@jamesacarr/jest-reporter-github-actions@^0.0.3":
+"@jamesacarr/eslint-formatter-github-actions@^0.0.3":
   version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@jamesacarr/jest-reporter-github-actions/-/jest-reporter-github-actions-0.0.3.tgz#c0f156d1db818cd8e30eaf76f80bd69e67e57ce6"
-  integrity sha512-jI0u//BO3AemIG53Z6Ttrxlm8qxgDnEf5EVZWbeqyo+veWOL6S9CwiaHfiZ4BRQYk7sKw9kteXJPhCtOdvcKQw==
+  resolved "https://registry.yarnpkg.com/@jamesacarr/eslint-formatter-github-actions/-/eslint-formatter-github-actions-0.0.3.tgz#1ba6db0e7acbd5716c63f91afb59b648658a7f49"
+  integrity sha512-Bew4swIEbC9Qz89XRIfd8Ycyd8UnnmsMC8rby1XKmsdZ8H1XfZPBIBsbbkJD/EiXXKBjx/MOAPefIryZjR9iuA==
   dependencies:
-    "@actions/core" "^1.2.3"
+    "@actions/core" "^1.2.6"
+
+"@jamesacarr/jest-reporter-github-actions@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@jamesacarr/jest-reporter-github-actions/-/jest-reporter-github-actions-0.0.4.tgz#471684cdacffaa78766c20653634797d356d3b40"
+  integrity sha512-2lfpqWt19PAAVgHNUPQEvqDMQfdiDpyFPDol7FgrKoZ9x7/GrUmpXGQZNdhFAssDdG7hJFd4yoLfUrkZEKl29g==
+  dependencies:
+    "@actions/core" "^1.2.6"
     "@jest/reporters" "^26.6.2"
 
 "@jest/console@^26.6.2":

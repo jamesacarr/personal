@@ -102,8 +102,8 @@
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.1.2",
-    "@jamesacarr/eslint-formatter-github-actions": "^0.0.2",
-    "@jamesacarr/jest-reporter-github-actions": "^0.0.3",
+    "@jamesacarr/eslint-formatter-github-actions": "^0.0.3",
+    "@jamesacarr/jest-reporter-github-actions": "^0.0.4",
     "@types/jest": "^26.0.20",
     "@types/qs": "^6.9.1",
     "@types/react": "^17.0.0",
