@@ -1,7 +1,8 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { useField } from 'formik';
+/** @jsxImportSource @emotion/react */
+/* eslint-disable react/react-in-jsx-scope */
+
 import { FC } from 'react';
+import { useField } from 'formik';
 
 import Tooltip from '../tooltip';
 import { fieldWrapperStyles, fieldStyles, errorStyles } from './field.styles';

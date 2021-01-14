@@ -1,5 +1,6 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+/* eslint-disable react/react-in-jsx-scope */
+
 import { FC, RefObject } from 'react';
 
 import Form from '../form';

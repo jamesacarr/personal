@@ -1,7 +1,8 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { Formik, Form } from 'formik';
+/** @jsxImportSource @emotion/react */
+/* eslint-disable react/react-in-jsx-scope */
+
 import { FC } from 'react';
+import { Formik, Form } from 'formik';
 
 import { schema } from '../../api/contact';
 import Field from '../field';

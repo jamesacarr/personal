@@ -7,8 +7,8 @@ import { ContactRequestBody, ContactResponseBody, ErrorResponseBody } from '../.
 
 type OnSubmit = (values: ContactRequestBody, actions: FormikHelpers<ContactRequestBody>) => Promise<void>;
 
-const isAxiosError = (error: Error | AxiosError<ErrorResponseBody>): error is AxiosError<ErrorResponseBody> => {
-  return (error as AxiosError<ErrorResponseBody>).isAxiosError;
+const isAxiosError = (error: any): error is AxiosError<ErrorResponseBody> => {
+  return Boolean(error?.isAxiosError);
 };
 
 const useOnSubmit = (): OnSubmit => {
@@ -20,7 +20,7 @@ const useOnSubmit = (): OnSubmit => {
       ReactGA.event({ category: 'contact', action: 'submit' });
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
-    } catch (error) {
+    } catch (error: unknown) {
       const errorMessage = isAxiosError(error) ? error.response?.data.error.message : '';
       const message = ['Unable to send message', errorMessage].filter(Boolean).join(': ');
       ReactGA.exception({ description: 'Submit Form failed' });

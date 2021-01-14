@@ -9,12 +9,12 @@ describe('HTTPError', () => {
 
     it('sets error correctly', () => {
       const error = new HTTPError();
-      expect(error.error).toEqual('Server Error');
+      expect(error.error).toEqual('Internal Server Error');
     });
 
     it('sets default message when none supplied', () => {
       const error = new HTTPError();
-      expect(error.message).toEqual('Server Error');
+      expect(error.message).toEqual('Internal Server Error');
     });
 
     it('sets message when provided', () => {

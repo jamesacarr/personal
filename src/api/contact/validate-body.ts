@@ -11,14 +11,14 @@ const getErrorMessage = (error: ValidationError) => {
     case 'typeError':
       return 'invalid body';
     default:
-      return `${error.path} ${error.message.toLowerCase()}`;
+      return `${error.path ?? '<unknown>'} ${error.message.toLowerCase()}`;
   }
 };
 
 const validateBody = async (body: any): Promise<ContactRequestBody> => {
   try {
     return await schema.validate(body);
-  } catch (error) {
+  } catch (error: unknown) {
     if (ValidationError.isError(error)) {
       throw new BadRequestError(getErrorMessage(error));
     }

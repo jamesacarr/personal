@@ -1,7 +1,8 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
+/** @jsxImportSource @emotion/react */
+/* eslint-disable react/react-in-jsx-scope */
+
 import { FC, RefObject } from 'react';
+import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
 import ReactGA from 'react-ga';
 
 import { buttonStyles, iconStyles, textStyles, wrapperStyles } from './header.styles';

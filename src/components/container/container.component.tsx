@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { FC } from 'react';
-import { jsx, Global } from '@emotion/core';
+import React, { FC } from 'react';
+import { Global } from '@emotion/react';
 import { SnackbarProvider } from 'notistack';
 
 import Footer from '../footer';

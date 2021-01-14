@@ -1,8 +1,9 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+/* eslint-disable react/react-in-jsx-scope */
+
+import { FC } from 'react';
 import GithubIcon from 'mdi-react/GithubIcon';
 import LinkedinIcon from 'mdi-react/LinkedinIcon';
-import { FC } from 'react';
 
 import Icon from '../icon';
 import { copyrightStyles, footerStyles } from './footer.styles';

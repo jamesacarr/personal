@@ -3,7 +3,9 @@ import validateMethod from './validate-method';
 
 describe('validateMethod', () => {
   it('returns when method is POST', () => {
-    expect(validateMethod('POST')).toBeUndefined();
+    expect(() => {
+      validateMethod('POST');
+    }).not.toThrowError();
   });
 
   it('raises error when method is undefined', () => {

@@ -1,8 +1,8 @@
-import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
+import { StatusCodes } from 'http-status-codes';
 import HTTPError from './http-error';
 
 class InternalServerError extends HTTPError {
-  protected static readonly STATUS_CODE: number = INTERNAL_SERVER_ERROR;
+  protected static readonly STATUS_CODE: number = StatusCodes.INTERNAL_SERVER_ERROR;
 }
 
 export default InternalServerError;
