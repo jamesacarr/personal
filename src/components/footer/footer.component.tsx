@@ -20,7 +20,7 @@ const Footer: FC = () => (
     </div>
 
     <span css={copyrightStyles}>
-      James Carr <span>&copy; 2020</span>
+      James Carr <span>&copy; 2021</span>
     </span>
   </footer>
 );
