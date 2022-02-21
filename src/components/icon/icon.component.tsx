@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { OutboundLink } from 'react-ga';
 
 import { wrapperStyles } from './icon.styles';
 
@@ -9,9 +8,9 @@ interface Props {
 }
 
 const Icon: FC<Props> = ({ children, href, label }) => (
-  <OutboundLink css={wrapperStyles} eventLabel={label} to={href} aria-label={`Visit my ${label} account`}>
+  <a aria-label={`Visit my ${label} account`} css={wrapperStyles} href={href} rel="noreferrer" target="_blank">
     {children}
-  </OutboundLink>
+  </a>
 );
 
 export default Icon;

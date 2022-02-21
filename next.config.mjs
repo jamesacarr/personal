@@ -10,6 +10,9 @@ const config = {
 
   // Remove the x-powered-by: next headers
   poweredByHeader: false,
+
+  // Output and serve production source maps
+  productionBrowserSourceMaps: true,
 };
 
 export default config;

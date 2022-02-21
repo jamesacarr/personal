@@ -1,6 +1,5 @@
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
 import { VFC, RefObject } from 'react';
-import { event } from 'react-ga';
 
 import { buttonStyles, iconStyles, textStyles, wrapperStyles } from './header.styles';
 
@@ -12,7 +11,6 @@ const Home: VFC<Props> = ({ contactRef }) => {
   const onClick = (): void => {
     if (contactRef?.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' });
-      event({ category: 'navigation', action: 'click', label: 'Scroll' });
     }
   };
 
