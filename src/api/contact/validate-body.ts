@@ -1,6 +1,7 @@
 import { ValidationError } from 'yup';
 
 import { BadRequestError } from '../lib/errors';
+
 import schema from './schema';
 import { ContactRequestBody } from './types';
 

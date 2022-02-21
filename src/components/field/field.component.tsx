@@ -1,10 +1,8 @@
-/** @jsxImportSource @emotion/react */
-/* eslint-disable react/react-in-jsx-scope */
-
-import { FC } from 'react';
 import { useField } from 'formik';
+import { VFC } from 'react';
 
 import Tooltip from '../tooltip';
+
 import { fieldWrapperStyles, fieldStyles, errorStyles } from './field.styles';
 
 interface Props {
@@ -13,7 +11,7 @@ interface Props {
   type?: string;
 }
 
-const Field: FC<Props> = ({ name, multiline = false, type = 'text' }) => {
+const Field: VFC<Props> = ({ name, multiline = false, type = 'text' }) => {
   const [field, meta] = useField<string>(name);
   const Component = multiline ? 'textarea' : 'input';
   const placeholder = name.charAt(0).toUpperCase() + name.slice(1);

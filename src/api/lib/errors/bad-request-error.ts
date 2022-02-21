@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+
 import HTTPError from './http-error';
 
 class BadRequestError extends HTTPError {

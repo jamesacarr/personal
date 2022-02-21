@@ -1,6 +1,3 @@
-/** @jsxImportSource @emotion/react */
-/* eslint-disable react/react-in-jsx-scope */
-
 import { FC } from 'react';
 
 import { tooltipStyles, tooltipContainerStyles } from './tooltip.styles';

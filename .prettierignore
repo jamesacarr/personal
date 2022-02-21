@@ -1,0 +1,6 @@
+# avoid clashes with npm cli formatting
+package.json
+
+# build directories
+.next/
+coverage/

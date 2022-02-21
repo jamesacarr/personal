@@ -1,10 +1,10 @@
-import React, { createRef, FC } from 'react';
+import { createRef, VFC } from 'react';
 
+import Contact from '../contact';
 import Container from '../container';
 import Header from '../header';
-import Contact from '../contact';
 
-const Index: FC = () => {
+const Index: VFC = () => {
   const contactRef = createRef<HTMLElement>();
 
   return (

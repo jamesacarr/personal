@@ -1,9 +1,6 @@
-/** @jsxImportSource @emotion/react */
-/* eslint-disable react/react-in-jsx-scope */
-
-import { FC, RefObject } from 'react';
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
-import ReactGA from 'react-ga';
+import { VFC, RefObject } from 'react';
+import { event } from 'react-ga';
 
 import { buttonStyles, iconStyles, textStyles, wrapperStyles } from './header.styles';
 
@@ -11,11 +8,11 @@ interface Props {
   contactRef: RefObject<HTMLElement>;
 }
 
-const Home: FC<Props> = ({ contactRef }) => {
+const Home: VFC<Props> = ({ contactRef }) => {
   const onClick = (): void => {
     if (contactRef?.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' });
-      ReactGA.event({ category: 'navigation', action: 'click', label: 'Scroll' });
+      event({ category: 'navigation', action: 'click', label: 'Scroll' });
     }
   };
 

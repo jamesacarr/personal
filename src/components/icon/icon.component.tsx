@@ -1,13 +1,9 @@
-/** @jsxImportSource @emotion/react */
-/* eslint-disable react/react-in-jsx-scope */
-
 import { FC } from 'react';
 import { OutboundLink } from 'react-ga';
 
 import { wrapperStyles } from './icon.styles';
 
 interface Props {
-  children: JSX.Element;
   href: string;
   label: string;
 }

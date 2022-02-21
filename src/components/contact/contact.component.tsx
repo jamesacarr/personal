@@ -1,17 +1,15 @@
-/** @jsxImportSource @emotion/react */
-/* eslint-disable react/react-in-jsx-scope */
-
-import { FC, RefObject } from 'react';
+import { VFC, RefObject } from 'react';
 
 import Form from '../form';
 import SectionHeader from '../section-header';
+
 import { contentStyles, headerStyles, wrapperStyles } from './contact.styles';
 
 interface Props {
   scrollRef: RefObject<HTMLElement>;
 }
 
-const Contact: FC<Props> = ({ scrollRef }) => (
+const Contact: VFC<Props> = ({ scrollRef }) => (
   <section ref={scrollRef} css={wrapperStyles}>
     <SectionHeader />
 

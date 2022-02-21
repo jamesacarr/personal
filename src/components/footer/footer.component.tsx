@@ -1,14 +1,12 @@
-/** @jsxImportSource @emotion/react */
-/* eslint-disable react/react-in-jsx-scope */
-
-import { FC } from 'react';
 import GithubIcon from 'mdi-react/GithubIcon';
 import LinkedinIcon from 'mdi-react/LinkedinIcon';
+import { VFC } from 'react';
 
 import Icon from '../icon';
+
 import { copyrightStyles, footerStyles } from './footer.styles';
 
-const Footer: FC = () => (
+const Footer: VFC = () => (
   <footer css={footerStyles}>
     <div>
       <Icon href="https://www.linkedin.com/in/james-a-carr/" label="LinkedIn">
@@ -20,7 +18,7 @@ const Footer: FC = () => (
     </div>
 
     <span css={copyrightStyles}>
-      James Carr <span>&copy; 2021</span>
+      James Carr <span>&copy; 2022</span>
     </span>
   </footer>
 );

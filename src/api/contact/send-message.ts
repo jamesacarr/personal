@@ -1,5 +1,6 @@
-import generatePayload from './generate-payload';
 import SlackWebhook from '../lib/slack-webhook';
+
+import generatePayload from './generate-payload';
 import { ContactRequestBody } from './types';
 
 const webhook = new SlackWebhook();

@@ -1,4 +1,5 @@
 import { NotFoundError } from '../lib/errors';
+
 import validateMethod from './validate-method';
 
 describe('validateMethod', () => {
@@ -10,7 +11,7 @@ describe('validateMethod', () => {
 
   it('raises error when method is undefined', () => {
     expect(() => {
-      validateMethod(undefined);
+      validateMethod();
     }).toThrow(new NotFoundError());
   });
 

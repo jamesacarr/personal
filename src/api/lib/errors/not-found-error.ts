@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+
 import HTTPError from './http-error';
 
 class NotFoundError extends HTTPError {

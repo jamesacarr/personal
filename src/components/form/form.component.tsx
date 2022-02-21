@@ -1,11 +1,9 @@
-/** @jsxImportSource @emotion/react */
-/* eslint-disable react/react-in-jsx-scope */
-
-import { FC } from 'react';
 import { Formik, Form } from 'formik';
+import { FC } from 'react';
 
 import { schema } from '../../api/contact';
 import Field from '../field';
+
 import { buttonStyles, buttonStylesSubmitting, formStyles } from './form.styles';
 import useFormProps from './use-form-props';
 

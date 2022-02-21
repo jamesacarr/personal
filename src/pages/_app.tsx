@@ -1,18 +1,19 @@
-import React, { FC, Fragment } from 'react';
-import ReactGA from 'react-ga';
+import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { VFC } from 'react';
+import { initialize, pageview } from 'react-ga';
 
-ReactGA.initialize(process.env.GOOGLE_ANALYTICS_TRACKING_ID ?? '');
+initialize(process.env.GOOGLE_ANALYTICS_TRACKING_ID ?? '');
 
-const MyApp: FC<any> = ({ Component, pageProps }) => {
+const MyApp: VFC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
   if (typeof window !== 'undefined') {
-    ReactGA.pageview(router.route);
+    pageview(router.route);
   }
 
   return (
-    <Fragment>
+    <>
       <Head>
         <title>James Carr</title>
         <meta name="description" content="Hello, I'm James Carr. I'm a full-stack web developer." />
@@ -29,10 +30,10 @@ const MyApp: FC<any> = ({ Component, pageProps }) => {
         <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
         <link rel="manifest" href="/icons/site.webmanifest" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
-    </Fragment>
+    </>
   );
 };
 

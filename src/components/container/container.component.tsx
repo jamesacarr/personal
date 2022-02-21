@@ -1,20 +1,19 @@
-import React, { FC } from 'react';
 import { Global } from '@emotion/react';
 import { SnackbarProvider } from 'notistack';
+import { FC } from 'react';
 
 import Footer from '../footer';
+
 import { globalStyles } from './container.styles';
 
-const Container: FC = ({ children }) => {
-  return (
-    <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
-      <Global styles={globalStyles} />
+const Container: FC = ({ children }) => (
+  <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+    <Global styles={globalStyles} />
 
-      <main>{children}</main>
+    <main>{children}</main>
 
-      <Footer />
-    </SnackbarProvider>
-  );
-};
+    <Footer />
+  </SnackbarProvider>
+);
 
 export default Container;
