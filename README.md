@@ -19,7 +19,7 @@ The website has hot module reloading, so changes made will show up instantly.
 
 ## Deployment
 
-All code pushed to `master` will be automatically deployed. Branches will be deployed to their own environments.
+All code pushed to `main` will be automatically deployed. Branches will be deployed to their own environments.
 
 ## License
 
