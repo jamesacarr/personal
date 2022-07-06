@@ -1,6 +1,6 @@
-import { BadRequestError } from '../lib/errors';
+import { BadRequestError } from '../../lib/errors';
+import schema from '../schema';
 
-import schema from './schema';
 import validateBody from './validate-body';
 
 describe('validateBody', () => {

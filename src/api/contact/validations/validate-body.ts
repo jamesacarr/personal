@@ -1,10 +1,9 @@
 import { ValidationError } from 'yup';
 
-import { BadRequestError } from '../lib/errors';
+import { BadRequestError } from '../../lib/errors';
+import schema from '../schema';
 
-import schema from './schema';
-
-import type { ContactRequestBody } from './types';
+import type { ContactRequestBody } from '../types';
 
 const getErrorMessage = (error: ValidationError) => {
   switch (error.type) {
@@ -19,7 +18,7 @@ const getErrorMessage = (error: ValidationError) => {
 
 const validateBody = async (body: any): Promise<ContactRequestBody> => {
   try {
-    return await schema.validate(body);
+    return await schema.validate(body, { stripUnknown: true });
   } catch (error: unknown) {
     if (ValidationError.isError(error)) {
       throw new BadRequestError(getErrorMessage(error));
