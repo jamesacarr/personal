@@ -1,12 +1,13 @@
 import { HTTPError, InternalServerError } from '../lib/errors';
+
 import type { Middleware } from '../types';
 
 export interface ErrorResponseBody {
-  error: {
-    statusCode: number;
-    error: string;
-    message: string;
-  };
+  detail: string;
+  status: number;
+  title: string;
+  type: string;
+  instance?: string;
 }
 
 const isHttpError = (error: any): error is HTTPError => Boolean(error?.isHttpError);
@@ -16,17 +17,19 @@ const withErrorHandler: Middleware<ErrorResponseBody> = handler => async (reques
     await handler(request, response);
     return;
   } catch (caughtError: unknown) {
-    // Get error information
+    console.error(caughtError);
     const httpError: HTTPError = isHttpError(caughtError) ? caughtError : new InternalServerError();
-    const { statusCode, error, message } = httpError;
+    const { detail, status, title, type } = httpError;
 
-    // Send response to client
-    response.status(statusCode).json({
-      error: {
-        statusCode,
-        error,
-        message,
-      },
+    // Need to use `send` here so that we can set a custom header for Content-Type.
+    // Using `json` will set it to `application/json`, whereas we want to use
+    // `application/problem+json` to match RFC7807.
+    response.status(status).setHeader('Content-Type', 'application/problem+json; charset=utf-8').send({
+      detail,
+      status,
+      title,
+      type,
+      instance: request.url,
     });
   }
 };

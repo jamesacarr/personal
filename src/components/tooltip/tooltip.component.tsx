@@ -1,8 +1,9 @@
-import { FC } from 'react';
-
 import { tooltipStyles, tooltipContainerStyles } from './tooltip.styles';
 
+import type { FC } from 'react';
+
 interface Props {
+  children: React.ReactNode;
   message: string;
   visible: boolean;
 }

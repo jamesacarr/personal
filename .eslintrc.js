@@ -34,13 +34,20 @@ module.exports = {
           caseInsensitive: true,
           order: 'asc',
         },
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
         'newlines-between': 'always',
       },
     ],
 
     'no-warning-comments': 'off',
 
-    'react/prop-types': 'off',
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
     'react/react-in-jsx-scope': 'off',
     'react-hooks/exhaustive-deps': 'error',
 

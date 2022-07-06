@@ -1,8 +1,9 @@
-import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { VFC } from 'react';
 
-const MyApp: VFC<AppProps> = ({ Component, pageProps }) => (
+import type { AppProps } from 'next/app';
+import type { FC } from 'react';
+
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => (
   <>
     <Head>
       <title>James Carr</title>

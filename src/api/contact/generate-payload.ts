@@ -1,6 +1,5 @@
-import { IncomingWebhookSendArguments } from '@slack/webhook';
-
-import { ContactRequestBody } from './types';
+import type { ContactRequestBody } from './types';
+import type { IncomingWebhookSendArguments } from '@slack/webhook';
 
 const generatePayload = (body: ContactRequestBody): IncomingWebhookSendArguments => ({
   text: 'You have a new message from the contact form:',

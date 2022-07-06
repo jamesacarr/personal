@@ -1,15 +1,15 @@
-import { VFC, RefObject } from 'react';
-
 import Form from '../form';
 import SectionHeader from '../section-header';
 
 import { contentStyles, headerStyles, wrapperStyles } from './contact.styles';
 
+import type { FC, RefObject } from 'react';
+
 interface Props {
   scrollRef: RefObject<HTMLElement>;
 }
 
-const Contact: VFC<Props> = ({ scrollRef }) => (
+const Contact: FC<Props> = ({ scrollRef }) => (
   <section ref={scrollRef} css={wrapperStyles}>
     <SectionHeader />
 

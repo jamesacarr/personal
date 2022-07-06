@@ -1,10 +1,12 @@
-import { createRef, VFC } from 'react';
+import { createRef } from 'react';
 
 import Contact from '../contact';
 import Container from '../container';
 import Header from '../header';
 
-const Index: VFC = () => {
+import type { FC } from 'react';
+
+const Home: FC = () => {
   const contactRef = createRef<HTMLElement>();
 
   return (
@@ -15,4 +17,4 @@ const Index: VFC = () => {
   );
 };
 
-export default Index;
+export default Home;

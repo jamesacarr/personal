@@ -1,12 +1,13 @@
 import GithubIcon from 'mdi-react/GithubIcon';
 import LinkedinIcon from 'mdi-react/LinkedinIcon';
-import { VFC } from 'react';
 
 import Icon from '../icon';
 
 import { copyrightStyles, footerStyles } from './footer.styles';
 
-const Footer: VFC = () => (
+import type { FC } from 'react';
+
+const Footer: FC = () => (
   <footer css={footerStyles}>
     <div>
       <Icon href="https://www.linkedin.com/in/james-a-carr/" label="LinkedIn">

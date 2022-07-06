@@ -1,13 +1,14 @@
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
-import { VFC, RefObject } from 'react';
 
 import { buttonStyles, iconStyles, textStyles, wrapperStyles } from './header.styles';
+
+import type { FC, RefObject } from 'react';
 
 interface Props {
   contactRef: RefObject<HTMLElement>;
 }
 
-const Home: VFC<Props> = ({ contactRef }) => {
+const Home: FC<Props> = ({ contactRef }) => {
   const onClick = (): void => {
     if (contactRef?.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' });

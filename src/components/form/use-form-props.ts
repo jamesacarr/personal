@@ -1,9 +1,10 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import { FormikHelpers } from 'formik';
+import axios from 'axios';
 import { useSnackbar } from 'notistack';
 
-import { ContactRequestBody, ContactResponseBody } from '../../api/contact';
-import { ErrorResponseBody } from '../../api/middleware';
+import type { ContactRequestBody, ContactResponseBody } from '../../api/contact';
+import type { ErrorResponseBody } from '../../api/middleware';
+import type { AxiosError, AxiosResponse } from 'axios';
+import type { FormikHelpers } from 'formik';
 
 type OnSubmit = (values: ContactRequestBody, actions: FormikHelpers<ContactRequestBody>) => Promise<void>;
 
@@ -21,7 +22,7 @@ const useOnSubmit = (): OnSubmit => {
       enqueueSnackbar('Message sent', { variant: 'success', autoHideDuration: 2000 });
       resetForm();
     } catch (error: unknown) {
-      const errorMessage = isAxiosError(error) ? error.response?.data.error.message : '';
+      const errorMessage = isAxiosError(error) ? error.response?.data.detail : '';
       const message = ['Unable to send message', errorMessage].filter(Boolean).join(': ');
       enqueueSnackbar(message, { variant: 'error', autoHideDuration: 2000 });
     } finally {

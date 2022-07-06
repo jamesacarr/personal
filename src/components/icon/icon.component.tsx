@@ -1,8 +1,9 @@
-import { FC } from 'react';
-
 import { wrapperStyles } from './icon.styles';
 
+import type { FC } from 'react';
+
 interface Props {
+  children: React.ReactNode;
   href: string;
   label: string;
 }

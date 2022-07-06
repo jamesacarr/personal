@@ -1,8 +1,8 @@
-import { NextApiHandler } from 'next';
-
 import sendMessage from './send-message';
 import validateBody from './validate-body';
 import validateMethod from './validate-method';
+
+import type { NextApiHandler } from 'next';
 
 const contactHandler: NextApiHandler<void> = async (request, response) => {
   validateMethod(request.method);

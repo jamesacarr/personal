@@ -3,7 +3,8 @@ import { ValidationError } from 'yup';
 import { BadRequestError } from '../lib/errors';
 
 import schema from './schema';
-import { ContactRequestBody } from './types';
+
+import type { ContactRequestBody } from './types';
 
 const getErrorMessage = (error: ValidationError) => {
   switch (error.type) {
