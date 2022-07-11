@@ -1,14 +1,7 @@
 import { HTTPError, InternalServerError } from '../lib/errors';
 
 import type { Middleware } from '../types';
-
-export interface ErrorResponseBody {
-  detail: string;
-  status: number;
-  title: string;
-  type: string;
-  instance?: string;
-}
+import type { ErrorResponseBody } from './types';
 
 const isHttpError = (error: any): error is HTTPError => Boolean(error?.isHttpError);
 

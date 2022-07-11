@@ -4,13 +4,13 @@ import { useSnackbar } from 'notistack';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { schema } from '../../api/contact';
+import schema from '../../schemas/contact-schema';
 import Tooltip from '../tooltip';
 
 import { buttonStyles, buttonStylesSubmitting, fieldErrorStyles, fieldStyles, formStyles } from './form.styles';
 
-import type { ContactRequestBody } from '../../api/contact';
-import type { ErrorResponseBody } from '../../api/middleware';
+import type { ContactRequestBody } from '../../api/contact/types';
+import type { ErrorResponseBody } from '../../api/middleware/types';
 import type { FC } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 

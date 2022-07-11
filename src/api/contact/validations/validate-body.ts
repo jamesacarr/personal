@@ -1,7 +1,7 @@
 import { ValidationError } from 'yup';
 
+import schema from '../../../schemas/contact-schema';
 import { BadRequestError } from '../../lib/errors';
-import schema from '../schema';
 
 import type { ContactRequestBody } from '../types';
 

@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['xo-space', 'xo-react/space', 'plugin:unicorn/recommended', 'prettier'],
+  extends: ['xo-space', 'xo-react/space', 'plugin:@next/next/recommended', 'plugin:unicorn/recommended', 'prettier'],
   plugins: ['import'],
   env: {
     es2021: true,
