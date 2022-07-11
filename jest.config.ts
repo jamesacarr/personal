@@ -15,7 +15,6 @@ const config: Config.InitialOptions = {
   },
   rootDir: '.',
   roots: ['<rootDir>/src/'],
-  preset: 'ts-jest/presets/default-esm',
 };
 
 export default createJestConfig(config);

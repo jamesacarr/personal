@@ -31,6 +31,8 @@ export const tooltipStyles = css`
 `;
 
 export const tooltipContainerStyles = css`
+  position: relative;
+
   .tooltip {
     display: none;
   }
