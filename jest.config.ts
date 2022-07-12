@@ -7,14 +7,9 @@ const createJestConfig = nextJest({ dir: './' });
 const config: Config.InitialOptions = {
   collectCoverageFrom: ['src/**/*.{ts,tsx}'],
   coverageReporters: ['html', 'text', 'cobertura'],
-  globals: {
-    'ts-jest': {
-      useEsm: true,
-      isolatedModules: true,
-    },
-  },
   rootDir: '.',
   roots: ['<rootDir>/src/'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-axe/extend-expect'],
 };
 
 export default createJestConfig(config);

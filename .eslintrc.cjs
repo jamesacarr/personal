@@ -131,6 +131,10 @@ module.exports = {
       },
     },
     {
+      files: ['**.*.test.tsx'],
+      extends: ['plugin:jest-dom/recommended', 'plugin:testing-library/react']
+    },
+    {
       files: ['next-env.d.ts'],
       rules: {
         '@typescript-eslint/triple-slash-reference': 'off',

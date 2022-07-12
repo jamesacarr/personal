@@ -16,6 +16,11 @@ const config = {
     ignoreDuringBuilds: true,
   },
 
+  i18n: {
+    locales: ['en-AU'],
+    defaultLocale: 'en-AU',
+  },
+
   // Remove the x-powered-by: next headers
   poweredByHeader: false,
 

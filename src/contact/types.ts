@@ -1,4 +1,4 @@
-import schema from '../../schemas/contact-schema';
+import schema from './schema';
 
 import type { InferType } from 'yup';
 

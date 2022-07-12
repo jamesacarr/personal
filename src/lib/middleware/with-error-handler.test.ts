@@ -1,5 +1,5 @@
 import mock from '../../utils/mock';
-import { BadRequestError, InternalServerError } from '../lib/errors';
+import { BadRequestError, InternalServerError } from '../errors';
 
 import withErrorHandler from './with-error-handler';
 
