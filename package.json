@@ -17,7 +17,7 @@
   "scripts": {
     "dev": "next",
     "lint": "yarn lint:base --fix",
-    "lint:base": "eslint --ext js,mjs,jsx,ts,tsx .",
+    "lint:base": "eslint --ext js,cjs,mjs,jsx,ts,tsx .",
     "lint:ci": "yarn lint:base",
     "format": "yarn format:base --write",
     "format:base": "prettier --check .",
@@ -49,6 +49,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@commitlint/types": "^17.0.0",
     "@next/bundle-analyzer": "^12.2.2",
     "@next/eslint-plugin-next": "^12.2.2",
     "@testing-library/dom": "^8.16.0",
@@ -57,6 +58,7 @@
     "@testing-library/user-event": "^14.2.1",
     "@types/jest": "^28.1.4",
     "@types/jest-axe": "^3.5.4",
+    "@types/prettier": "^2.6.3",
     "@types/qs": "^6.9.7",
     "@types/react": "^18.0.15",
     "@types/sanitize-html": "^2.6.2",

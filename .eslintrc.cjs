@@ -52,7 +52,6 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
 
     'unicorn/no-array-reduce': 'off',
-    'unicorn/prefer-node-protocol': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/no-null': 'off',
   },
@@ -132,7 +131,7 @@ module.exports = {
     },
     {
       files: ['**.*.test.tsx'],
-      extends: ['plugin:jest-dom/recommended', 'plugin:testing-library/react']
+      extends: ['plugin:jest-dom/recommended', 'plugin:testing-library/react'],
     },
     {
       files: ['next-env.d.ts'],

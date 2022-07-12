@@ -1,10 +1,11 @@
-module.exports = {
+/**
+ * @type {import('@types/prettier').Options}
+ */
+const config = {
   arrowParens: 'avoid',
-  bracketSpacing: true,
   endOfLine: 'auto',
   printWidth: 120,
   singleQuote: true,
-  trailingComma: 'es5',
   overrides: [
     {
       files: '*.yml',
@@ -14,3 +15,5 @@ module.exports = {
     },
   ],
 };
+
+module.exports = config;

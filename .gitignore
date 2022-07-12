@@ -32,4 +32,5 @@ node_modules/
 .next
 .env
 .env.*
+.swc
 .vercel
