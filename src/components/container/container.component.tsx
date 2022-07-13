@@ -1,25 +1,38 @@
 import { Global } from '@emotion/react';
+import { createRef, useCallback } from 'react';
 import { Toaster } from 'react-hot-toast';
 
+import Contact from '../contact';
 import Footer from '../footer';
+import Header from '../header';
 
 import { globalStyles } from './container.styles';
 
 import type { FC } from 'react';
 
-interface Props {
-  children: React.ReactNode;
-}
+const Container: FC = () => {
+  const scrollRef = createRef<HTMLElement>();
 
-const Container: FC<Props> = ({ children }) => (
-  <>
-    <Global styles={globalStyles} />
+  const onClick = useCallback((): void => {
+    if (scrollRef?.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [scrollRef]);
 
-    <main>{children}</main>
+  return (
+    <>
+      <Global styles={globalStyles} />
 
-    <Footer />
-    <Toaster position="bottom-center" />
-  </>
-);
+      <Header onClick={onClick} />
+
+      <main>
+        <Contact scrollRef={scrollRef} />
+      </main>
+
+      <Footer />
+      <Toaster position="bottom-center" />
+    </>
+  );
+};
 
 export default Container;

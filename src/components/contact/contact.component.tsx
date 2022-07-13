@@ -15,8 +15,8 @@ const Contact: FC<Props> = ({ scrollRef }) => (
 
     <div css={contentStyles}>
       <header>
-        <h1 css={headerStyles}>CONTACT</h1>
-        <h2>Have a question or just want to get in touch?</h2>
+        <h2 css={headerStyles}>CONTACT</h2>
+        <h3>Have a question or just want to get in touch?</h3>
       </header>
 
       <Form />

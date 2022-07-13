@@ -26,6 +26,15 @@ describe('Icon', () => {
       expect(screen.getByLabelText('Visit my Google account')).toBeInTheDocument();
     });
 
+    it('sets the title', () => {
+      render(
+        <Icon href="https://www.google.com" label="Google">
+          <span>Hello World</span>
+        </Icon>
+      );
+      expect(screen.getByTitle('Visit my Google account')).toBeInTheDocument();
+    });
+
     it('sets the href', () => {
       render(
         <Icon href="https://www.google.com" label="Google">

@@ -9,19 +9,20 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ onClick }) => (
-  <section css={wrapperStyles}>
-    <header css={textStyles}>
+  <header css={wrapperStyles}>
+    <div css={textStyles}>
       <h1>
         Hello, I&apos;m <span>James Carr</span>.
+        <br />
+        I&apos;m a full-stack web developer.
       </h1>
-      <h1>I&apos;m a full-stack web developer.</h1>
-    </header>
+    </div>
 
     <div css={buttonStyles} onClick={onClick}>
       Contact Me
       <ArrowRightIcon css={iconStyles} size="1.5rem" />
     </div>
-  </section>
+  </header>
 );
 
 export default Header;

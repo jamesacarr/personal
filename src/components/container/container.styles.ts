@@ -45,18 +45,19 @@ export const globalStyles = css`
   }
 
   h1,
-  h2 {
+  h2,
+  h3 {
     font-weight: 400;
-    line-height: 1.5;
     margin: 0 0 ${theme.spacing.base} 0;
   }
 
-  h1 {
+  h1,
+  h2 {
     font-size: 2rem;
     line-height: 1.4;
   }
 
-  h2 {
+  h3 {
     font-size: 1.2rem;
     line-height: 1.3;
   }
