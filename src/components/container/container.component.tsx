@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import { SnackbarProvider } from 'notistack';
+import { Toaster } from 'react-hot-toast';
 
 import Footer from '../footer';
 
@@ -12,13 +12,14 @@ interface Props {
 }
 
 const Container: FC<Props> = ({ children }) => (
-  <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+  <>
     <Global styles={globalStyles} />
 
     <main>{children}</main>
 
     <Footer />
-  </SnackbarProvider>
+    <Toaster position="bottom-center" />
+  </>
 );
 
 export default Container;

@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 import mock from '../../utils/mock';
 import { BadRequestError, InternalServerError } from '../errors';
 
@@ -18,8 +20,9 @@ describe('withErrorHandler', () => {
   const sendMock = mock(response.send);
 
   beforeEach(() => {
-    consoleLogSpy = jest.spyOn(console, 'error').mockImplementation(() => {
-      /* Do Nothing */
+    // @ts-expect-error For some reason, the typings behind this aren't working
+    consoleLogSpy = jest.spyOn(global.console, 'error').mockImplementation(() => {
+      /* Intentionally empty */
     });
     handler.mockReset();
     statusMock.mockClear();
