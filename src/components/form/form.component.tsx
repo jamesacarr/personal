@@ -45,6 +45,7 @@ const Form: FC = () => {
     <form css={formStyles} onSubmit={handleSubmit(onSubmit)}>
       <Tooltip message={errors?.name?.message ?? ''} visible={showError('name')}>
         <input
+          aria-label="Name"
           css={[fieldStyles, showError('name') && fieldErrorStyles]}
           defaultValue=""
           placeholder="Name"
@@ -54,6 +55,7 @@ const Form: FC = () => {
       </Tooltip>
       <Tooltip message={errors?.email?.message ?? ''} visible={showError('email')}>
         <input
+          aria-label="Email"
           css={[fieldStyles, showError('email') && fieldErrorStyles]}
           defaultValue=""
           placeholder="Email"
@@ -63,6 +65,7 @@ const Form: FC = () => {
       </Tooltip>
       <Tooltip message={errors?.message?.message ?? ''} visible={showError('message')}>
         <textarea
+          aria-label="Message"
           css={[fieldStyles, showError('message') && fieldErrorStyles]}
           defaultValue=""
           placeholder="Message"
