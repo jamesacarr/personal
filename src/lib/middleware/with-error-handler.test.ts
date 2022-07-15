@@ -1,4 +1,5 @@
 import { jest } from '@jest/globals';
+import { SpyInstance } from 'jest-mock';
 
 import mock from '../../utils/mock';
 import { BadRequestError, InternalServerError } from '../errors';
@@ -8,7 +9,7 @@ import withErrorHandler from './with-error-handler';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 describe('withErrorHandler', () => {
-  let consoleLogSpy: jest.SpiedFunction<typeof console.log>;
+  let consoleLogSpy: SpyInstance<typeof console.error>;
   const handler = jest.fn();
   const request = { url: 'https://example.com' } as NextApiRequest; // eslint-disable-line @typescript-eslint/consistent-type-assertions
   const response = {} as NextApiResponse; // eslint-disable-line @typescript-eslint/consistent-type-assertions
@@ -20,8 +21,7 @@ describe('withErrorHandler', () => {
   const sendMock = mock(response.send);
 
   beforeEach(() => {
-    // @ts-expect-error For some reason, the typings behind this aren't working
-    consoleLogSpy = jest.spyOn(global.console, 'error').mockImplementation(() => {
+    consoleLogSpy = jest.spyOn(console, 'error').mockImplementation(() => {
       /* Intentionally empty */
     });
     handler.mockReset();
