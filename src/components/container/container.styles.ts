@@ -3,22 +3,21 @@ import { css } from '@emotion/react';
 import theme from '../theme';
 
 export const globalStyles = css`
-  /* Raleway-regular - latin */
+  /* raleway-regular - latin */
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
-    src: local('Raleway'), local('Raleway-Regular'), url('/fonts/raleway-v13-latin-regular.woff2') format('woff2'),
-      url('/fonts/raleway-v13-latin-regular.woff') format('woff');
+    src: local('Raleway'), url('/fonts/raleway-v27-latin-regular.woff2') format('woff2'),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */ url('/fonts/raleway-v27-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
   }
-
-  /* Raleway-700 - latin */
+  /* raleway-700 - latin */
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 700;
-    src: local('Raleway Bold'), local('Raleway-Bold'), url('/fonts/raleway-v13-latin-700.woff2') format('woff2'),
-      url('/fonts/raleway-v13-latin-700.woff') format('woff');
+    src: local('Raleway Bold'), url('/fonts/raleway-v27-latin-700.woff2') format('woff2'),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */ url('/fonts/raleway-v27-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
   }
 
   html {
