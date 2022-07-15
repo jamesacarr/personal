@@ -19,8 +19,8 @@ const Form: FC = () => {
     register,
     reset,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid, touchedFields },
-  } = useForm<ContactRequestBody>({ mode: 'onBlur', resolver: yupResolver(schema) });
+    formState: { errors, isSubmitting, touchedFields },
+  } = useForm<ContactRequestBody>({ resolver: yupResolver(schema) });
 
   const showError = useCallback(
     (name: keyof ContactRequestBody) => Boolean(touchedFields[name] && errors[name]),
@@ -77,7 +77,7 @@ const Form: FC = () => {
         css={[buttonStyles, isSubmitting && buttonStylesSubmitting]}
         type="submit"
         value={isSubmitting ? 'SUBMITTING' : 'SUBMIT'}
-        disabled={isSubmitting || !isValid}
+        disabled={isSubmitting}
       />
     </form>
   );
