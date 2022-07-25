@@ -43,7 +43,7 @@ const Form: FC = () => {
 
   return (
     <form css={formStyles} onSubmit={handleSubmit(onSubmit)}>
-      <Tooltip message={errors?.name?.message ?? ''} visible={showError('name')}>
+      <Tooltip message={errors?.name?.message ?? ''} isVisible={showError('name')}>
         <input
           aria-label="Name"
           css={[fieldStyles, showError('name') && fieldErrorStyles]}
@@ -53,7 +53,7 @@ const Form: FC = () => {
           {...register('name')}
         />
       </Tooltip>
-      <Tooltip message={errors?.email?.message ?? ''} visible={showError('email')}>
+      <Tooltip message={errors?.email?.message ?? ''} isVisible={showError('email')}>
         <input
           aria-label="Email"
           css={[fieldStyles, showError('email') && fieldErrorStyles]}
@@ -63,7 +63,7 @@ const Form: FC = () => {
           {...register('email')}
         />
       </Tooltip>
-      <Tooltip message={errors?.message?.message ?? ''} visible={showError('message')}>
+      <Tooltip message={errors?.message?.message ?? ''} isVisible={showError('message')}>
         <textarea
           aria-label="Message"
           css={[fieldStyles, showError('message') && fieldErrorStyles]}

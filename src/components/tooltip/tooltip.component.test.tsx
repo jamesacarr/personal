@@ -17,7 +17,7 @@ describe('Tooltip', () => {
       expect(screen.getByText('Hello World')).toBeInTheDocument();
     });
 
-    it('does not render message when visible is false', () => {
+    it('does not render message when isVisible is false', () => {
       render(
         <Tooltip message="Testing">
           <span>Hello World</span>
@@ -26,9 +26,9 @@ describe('Tooltip', () => {
       expect(screen.queryByText('Testing')).not.toBeInTheDocument();
     });
 
-    it('renders message when visible is true', () => {
+    it('renders message when isVisible is true', () => {
       render(
-        <Tooltip visible message="Testing">
+        <Tooltip isVisible message="Testing">
           <span>Hello World</span>
         </Tooltip>
       );
@@ -39,7 +39,7 @@ describe('Tooltip', () => {
   describe('accessibility', () => {
     it('has no violations', async () => {
       const { container } = render(
-        <Tooltip visible message="Testing">
+        <Tooltip isVisible message="Testing">
           <span>Hello World</span>
         </Tooltip>
       );

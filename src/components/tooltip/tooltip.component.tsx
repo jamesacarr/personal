@@ -5,13 +5,13 @@ import type { FC } from 'react';
 interface Props {
   children: React.ReactNode;
   message: string;
-  visible?: boolean;
+  isVisible?: boolean;
 }
 
-const Tooltip: FC<Props> = ({ children, message, visible = false }) => (
+const Tooltip: FC<Props> = ({ children, message, isVisible = false }) => (
   <div css={tooltipContainerStyles}>
     {children}
-    {visible && (
+    {isVisible && (
       <div className="tooltip" css={tooltipStyles}>
         {message}
       </div>

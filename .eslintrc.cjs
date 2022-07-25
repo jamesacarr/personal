@@ -117,6 +117,9 @@ module.exports = {
             },
           },
         ],
+
+        '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+
         // While this would be a great rule to leave on, it's a bit too strict for
         // our use cases e.g. top-level const variables must be camelCase, rather
         // than UPPER_CASE.
