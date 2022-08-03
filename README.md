@@ -1,6 +1,7 @@
 # Personal
 
 [![Test status](https://github.com/jamesacarr/personal/workflows/tests/badge.svg)](https://github.com/jamesacarr/personal/actions?query=workflow%3Atests)
+[![Checkly Status](https://api.checklyhq.com/v1/badges/checks/e92210ba-0ad7-487e-8c63-ca91fa13689f?style=flat&theme=default)](https://app.checklyhq.com/checks/e92210ba-0ad7-487e-8c63-ca91fa13689f/)
 
 My personal website.
 
