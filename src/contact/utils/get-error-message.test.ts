@@ -1,11 +1,11 @@
 import { HTTPError, TimeoutError } from 'ky-universal';
-import { Writable } from 'type-fest';
 
 import { BadRequestError } from '../../lib/errors';
 
 import getErrorMessage from './get-error-message';
 
 import type { ErrorResponseBody } from '../../lib/middleware/types';
+import type { Writable } from 'type-fest';
 
 const createFakeResponse = ({ status, body }: { status?: number; body?: ErrorResponseBody }): Response => {
   // Start with a realistic fetch Response.

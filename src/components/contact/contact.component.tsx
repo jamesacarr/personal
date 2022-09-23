@@ -1,3 +1,4 @@
+import { sendMessage } from '../../contact';
 import Form from '../form';
 import SectionHeader from '../section-header';
 
@@ -19,7 +20,7 @@ const Contact: FC<Props> = ({ scrollRef }) => (
         <h3>Have a question or just want to get in touch?</h3>
       </header>
 
-      <Form />
+      <Form onSubmit={sendMessage} />
     </div>
   </section>
 );

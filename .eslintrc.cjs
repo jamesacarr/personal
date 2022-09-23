@@ -1,6 +1,12 @@
 module.exports = {
   root: true,
-  extends: ['xo-space', 'xo-react/space', 'plugin:@next/next/recommended', 'plugin:unicorn/recommended', 'prettier'],
+  extends: [
+    'xo-space',
+    'xo-react/space',
+    'plugin:@next/next/core-web-vitals',
+    'plugin:unicorn/recommended',
+    'prettier',
+  ],
   plugins: ['import'],
   env: {
     es2021: true,
@@ -48,6 +54,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'react/react-in-jsx-scope': 'off',
     'react-hooks/exhaustive-deps': 'error',
 
@@ -130,6 +137,9 @@ module.exports = {
       files: ['**/*.test.{ts,tsx}'],
       env: {
         jest: true,
+      },
+      rules: {
+        'max-nested-callbacks': 'off',
       },
     },
     {

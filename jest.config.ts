@@ -10,7 +10,7 @@ const config: Config.InitialOptions = {
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   rootDir: '.',
   roots: ['<rootDir>/src/'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-axe/extend-expect'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-axe/extend-expect', '<rootDir>/jest/setup.ts'],
 };
 
 export default createJestConfig(config);

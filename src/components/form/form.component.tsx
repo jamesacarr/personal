@@ -1,20 +1,22 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import ky from 'ky-universal';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 import { schema } from '../../contact';
 import Tooltip from '../tooltip';
 
 import { buttonStyles, buttonStylesSubmitting, fieldErrorStyles, fieldStyles, formStyles } from './form.styles';
-import getErrorMessage from './get-error-message';
 
 import type { ContactRequestBody } from '../../contact';
 import type { FC } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 
-const Form: FC = () => {
+interface Props {
+  onSubmit: (data: ContactRequestBody) => Promise<void>;
+}
+
+const Form: FC<Props> = ({ onSubmit }) => {
   const {
     register,
     reset,
@@ -27,22 +29,21 @@ const Form: FC = () => {
     [errors, touchedFields]
   );
 
-  const onSubmit: SubmitHandler<ContactRequestBody> = useCallback(
+  const onSubmitWrapper: SubmitHandler<ContactRequestBody> = useCallback(
     async data => {
       try {
-        await ky.post('/api/contact', { json: data });
+        await onSubmit(data);
         toast.success('Message Sent');
         reset();
       } catch (error: unknown) {
-        const message = await getErrorMessage(error);
-        toast.error(message);
+        toast.error((error as Error).message);
       }
     },
-    [reset]
+    [onSubmit, reset]
   );
 
   return (
-    <form css={formStyles} onSubmit={handleSubmit(onSubmit)}>
+    <form css={formStyles} onSubmit={handleSubmit(onSubmitWrapper)}>
       <Tooltip message={errors?.name?.message ?? ''} isVisible={showError('name')}>
         <input
           aria-label="Name"

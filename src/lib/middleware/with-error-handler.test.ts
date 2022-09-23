@@ -1,11 +1,11 @@
 import { jest } from '@jest/globals';
-import { SpyInstance } from 'jest-mock';
 
 import mock from '../../utils/mock';
 import { BadRequestError, InternalServerError } from '../errors';
 
 import withErrorHandler from './with-error-handler';
 
+import type { SpyInstance } from 'jest-mock';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 describe('withErrorHandler', () => {

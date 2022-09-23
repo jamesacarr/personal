@@ -1,6 +1,6 @@
 import sanitize from 'sanitize-html';
 
-import { ContactRequestBody } from '../types';
+import type { ContactRequestBody } from '../types';
 
 const transformBody = ({ name, email, message }: ContactRequestBody): ContactRequestBody => ({
   name: sanitize(name, { allowedTags: [], allowedAttributes: {} }),
