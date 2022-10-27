@@ -11,10 +11,10 @@ const IndexPage: FC = () => (
       <meta name="description" content="Hello, I'm James Carr. I'm a full-stack web developer." />
       <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,viewport-fit=cover" />
 
-      <link rel="preload" href="/fonts/raleway-v27-latin-regular.woff" as="font" crossOrigin="" />
-      <link rel="preload" href="/fonts/raleway-v27-latin-regular.woff2" as="font" crossOrigin="" />
-      <link rel="preload" href="/fonts/raleway-v27-latin-700.woff" as="font" crossOrigin="" />
-      <link rel="preload" href="/fonts/raleway-v27-latin-700.woff2" as="font" crossOrigin="" />
+      <link rel="preload" href="/fonts/raleway-v27-latin-regular.woff" as="font" crossOrigin="anonymous" />
+      <link rel="preload" href="/fonts/raleway-v27-latin-regular.woff2" as="font" crossOrigin="anonymous" />
+      <link rel="preload" href="/fonts/raleway-v27-latin-700.woff" as="font" crossOrigin="anonymous" />
+      <link rel="preload" href="/fonts/raleway-v27-latin-700.woff2" as="font" crossOrigin="anonymous" />
 
       <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="512x512" href="/icons/android-chrome-512x512.png" />

@@ -7,12 +7,17 @@ import type { ContactRequestBody } from '../types';
 
 const getErrorMessage = (error: ValidationError) => {
   switch (error.type) {
-    case 'email':
+    case 'email': {
       return error.message.toLowerCase();
-    case 'typeError':
+    }
+
+    case 'typeError': {
       return 'invalid body';
-    default:
+    }
+
+    default: {
       return `${error.path ?? '<unknown>'} ${error.message.toLowerCase()}`;
+    }
   }
 };
 

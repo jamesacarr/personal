@@ -26,8 +26,6 @@ const config = {
 
   // Output and serve production source maps
   productionBrowserSourceMaps: true,
-
-  swcMinify: true,
 };
 
 export default withBundleAnalyzer(config);
