@@ -1,6 +1,6 @@
 import { NotFoundError } from '../../lib/errors';
 
-import validateMethod from './validate-method';
+import { validateMethod } from './validate-method';
 
 describe('validateMethod', () => {
   it('returns when method is POST', () => {

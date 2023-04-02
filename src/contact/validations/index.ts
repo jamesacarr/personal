@@ -1,2 +1,2 @@
-export { default as validateBody } from './validate-body';
-export { default as validateMethod } from './validate-method';
+export { validateBody } from './validate-body';
+export { validateMethod } from './validate-method';

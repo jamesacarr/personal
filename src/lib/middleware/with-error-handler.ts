@@ -5,7 +5,7 @@ import type { HTTPError } from '../errors';
 
 const isHttpError = (error: any): error is HTTPError => Boolean(error?.isHttpError);
 
-const withErrorHandler: Middleware<ErrorResponseBody> = handler => async (request, response) => {
+export const withErrorHandler: Middleware<ErrorResponseBody> = handler => async (request, response) => {
   try {
     await handler(request, response);
     return;
@@ -26,5 +26,3 @@ const withErrorHandler: Middleware<ErrorResponseBody> = handler => async (reques
     });
   }
 };
-
-export default withErrorHandler;

@@ -1,0 +1,30 @@
+.arrow {
+  fill: var(--colour-neutral000);
+  stroke: var(--colour-neutral000);
+  height: 75px;
+  width: 100%;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-evenly;
+}
+
+.header {
+  border-bottom: 2px solid var(--colour-neutral900);
+  margin: var(--spacing-large) auto;
+  width: fit-content;
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--colour-neutral300);
+  min-height: calc(100vh - 5rem);
+  padding-bottom: var(--spacing-large);
+  position: relative;
+}

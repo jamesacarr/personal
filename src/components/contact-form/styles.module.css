@@ -1,0 +1,74 @@
+.button {
+  appearance: none;
+  background-color: var(--colour-neutral500);
+  border: 0;
+  border-radius: 4px;
+  color: var(--colour-neutral600);
+  font-size: 1.2rem;
+  margin: 0.1rem;
+  padding: var(--spacing-small) var(--spacing-base);
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.button:not(:disabled) {
+  background-color: var(--colour-neutral000);
+}
+
+.button:not(:disabled):hover {
+  background-color: var(--colour-primary500);
+  color: var(--colour-neutral900);
+  cursor: pointer;
+}
+
+.submitting {
+  animation: color 1s ease-in-out infinite;
+  background-color: var(--colour-primary500);
+  color: var(--colour-neutral900);
+}
+
+.field {
+  background-color: var(--colour-neutral000);
+  border: 1px solid var(--colour-neutral000);
+  border-radius: 4px;
+  color: var(--colour-neutral900);
+  font-family: var(--font-family);
+  font-size: var(--spacing-base);
+  margin: 0.1rem 0;
+  min-width: 95%;
+  outline: none;
+  padding: var(--spacing-small) var(--spacing-base);
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.field:focus {
+  border-color: var(--colour-primary500);
+}
+
+.field::placeholder {
+  color: var(--colour-neutral600);
+  font-family: var(--font-family);
+}
+
+.field:is(textarea) {
+  min-height: 6rem;
+}
+
+.error {
+  border: 1px solid var(--colour-red500);
+}
+
+.form {
+  min-width: 95%;
+}
+
+@media (min-width: 600px) {
+  .field {
+    min-width: 500px;
+  }
+
+  .form {
+    min-width: 500px;
+  }
+}

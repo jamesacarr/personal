@@ -5,7 +5,6 @@
     "moduleResolution": "node",
     "lib": ["dom", "es2020"],
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,8 +19,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "plugins": [{ "name": "next" }]
   },
-  "include": ["jest", "src/**/*.ts*", "./*.ts"],
+  "include": ["jest", "src/**/*.ts*", "./*.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

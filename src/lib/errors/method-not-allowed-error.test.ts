@@ -1,4 +1,4 @@
-import MethodNotAllowedError from './method-not-allowed-error';
+import { MethodNotAllowedError } from './method-not-allowed-error';
 
 describe('MethodNotAllowedError', () => {
   describe('.constructor', () => {

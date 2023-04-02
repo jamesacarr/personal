@@ -1,4 +1,4 @@
-import BadRequestError from './bad-request-error';
+import { BadRequestError } from './bad-request-error';
 
 describe('BadRequestError', () => {
   describe('.constructor', () => {

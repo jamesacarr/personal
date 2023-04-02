@@ -1,4 +1,4 @@
-import HTTPError from './http-error';
+import { HTTPError } from './http-error';
 
 describe('HTTPError', () => {
   describe('.constructor', () => {

@@ -4,7 +4,7 @@
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 
-import Footer from './footer.component';
+import { Footer } from './footer.component';
 
 describe('Footer', () => {
   describe('accessibility', () => {

@@ -1,9 +1,9 @@
 import { jest } from '@jest/globals';
 
 import { BadRequestError } from '../../lib/errors';
-import schema from '../schema';
+import { schema } from '../schema';
 
-import validateBody from './validate-body';
+import { validateBody } from './validate-body';
 
 describe('validateBody', () => {
   it('raises error invalid body type', async () => {

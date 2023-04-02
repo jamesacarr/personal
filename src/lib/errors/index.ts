@@ -1,5 +1,5 @@
-export { default as BadRequestError } from './bad-request-error';
-export { default as HTTPError } from './http-error';
-export { default as InternalServerError } from './internal-server-error';
-export { default as NotFoundError } from './not-found-error';
-export { default as UnauthorizedError } from './unauthorized-error';
+export { BadRequestError } from './bad-request-error';
+export { HTTPError } from './http-error';
+export { InternalServerError } from './internal-server-error';
+export { NotFoundError } from './not-found-error';
+export { UnauthorizedError } from './unauthorized-error';

@@ -1,1 +1,1 @@
-export { default as withErrorHandler } from './with-error-handler';
+export { withErrorHandler } from './with-error-handler';

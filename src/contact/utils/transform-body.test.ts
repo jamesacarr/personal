@@ -1,4 +1,4 @@
-import transformBody from './transform-body';
+import { transformBody } from './transform-body';
 
 describe('transformBody', () => {
   it('strips html from name', () => {

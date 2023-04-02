@@ -1,5 +1,3 @@
-import ky from 'ky-universal';
-
 import { transformBody } from '../../contact/utils';
 import { validateBody, validateMethod } from '../../contact/validations';
 import { InternalServerError } from '../../lib/errors';
@@ -17,7 +15,16 @@ const handler: NextApiHandler<void> = async (request, response) => {
     throw new InternalServerError('Missing WEBHOOK_URL');
   }
 
-  await ky.post(WEBHOOK_URL, { json: transformBody(body) }).json();
+  const res = await fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(transformBody(body)),
+  });
+
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
   response.status(200).end();
 };
 

@@ -4,7 +4,7 @@
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 
-import Tooltip from './tooltip.component';
+import { Tooltip } from './tooltip.component';
 
 describe('Tooltip', () => {
   describe('appearance', () => {

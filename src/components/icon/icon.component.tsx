@@ -1,4 +1,4 @@
-import { wrapperStyles } from './icon.styles';
+import styles from './styles.module.css';
 
 import type { FC } from 'react';
 
@@ -8,13 +8,13 @@ interface Props {
   label: string;
 }
 
-const Icon: FC<Props> = ({ children, href, label }) => {
+export const Icon: FC<Props> = ({ children, href, label }) => {
   const title = `Visit my ${label} account`;
 
   return (
     <a
       aria-label={`Visit my ${label} account`}
-      css={wrapperStyles}
+      className={styles.wrapper}
       href={href}
       rel="noreferrer"
       target="_blank"
@@ -24,5 +24,3 @@ const Icon: FC<Props> = ({ children, href, label }) => {
     </a>
   );
 };
-
-export default Icon;

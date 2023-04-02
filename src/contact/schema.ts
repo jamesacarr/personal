@@ -2,7 +2,7 @@ import { object, string } from 'yup';
 
 const MIN_WORDS = 5;
 
-const schema = object({
+export const schema = object({
   name: string().required('Required'),
   email: string().email('Invalid email').required('Required'),
   message: string()
@@ -14,5 +14,3 @@ const schema = object({
         value ? value.trim().split(' ').filter(Boolean).length >= MIN_WORDS : false,
     }),
 }).required();
-
-export default schema;

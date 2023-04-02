@@ -1,6 +1,6 @@
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
-class HTTPError extends Error {
+export class HTTPError extends Error {
   protected static readonly STATUS_CODE: number = StatusCodes.INTERNAL_SERVER_ERROR;
 
   readonly status: number;
@@ -22,5 +22,3 @@ class HTTPError extends Error {
     return true;
   }
 }
-
-export default HTTPError;

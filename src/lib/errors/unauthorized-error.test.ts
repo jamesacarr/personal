@@ -1,4 +1,4 @@
-import UnauthorizedError from './unauthorized-error';
+import { UnauthorizedError } from './unauthorized-error';
 
 describe('UnauthorizedError', () => {
   describe('.constructor', () => {

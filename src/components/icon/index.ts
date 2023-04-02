@@ -1,1 +1,1 @@
-export { default } from './icon.component';
+export { Icon } from './icon.component';

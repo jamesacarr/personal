@@ -1,0 +1,41 @@
+.button {
+  border: 2px solid var(--colour-neutral900);
+  border-radius: 4px;
+  font-size: 1.2rem;
+  margin-top: var(--spacing-large);
+  padding: var(--spacing-small) var(--spacing-base);
+  transition: all 0.3s;
+}
+
+.button:hover {
+  background-color: var(--colour-primary500);
+  border-color: var(--colour-primary500);
+  cursor: pointer;
+}
+
+.button:hover svg {
+  transform: rotate(90deg);
+}
+
+.icon {
+  margin-left: var(--spacing-small);
+  transition: transform 0.3s;
+  vertical-align: sub;
+}
+
+.header {
+  margin: 0;
+}
+
+.highlight {
+  color: var(--colour-yellow500);
+}
+
+.wrapper {
+  align-items: center;
+  background-color: var(--colour-neutral000);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}

@@ -4,7 +4,7 @@
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 
-import Icon from './icon.component';
+import { Icon } from './icon.component';
 
 describe('Icon', () => {
   describe('appearance', () => {
