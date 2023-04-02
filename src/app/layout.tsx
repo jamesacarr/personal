@@ -12,8 +12,9 @@ interface Props {
 
 // eslint-disable-next-line new-cap
 const raleway = Raleway({
-  subsets: ['latin'],
   display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-family',
 });
 
 export const metadata: Metadata = {
