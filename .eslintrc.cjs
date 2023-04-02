@@ -17,6 +17,7 @@ module.exports = {
     'import/default': 'error',
     'import/export': 'error',
     'import/first': 'error',
+    'import/named': 'error',
     'import/namespace': ['error', { allowComputed: true }],
     'import/newline-after-import': 'error',
     'import/no-absolute-path': 'error',
@@ -31,6 +32,7 @@ module.exports = {
     'import/no-named-default': 'error',
     'import/no-self-import': 'error',
     'import/no-unassigned-import': 'error',
+    'import/no-unresolved': 'error',
     'import/no-useless-path-segments': 'error',
     'import/no-webpack-loader-syntax': 'error',
     'import/order': [
@@ -100,6 +102,10 @@ module.exports = {
               Symbol: {
                 message: 'Use `symbol` instead.',
                 fixWith: 'symbol',
+              },
+              BigInt: {
+                message: 'Use `bigint` instead.',
+                fixWith: 'bigint',
               },
               Object: {
                 message:

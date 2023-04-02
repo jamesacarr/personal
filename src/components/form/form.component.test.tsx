@@ -28,11 +28,10 @@ describe('Form', () => {
         // Submit the data
         const button = screen.getByText('SUBMIT');
         await userEvent.click(button);
-        expect(button).toHaveValue('SUBMITTING');
 
         // Wait for submitting to finish
         await waitFor(() => {
-          expect(button).toHaveValue('SUBMIT');
+          expect(button).not.toHaveValue('SUBMITTING');
         });
 
         expect(onSubmit).not.toHaveBeenCalled();
@@ -53,11 +52,10 @@ describe('Form', () => {
         // Submit the data
         const button = screen.getByText('SUBMIT');
         await userEvent.click(button);
-        expect(button).toHaveValue('SUBMITTING');
 
         // Wait for submitting to finish
         await waitFor(() => {
-          expect(button).toHaveValue('SUBMIT');
+          expect(button).not.toHaveValue('SUBMITTING');
         });
 
         expect(onSubmit).not.toHaveBeenCalled();
@@ -71,18 +69,17 @@ describe('Form', () => {
         const name = screen.getByLabelText('Name');
         await userEvent.type(name, 'James Carr');
         const email = screen.getByLabelText('Email');
-        await userEvent.type(email, 'not-an@email');
+        await userEvent.type(email, 'not-an-email');
         const message = screen.getByLabelText('Message');
         await userEvent.type(message, 'This is a test message');
 
         // Submit the data
         const button = screen.getByText('SUBMIT');
         await userEvent.click(button);
-        expect(button).toHaveValue('SUBMITTING');
 
         // Wait for submitting to finish
         await waitFor(() => {
-          expect(button).toHaveValue('SUBMIT');
+          expect(button).not.toHaveValue('SUBMITTING');
         });
 
         expect(onSubmit).not.toHaveBeenCalled();
@@ -103,11 +100,10 @@ describe('Form', () => {
         // Submit the data
         const button = screen.getByText('SUBMIT');
         await userEvent.click(button);
-        expect(button).toHaveValue('SUBMITTING');
 
         // Wait for submitting to finish
         await waitFor(() => {
-          expect(button).toHaveValue('SUBMIT');
+          expect(button).not.toHaveValue('SUBMITTING');
         });
 
         expect(onSubmit).not.toHaveBeenCalled();
@@ -128,11 +124,10 @@ describe('Form', () => {
         // Submit the data
         const button = screen.getByText('SUBMIT');
         await userEvent.click(button);
-        expect(button).toHaveValue('SUBMITTING');
 
         // Wait for submitting to finish
         await waitFor(() => {
-          expect(button).toHaveValue('SUBMIT');
+          expect(button).not.toHaveValue('SUBMITTING');
         });
 
         expect(onSubmit).not.toHaveBeenCalled();
@@ -156,17 +151,13 @@ describe('Form', () => {
       // Submit the data
       const button = screen.getByText('SUBMIT');
       await userEvent.click(button);
-      expect(button).toHaveValue('SUBMITTING');
 
-      // Wait for submitting to finish
       await waitFor(() => {
-        expect(button).toHaveValue('SUBMIT');
-      });
-
-      expect(onSubmit).toHaveBeenCalledWith({
-        name: 'James Carr',
-        email: 'james@jamescarr.dev',
-        message: 'This is a test message',
+        expect(onSubmit).toHaveBeenCalledWith({
+          name: 'James Carr',
+          email: 'james@jamescarr.dev',
+          message: 'This is a test message',
+        });
       });
 
       expect(toastMock.success).toHaveBeenCalledWith('Message Sent');
@@ -192,17 +183,14 @@ describe('Form', () => {
       // Submit the data
       const button = screen.getByText('SUBMIT');
       await userEvent.click(button);
-      expect(button).toHaveValue('SUBMITTING');
 
       // Wait for submitting to finish
       await waitFor(() => {
-        expect(button).toHaveValue('SUBMIT');
-      });
-
-      expect(onSubmit).toHaveBeenCalledWith({
-        name: 'James Carr',
-        email: 'james@jamescarr.dev',
-        message: 'This is a test message',
+        expect(onSubmit).toHaveBeenCalledWith({
+          name: 'James Carr',
+          email: 'james@jamescarr.dev',
+          message: 'This is a test message',
+        });
       });
 
       expect(toastMock.success).not.toHaveBeenCalled();

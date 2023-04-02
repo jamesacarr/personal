@@ -1,7 +1,7 @@
 import { InternalServerError } from '../errors';
 
-import type { HTTPError } from '../errors';
 import type { ErrorResponseBody, Middleware } from './types';
+import type { HTTPError } from '../errors';
 
 const isHttpError = (error: any): error is HTTPError => Boolean(error?.isHttpError);
 
