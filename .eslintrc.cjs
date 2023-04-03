@@ -14,6 +14,9 @@ module.exports = {
   },
   ignorePatterns: ['**/node_modules/**', 'coverage/**', 'dist/**'],
   rules: {
+    // Disable this rule because we're using the app directory
+    '@next/next/no-html-link-for-pages': 'off',
+
     'import/default': 'error',
     'import/export': 'error',
     'import/first': 'error',

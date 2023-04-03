@@ -1,6 +1,7 @@
-import type { NextApiHandler } from 'next';
+import type { NextRequest, NextResponse } from 'next/server';
 
-export type Middleware<Response = void> = <T>(handler: NextApiHandler<T>) => NextApiHandler<T | Response>;
+export type NextRoute = (request: NextRequest) => Promise<NextResponse | Response> | NextResponse | Response;
+export type Middleware = (route: NextRoute) => NextRoute;
 
 export interface ErrorResponseBody {
   detail: string;

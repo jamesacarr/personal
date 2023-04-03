@@ -1,33 +1,27 @@
 import { jest } from '@jest/globals';
 
-import mock from '../../utils/mock';
 import { BadRequestError, InternalServerError } from '../errors';
 
 import { withErrorHandler } from './with-error-handler';
 
+import type { NextRoute } from './types';
 import type { SpyInstance } from 'jest-mock';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextRequest } from 'next/server';
+
+const successResponse = new Response(JSON.stringify({ success: true }), {
+  headers: { 'Content-Type': 'application/json' },
+});
 
 describe('withErrorHandler', () => {
   let consoleLogSpy: SpyInstance<typeof console.error>;
-  const handler = jest.fn();
-  const request = { url: 'https://example.com' } as NextApiRequest; // eslint-disable-line @typescript-eslint/consistent-type-assertions
-  const response = {} as NextApiResponse; // eslint-disable-line @typescript-eslint/consistent-type-assertions
-  response.status = jest.fn(() => response);
-  response.setHeader = jest.fn(() => response);
-  response.send = jest.fn(() => response);
-  const statusMock = mock(response.status);
-  const setHeaderMock = mock(response.setHeader);
-  const sendMock = mock(response.send);
+  const handler = jest.fn<NextRoute>();
+  const request = { url: 'https://example.com' } as NextRequest; // eslint-disable-line @typescript-eslint/consistent-type-assertions
 
   beforeEach(() => {
     consoleLogSpy = jest.spyOn(console, 'error').mockImplementation(() => {
       /* Intentionally empty */
     });
-    handler.mockReset();
-    statusMock.mockClear();
-    setHeaderMock.mockClear();
-    sendMock.mockClear();
+    handler.mockImplementation(() => successResponse);
   });
 
   afterEach(() => {
@@ -35,8 +29,13 @@ describe('withErrorHandler', () => {
   });
 
   it('calls handler with request', async () => {
-    await withErrorHandler(handler)(request, response);
-    expect(handler).toHaveBeenCalledWith(request, response);
+    await withErrorHandler(handler)(request);
+    expect(handler).toHaveBeenCalledWith(request);
+  });
+
+  it('returns hndler response', async () => {
+    const response = await withErrorHandler(handler)(request);
+    expect(response).toEqual(successResponse);
   });
 
   it('logs error when error raised', async () => {
@@ -45,26 +44,32 @@ describe('withErrorHandler', () => {
       throw error;
     });
 
-    await withErrorHandler(handler)(request, response);
+    await withErrorHandler(handler)(request);
     expect(consoleLogSpy).toHaveBeenCalledWith(error);
   });
 
-  it('responds with InternalServerError when unknown error raised', async () => {
+  it('returns InternalServerError when unknown error raised', async () => {
     const { detail, status, title, type } = new InternalServerError();
     handler.mockImplementation(() => {
       throw new Error('testing');
     });
 
-    await withErrorHandler(handler)(request, response);
-    expect(statusMock).toHaveBeenCalledWith(status);
-    expect(setHeaderMock).toHaveBeenCalledWith('Content-Type', 'application/problem+json; charset=utf-8');
-    expect(sendMock).toHaveBeenCalledWith({
-      detail,
-      status,
-      title,
-      type,
-      instance: request.url,
-    });
+    const expected = new Response(
+      JSON.stringify({
+        detail,
+        status,
+        title,
+        type,
+        instance: request.url,
+      }),
+      {
+        status,
+        headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
+      }
+    );
+
+    const response = await withErrorHandler(handler)(request);
+    expect(response).toEqual(expected);
   });
 
   it('responds with correct details when HTTPError raised', async () => {
@@ -74,15 +79,21 @@ describe('withErrorHandler', () => {
       throw badRequest;
     });
 
-    await withErrorHandler(handler)(request, response);
-    expect(statusMock).toHaveBeenCalledWith(status);
-    expect(setHeaderMock).toHaveBeenCalledWith('Content-Type', 'application/problem+json; charset=utf-8');
-    expect(sendMock).toHaveBeenCalledWith({
-      detail,
-      status,
-      title,
-      type,
-      instance: request.url,
-    });
+    const expected = new Response(
+      JSON.stringify({
+        detail,
+        status,
+        title,
+        type,
+        instance: request.url,
+      }),
+      {
+        status,
+        headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
+      }
+    );
+
+    const response = await withErrorHandler(handler)(request);
+    expect(response).toEqual(expected);
   });
 });
