@@ -13,9 +13,8 @@ export const Hero: FC<Props> = ({ onClick }) => (
     <div>
       <h1 className={styles.header}>
         Hello, I&apos;m <span className={styles.highlight}>James Carr</span>.
-        <br />
-        I&apos;m a full-stack web developer.
       </h1>
+      <h1 className={styles.header}>I&apos;m a full-stack web developer.</h1>
     </div>
 
     <div className={styles.button} onClick={onClick}>
