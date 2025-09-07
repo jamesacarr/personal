@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { BadRequestError } from './bad-request-error';
 
 describe('BadRequestError', () => {
@@ -9,7 +11,9 @@ describe('BadRequestError', () => {
 
     it('sets type correctly', () => {
       const error = new BadRequestError();
-      expect(error.type).toEqual('https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400');
+      expect(error.type).toEqual(
+        'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400',
+      );
     });
 
     it('sets title correctly', () => {

@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "ES2021",
     "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["dom", "es2020"],
+    "moduleResolution": "bundler",
+    "lib": ["dom", "es2021"],
     "jsx": "preserve",
     "allowJs": true,
     "esModuleInterop": true,
@@ -22,6 +22,6 @@
     "strict": true,
     "plugins": [{ "name": "next" }]
   },
-  "include": ["jest", "src/**/*.ts*", "./*.ts", ".next/types/**/*.ts"],
+  "include": [".next/types/**/*.ts", "src/**/*.ts*", "vitest", "./*.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,11 +1,8 @@
 import GithubIcon from 'mdi-react/GithubIcon';
 import LinkedinIcon from 'mdi-react/LinkedinIcon';
-
-import { Icon } from '../icon';
-
-import styles from './styles.module.css';
-
 import type { FC } from 'react';
+import { Icon } from '../icon';
+import styles from './styles.module.css';
 
 export const Footer: FC = () => (
   <div className={styles.wrapper}>
@@ -19,7 +16,7 @@ export const Footer: FC = () => (
     </div>
 
     <span className={styles.copyright}>
-      James Carr <span className={styles.highlight}>&copy; 2023</span>
+      James Carr <span className={styles.highlight}>&copy; 2025</span>
     </span>
   </div>
 );

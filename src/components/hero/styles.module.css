@@ -1,7 +1,11 @@
 .button {
+  background: transparent;
   border: 2px solid var(--colour-neutral900);
   border-radius: 4px;
+  color: var(--colour-neutral900);
+  font-family: var(--font-family);
   font-size: 1.2rem;
+  line-height: 1.65;
   margin-top: var(--spacing-large);
   padding: var(--spacing-small) var(--spacing-base);
   transition: all 0.3s;

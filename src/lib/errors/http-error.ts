@@ -1,7 +1,8 @@
-import { StatusCodes, getReasonPhrase } from 'http-status-codes';
+import { getReasonPhrase, StatusCodes } from 'http-status-codes';
 
 export class HTTPError extends Error {
-  protected static readonly STATUS_CODE: number = StatusCodes.INTERNAL_SERVER_ERROR;
+  protected static readonly STATUS_CODE: number =
+    StatusCodes.INTERNAL_SERVER_ERROR;
 
   readonly status: number;
   readonly title: string;

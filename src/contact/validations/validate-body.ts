@@ -21,7 +21,9 @@ const getErrorMessage = (error: ValidationError) => {
   }
 };
 
-export const validateBody = async (body: any): Promise<ContactRequestBody> => {
+export const validateBody = async (
+  body: unknown,
+): Promise<ContactRequestBody> => {
   try {
     return await schema.validate(body, { stripUnknown: true });
   } catch (error: unknown) {

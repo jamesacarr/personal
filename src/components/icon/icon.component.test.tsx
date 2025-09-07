@@ -1,8 +1,7 @@
-/**
- * @jest-environment jsdom
- */
+// @vitest-environment jsdom
 import { render, screen } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 
 import { Icon } from './icon.component';
 
@@ -12,7 +11,7 @@ describe('Icon', () => {
       render(
         <Icon href="https://www.google.com" label="Google">
           <span>Hello World</span>
-        </Icon>
+        </Icon>,
       );
       expect(screen.getByText('Hello World')).toBeInTheDocument();
     });
@@ -21,16 +20,18 @@ describe('Icon', () => {
       render(
         <Icon href="https://www.google.com" label="Google">
           <span>Hello World</span>
-        </Icon>
+        </Icon>,
       );
-      expect(screen.getByLabelText('Visit my Google account')).toBeInTheDocument();
+      expect(
+        screen.getByLabelText('Visit my Google account'),
+      ).toBeInTheDocument();
     });
 
     it('sets the title', () => {
       render(
         <Icon href="https://www.google.com" label="Google">
           <span>Hello World</span>
-        </Icon>
+        </Icon>,
       );
       expect(screen.getByTitle('Visit my Google account')).toBeInTheDocument();
     });
@@ -39,7 +40,7 @@ describe('Icon', () => {
       render(
         <Icon href="https://www.google.com" label="Google">
           <span>Hello World</span>
-        </Icon>
+        </Icon>,
       );
       const link = screen.getByLabelText('Visit my Google account');
 
@@ -52,7 +53,7 @@ describe('Icon', () => {
       const { container } = render(
         <Icon href="https://www.google.com" label="Google">
           <span>Hello World</span>
-        </Icon>
+        </Icon>,
       );
 
       const results = await axe(container);

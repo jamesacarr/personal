@@ -1,17 +1,15 @@
-/**
- * @jest-environment jsdom
- */
-import { jest } from '@jest/globals';
+// @vitest-environment jsdom
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
+import { describe, expect, it, vi } from 'vitest';
+import { axe } from 'vitest-axe';
 
 import { Hero } from './hero.component';
 
 describe('Hero', () => {
   describe('behaviour', () => {
     it('calls onClick when Contact Me button clicked', async () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
 
       render(<Hero onClick={onClick} />);
 
@@ -24,7 +22,7 @@ describe('Hero', () => {
 
   describe('accessibility', () => {
     it('has no violations', async () => {
-      const { container } = render(<Hero onClick={jest.fn()} />);
+      const { container } = render(<Hero onClick={vi.fn()} />);
 
       const results = await axe(container);
       expect(results).toHaveNoViolations();

@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { NotFoundError } from './not-found-error';
 
 describe('NotFoundError', () => {
@@ -9,7 +11,9 @@ describe('NotFoundError', () => {
 
     it('sets type correctly', () => {
       const error = new NotFoundError();
-      expect(error.type).toEqual('https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404');
+      expect(error.type).toEqual(
+        'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404',
+      );
     });
 
     it('sets title correctly', () => {

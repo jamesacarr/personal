@@ -12,8 +12,8 @@ The website is built in Typescript using [Next.js](https://nextjs.org/) and depl
 In order to develop with this code, clone the repository and run:
 
 ```sh
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 The website has hot module reloading, so changes made will show up instantly.

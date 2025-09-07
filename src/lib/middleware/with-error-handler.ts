@@ -1,16 +1,22 @@
-import { InternalServerError } from '../errors';
-
-import type { Middleware } from './types';
 import type { HTTPError } from '../errors';
+import { InternalServerError } from '../errors';
+import type { Middleware } from './types';
 
-const isHttpError = (error: any): error is HTTPError => Boolean(error?.isHttpError);
+const isHttpError = (error: unknown): error is HTTPError =>
+  typeof error === 'object' &&
+  error !== null &&
+  'isHttpError' in error &&
+  Boolean(error.isHttpError);
 
 export const withErrorHandler: Middleware = handler => async request => {
   try {
     return await handler(request);
   } catch (caughtError: unknown) {
+    // biome-ignore lint/suspicious/noConsole: We want to log errors so they show up in Vercel
     console.error(caughtError);
-    const httpError: HTTPError = isHttpError(caughtError) ? caughtError : new InternalServerError();
+    const httpError: HTTPError = isHttpError(caughtError)
+      ? caughtError
+      : new InternalServerError();
     const { detail, status, title, type } = httpError;
 
     return new Response(
@@ -24,7 +30,7 @@ export const withErrorHandler: Middleware = handler => async request => {
       {
         status,
         headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
-      }
+      },
     );
   }
 };

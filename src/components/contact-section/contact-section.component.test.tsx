@@ -1,9 +1,8 @@
-/**
- * @jest-environment jsdom
- */
+// @vitest-environment jsdom
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import { createRef } from 'react';
+import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 
 import { ContactSection } from './contact-section.component';
 

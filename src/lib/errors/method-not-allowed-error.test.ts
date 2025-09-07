@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { MethodNotAllowedError } from './method-not-allowed-error';
 
 describe('MethodNotAllowedError', () => {
@@ -9,7 +11,9 @@ describe('MethodNotAllowedError', () => {
 
     it('sets type correctly', () => {
       const error = new MethodNotAllowedError();
-      expect(error.type).toEqual('https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405');
+      expect(error.type).toEqual(
+        'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405',
+      );
     });
 
     it('sets title correctly', () => {

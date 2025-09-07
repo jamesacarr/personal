@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { UnauthorizedError } from './unauthorized-error';
 
 describe('UnauthorizedError', () => {
@@ -9,7 +11,9 @@ describe('UnauthorizedError', () => {
 
     it('sets type correctly', () => {
       const error = new UnauthorizedError();
-      expect(error.type).toEqual('https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401');
+      expect(error.type).toEqual(
+        'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401',
+      );
     });
 
     it('sets title correctly', () => {

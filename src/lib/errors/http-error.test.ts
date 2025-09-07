@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { HTTPError } from './http-error';
 
 describe('HTTPError', () => {
@@ -9,7 +11,9 @@ describe('HTTPError', () => {
 
     it('sets type correctly', () => {
       const error = new HTTPError();
-      expect(error.type).toEqual('https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500');
+      expect(error.type).toEqual(
+        'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
+      );
     });
 
     it('sets title correctly', () => {

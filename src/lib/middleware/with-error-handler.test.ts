@@ -1,24 +1,29 @@
-import { jest } from '@jest/globals';
-
+import type { NextRequest } from 'next/server';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  type MockInstance,
+  vi,
+} from 'vitest';
 import { BadRequestError, InternalServerError } from '../errors';
 
-import { withErrorHandler } from './with-error-handler';
-
 import type { NextRoute } from './types';
-import type { SpyInstance } from 'jest-mock';
-import type { NextRequest } from 'next/server';
+import { withErrorHandler } from './with-error-handler';
 
 const successResponse = new Response(JSON.stringify({ success: true }), {
   headers: { 'Content-Type': 'application/json' },
 });
 
 describe('withErrorHandler', () => {
-  let consoleLogSpy: SpyInstance<typeof console.error>;
-  const handler = jest.fn<NextRoute>();
+  let consoleLogSpy: MockInstance<typeof console.error>;
+  const handler = vi.fn<NextRoute>();
   const request = { url: 'https://example.com' } as NextRequest; // eslint-disable-line @typescript-eslint/consistent-type-assertions
 
   beforeEach(() => {
-    consoleLogSpy = jest.spyOn(console, 'error').mockImplementation(() => {
+    consoleLogSpy = vi.spyOn(console, 'error').mockImplementation(() => {
       /* Intentionally empty */
     });
     handler.mockImplementation(() => successResponse);
@@ -54,22 +59,17 @@ describe('withErrorHandler', () => {
       throw new Error('testing');
     });
 
-    const expected = new Response(
-      JSON.stringify({
-        detail,
-        status,
-        title,
-        type,
-        instance: request.url,
-      }),
-      {
-        status,
-        headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
-      }
-    );
-
     const response = await withErrorHandler(handler)(request);
-    expect(response).toEqual(expected);
+    expect(response.status).toEqual(status);
+
+    const responseBody = await response.json();
+    expect(responseBody).toEqual({
+      detail,
+      status,
+      title,
+      type,
+      instance: request.url,
+    });
   });
 
   it('responds with correct details when HTTPError raised', async () => {
@@ -79,21 +79,16 @@ describe('withErrorHandler', () => {
       throw badRequest;
     });
 
-    const expected = new Response(
-      JSON.stringify({
-        detail,
-        status,
-        title,
-        type,
-        instance: request.url,
-      }),
-      {
-        status,
-        headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
-      }
-    );
-
     const response = await withErrorHandler(handler)(request);
-    expect(response).toEqual(expected);
+    expect(response.status).toEqual(status);
+
+    const responseBody = await response.json();
+    expect(responseBody).toEqual({
+      detail,
+      status,
+      title,
+      type,
+      instance: request.url,
+    });
   });
 });

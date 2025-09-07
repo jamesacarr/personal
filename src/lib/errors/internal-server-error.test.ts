@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { InternalServerError } from './internal-server-error';
 
 describe('InternalServerError', () => {
@@ -9,7 +11,9 @@ describe('InternalServerError', () => {
 
     it('sets type correctly', () => {
       const error = new InternalServerError();
-      expect(error.type).toEqual('https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500');
+      expect(error.type).toEqual(
+        'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
+      );
     });
 
     it('sets title correctly', () => {

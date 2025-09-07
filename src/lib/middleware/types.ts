@@ -1,6 +1,8 @@
 import type { NextRequest, NextResponse } from 'next/server';
 
-export type NextRoute = (request: NextRequest) => Promise<NextResponse | Response> | NextResponse | Response;
+export type NextRoute = (
+  request: NextRequest,
+) => Promise<NextResponse | Response> | NextResponse | Response;
 export type Middleware = (route: NextRoute) => NextRoute;
 
 export interface ErrorResponseBody {

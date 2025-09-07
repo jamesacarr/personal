@@ -1,8 +1,6 @@
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
-
-import styles from './styles.module.css';
-
 import type { FC } from 'react';
+import styles from './styles.module.css';
 
 interface Props {
   onClick: () => void;
@@ -17,9 +15,9 @@ export const Hero: FC<Props> = ({ onClick }) => (
       <h1 className={styles.header}>I&apos;m a full-stack web developer.</h1>
     </div>
 
-    <div className={styles.button} onClick={onClick}>
+    <button className={styles.button} onClick={onClick} type="button">
       Contact Me
       <ArrowRightIcon className={styles.icon} size="1.5rem" />
-    </div>
+    </button>
   </div>
 );

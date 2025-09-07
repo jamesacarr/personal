@@ -11,6 +11,8 @@ export const schema = object({
       name: 'words',
       message: `Must be at least ${MIN_WORDS} words`,
       test: (value: string | undefined) =>
-        value ? value.trim().split(' ').filter(Boolean).length >= MIN_WORDS : false,
+        value
+          ? value.trim().split(' ').filter(Boolean).length >= MIN_WORDS
+          : false,
     }),
 }).required();

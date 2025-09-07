@@ -1,21 +1,36 @@
-/**
- * @jest-environment jsdom
- */
-import { jest } from '@jest/globals';
+// @vitest-environment jsdom
+import fetchMock from '@fetch-mock/vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
 import { toast } from 'react-hot-toast';
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
+import { axe } from 'vitest-axe';
 
 import { ContactForm } from './contact-form.component';
 
-jest.mock('react-hot-toast');
-const toastMock = jest.mocked(toast);
+vi.mock('react-hot-toast');
+const toastMock = vi.mocked(toast);
 
 describe('ContactForm', () => {
   describe('behaviour', () => {
+    beforeAll(() => {
+      fetchMock.mockGlobal();
+    });
+
+    afterAll(() => {
+      fetchMock.unmockGlobal();
+    });
+
     beforeEach(() => {
-      fetchMock.enableMocks();
+      fetchMock.mockReset();
     });
 
     it('does not submit when name missing', async () => {
@@ -33,7 +48,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(name).toBeInvalid();
-      expect(fetch).not.toHaveBeenCalled();
+      expect(fetchMock).not.toHaveFetched();
     });
 
     it('does not submit when email missing', async () => {
@@ -51,7 +66,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(email).toBeInvalid();
-      expect(fetch).not.toHaveBeenCalled();
+      expect(fetchMock).not.toHaveFetched();
     });
 
     it('does not submit when email invalid', async () => {
@@ -70,7 +85,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(email).toBeInvalid();
-      expect(fetch).not.toHaveBeenCalled();
+      expect(fetchMock).not.toHaveFetched();
     });
 
     it('does not submit when message missing', async () => {
@@ -88,7 +103,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(message).toBeInvalid();
-      expect(fetch).not.toHaveBeenCalled();
+      expect(fetchMock).not.toHaveFetched();
     });
 
     it('does not submit when message too short', async () => {
@@ -107,12 +122,13 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(message).toBeInvalid();
-      expect(fetch).not.toHaveBeenCalled();
+      expect(fetchMock).not.toHaveFetched();
     });
 
     it('submits with valid data', async () => {
-      toastMock.error = jest.fn();
-      toastMock.success = jest.fn();
+      fetchMock.route('/api/contact', 200);
+      toastMock.error = vi.fn();
+      toastMock.success = vi.fn();
       render(<ContactForm />);
 
       // Fill in the form
@@ -131,14 +147,12 @@ describe('ContactForm', () => {
       expect(email).toBeValid();
       expect(message).toBeValid();
 
-      expect(fetch).toHaveBeenCalledWith('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      expect(fetchMock).toHaveFetched('/api/contact', {
+        body: {
           name: 'John Doe',
           email: 'test@test.com',
           message: 'This is a test message',
-        }),
+        },
       });
 
       expect(toastMock.success).toHaveBeenCalledWith('Message Sent');
@@ -146,9 +160,9 @@ describe('ContactForm', () => {
     });
 
     it('handles errors from API', async () => {
-      toastMock.error = jest.fn();
-      toastMock.success = jest.fn();
-      fetchMock.mockReject(new Error('Testing Error'));
+      fetchMock.route('/api/contact', 500);
+      toastMock.error = vi.fn();
+      toastMock.success = vi.fn();
       render(<ContactForm />);
 
       // Fill in the form
@@ -164,18 +178,16 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       // Wait for submitting to finish
-      expect(fetch).toHaveBeenCalledWith('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      expect(fetchMock).toHaveFetched('/api/contact', {
+        body: {
           name: 'John Doe',
           email: 'test@test.com',
           message: 'This is a test message',
-        }),
+        },
       });
 
       expect(toastMock.success).not.toHaveBeenCalled();
-      expect(toastMock.error).toHaveBeenCalledWith('Testing Error');
+      expect(toastMock.error).toHaveBeenCalledWith('Internal Server Error');
     });
   });
 

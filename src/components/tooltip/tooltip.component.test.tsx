@@ -1,8 +1,7 @@
-/**
- * @jest-environment jsdom
- */
+// @vitest-environment jsdom
 import { render, screen } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 
 import { Tooltip } from './tooltip.component';
 
@@ -12,7 +11,7 @@ describe('Tooltip', () => {
       render(
         <Tooltip message="Testing">
           <span>Hello World</span>
-        </Tooltip>
+        </Tooltip>,
       );
       expect(screen.getByText('Hello World')).toBeInTheDocument();
     });
@@ -21,7 +20,7 @@ describe('Tooltip', () => {
       render(
         <Tooltip message="Testing">
           <span>Hello World</span>
-        </Tooltip>
+        </Tooltip>,
       );
       expect(screen.queryByText('Testing')).not.toBeInTheDocument();
     });
@@ -30,7 +29,7 @@ describe('Tooltip', () => {
       render(
         <Tooltip isVisible message="Testing">
           <span>Hello World</span>
-        </Tooltip>
+        </Tooltip>,
       );
       expect(screen.getByText('Testing')).toBeInTheDocument();
     });
@@ -41,7 +40,7 @@ describe('Tooltip', () => {
       const { container } = render(
         <Tooltip isVisible message="Testing">
           <span>Hello World</span>
-        </Tooltip>
+        </Tooltip>,
       );
 
       const results = await axe(container);

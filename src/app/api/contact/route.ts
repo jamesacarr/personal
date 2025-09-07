@@ -1,11 +1,9 @@
+import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-
 import { transformBody } from '../../../contact/utils';
 import { validateBody } from '../../../contact/validations';
 import { InternalServerError } from '../../../lib/errors';
 import { withErrorHandler } from '../../../lib/middleware';
-
-import type { NextRequest } from 'next/server';
 
 const { WEBHOOK_URL } = process.env;
 
