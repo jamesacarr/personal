@@ -11,7 +11,7 @@ export default defineConfig({
       exclude: ['**/types.ts', '**/index.ts'],
       include: ['src/**'],
     },
-    environment: 'jsdom',
+    environment: 'happy-dom',
     mockReset: true,
     setupFiles: ['vitest/setup.ts'],
   },
