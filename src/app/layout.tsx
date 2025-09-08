@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Raleway } from 'next/font/google';
 import type { FC, ReactNode } from 'react';
 
@@ -17,10 +17,11 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: 'James Carr',
+  title: {
+    default: 'James Carr',
+    template: '%s | James Carr',
+  },
   description: `Hello, I'm James Carr. I'm a full-stack web developer.`,
-  viewport:
-    'width=device-width,minimum-scale=1,initial-scale=1,viewport-fit=cover',
   icons: [
     {
       url: '/icons/android-chrome-512x512.png',
@@ -43,6 +44,13 @@ export const metadata: Metadata = {
     { url: '/favicon.ico' },
   ],
   manifest: '/icons/site.webmanifest',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  minimumScale: 1,
+  viewportFit: 'cover',
 };
 
 const RootLayout: FC<Props> = ({ children }) => (
