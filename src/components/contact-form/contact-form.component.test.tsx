@@ -149,9 +149,9 @@ describe('ContactForm', () => {
 
       expect(fetchMock).toHaveFetched('/api/contact', {
         body: {
-          name: 'John Doe',
           email: 'test@test.com',
           message: 'This is a test message',
+          name: 'John Doe',
         },
       });
 
@@ -180,9 +180,9 @@ describe('ContactForm', () => {
       // Wait for submitting to finish
       expect(fetchMock).toHaveFetched('/api/contact', {
         body: {
-          name: 'John Doe',
           email: 'test@test.com',
           message: 'This is a test message',
+          name: 'John Doe',
         },
       });
 

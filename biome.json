@@ -1,35 +1,59 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.2.2/schema.json",
-  "vcs": {
-    "enabled": false,
-    "clientKind": "git",
-    "useIgnoreFile": false
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ":NODE:",
+              ":BLANK_LINE:",
+              ":PACKAGE:",
+              ":BLANK_LINE:",
+              ":ALIAS:",
+              ":BLANK_LINE:"
+            ]
+          }
+        },
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on"
+      }
+    },
+    "enabled": true
   },
   "files": {
+    "ignoreUnknown": false,
     "includes": [
       "*.js",
       "*.json",
       "*.ts",
       "src/**/*.ts",
       "src/**/*.tsx",
-      "vitest/**/*.ts"
-    ],
-    "ignoreUnknown": false
+      "vitest/**/*.ts",
+      "!package.json"
+    ]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space"
   },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "asNeeded",
+      "quoteStyle": "single"
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
       "correctness": {
         "noUnusedImports": "error",
         "noUnusedPrivateClassMembers": "error",
         "noUnusedVariables": "error",
         "useHookAtTopLevel": "error"
       },
+      "recommended": true,
       "style": {
         "noNegationElse": "error",
         "useBlockStatements": "error",
@@ -49,30 +73,9 @@
       }
     }
   },
-  "javascript": {
-    "formatter": {
-      "arrowParentheses": "asNeeded",
-      "quoteStyle": "single"
-    }
-  },
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": {
-          "level": "on",
-          "options": {
-            "groups": [
-              ":NODE:",
-              ":BLANK_LINE:",
-              ":PACKAGE:",
-              ":BLANK_LINE:",
-              ":ALIAS:",
-              ":BLANK_LINE:"
-            ]
-          }
-        }
-      }
-    }
+  "vcs": {
+    "clientKind": "git",
+    "enabled": false,
+    "useIgnoreFile": false
   }
 }

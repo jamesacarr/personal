@@ -16,9 +16,9 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
   const body = await validateBody(await request.json());
 
   const res = await fetch(WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(transformBody(body)),
+    headers: { 'Content-Type': 'application/json' },
+    method: 'POST',
   });
 
   if (!res.ok) {

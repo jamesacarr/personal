@@ -43,8 +43,8 @@ export const ContactForm: FC = () => {
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <Tooltip
-        message={errors?.name?.message ?? ''}
         isVisible={showError('name')}
+        message={errors?.name?.message ?? ''}
       >
         <input
           aria-invalid={errors?.name ? 'true' : 'false'}
@@ -59,8 +59,8 @@ export const ContactForm: FC = () => {
         />
       </Tooltip>
       <Tooltip
-        message={errors?.email?.message ?? ''}
         isVisible={showError('email')}
+        message={errors?.email?.message ?? ''}
       >
         <input
           aria-invalid={errors?.email ? 'true' : 'false'}
@@ -75,8 +75,8 @@ export const ContactForm: FC = () => {
         />
       </Tooltip>
       <Tooltip
-        message={errors?.message?.message ?? ''}
         isVisible={showError('message')}
+        message={errors?.message?.message ?? ''}
       >
         <textarea
           aria-invalid={errors?.message ? 'true' : 'false'}
@@ -94,9 +94,9 @@ export const ContactForm: FC = () => {
         className={classNames(styles.button, {
           [styles.submitting]: isSubmitting,
         })}
+        disabled={isSubmitting}
         type="submit"
         value={isSubmitting ? 'SUBMITTING' : 'SUBMIT'}
-        disabled={isSubmitting}
       />
     </form>
   );

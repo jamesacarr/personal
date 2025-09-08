@@ -21,7 +21,7 @@ describe('validateBody', () => {
   });
 
   it('raises error when no message', async () => {
-    const body = { name: 'John Doe', email: 'test@test.com' };
+    const body = { email: 'test@test.com', name: 'John Doe' };
     await expect(validateBody(body)).rejects.toThrow(
       new BadRequestError('message required'),
     );
@@ -29,9 +29,9 @@ describe('validateBody', () => {
 
   it('raises error when message is less than 5 words', async () => {
     const body = {
-      name: 'John Doe',
       email: 'test@test.com',
       message: 'testing',
+      name: 'John Doe',
     };
     await expect(validateBody(body)).rejects.toThrow(
       new BadRequestError('message must be at least 5 words'),
@@ -39,7 +39,7 @@ describe('validateBody', () => {
   });
 
   it('raises error when no email', async () => {
-    const body = { name: 'John Doe', message: 'this is for a test' };
+    const body = { message: 'this is for a test', name: 'John Doe' };
     await expect(validateBody(body)).rejects.toThrow(
       new BadRequestError('email required'),
     );
@@ -47,9 +47,9 @@ describe('validateBody', () => {
 
   it('raises error when invalid email', async () => {
     const body = {
-      name: 'John Doe',
       email: 'invalid',
       message: 'this is for a test',
+      name: 'John Doe',
     };
     await expect(validateBody(body)).rejects.toThrow(
       new BadRequestError('invalid email'),
@@ -58,9 +58,9 @@ describe('validateBody', () => {
 
   it('rethrows non-validation errors', async () => {
     const body = {
-      name: 'John Doe',
       email: 'test@test.com',
       message: 'this is for a test',
+      name: 'John Doe',
     };
     const mock = vi.spyOn(schema, 'validate').mockImplementation(() => {
       throw new Error('Test');
@@ -72,9 +72,9 @@ describe('validateBody', () => {
 
   it('returns successfully if body is valid', async () => {
     const body = {
-      name: 'John Doe',
       email: 'test@test.com',
       message: 'this is for a test',
+      name: 'John Doe',
     };
     await expect(validateBody(body)).resolves.toEqual(body);
   });

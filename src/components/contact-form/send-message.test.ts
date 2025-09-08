@@ -4,9 +4,9 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { sendMessage } from './send-message';
 
 const DATA = {
-  name: 'John Doe',
   email: 'test@test.com',
   message: 'This is a test message',
+  name: 'John Doe',
 };
 
 describe('sendMessage', () => {

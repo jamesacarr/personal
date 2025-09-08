@@ -22,14 +22,14 @@ export const withErrorHandler: Middleware = handler => async request => {
     return new Response(
       JSON.stringify({
         detail,
+        instance: request.url,
         status,
         title,
         type,
-        instance: request.url,
       }),
       {
-        status,
         headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
+        status,
       },
     );
   }

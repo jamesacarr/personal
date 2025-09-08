@@ -7,7 +7,7 @@ export const transformBody = ({
   email,
   message,
 }: ContactRequestBody): ContactRequestBody => ({
-  name: sanitize(name, { allowedTags: [], allowedAttributes: {} }),
-  email: sanitize(email, { allowedTags: [], allowedAttributes: {} }),
-  message: sanitize(message, { allowedTags: [], allowedAttributes: {} }),
+  email: sanitize(email, { allowedAttributes: {}, allowedTags: [] }),
+  message: sanitize(message, { allowedAttributes: {}, allowedTags: [] }),
+  name: sanitize(name, { allowedAttributes: {}, allowedTags: [] }),
 });

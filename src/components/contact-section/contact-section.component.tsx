@@ -9,13 +9,13 @@ interface Props {
 }
 
 export const ContactSection: FC<Props> = ({ scrollRef }) => (
-  <div ref={scrollRef} className={styles.wrapper}>
+  <div className={styles.wrapper} ref={scrollRef}>
     {/* biome-ignore lint/a11y/noSvgWithoutTitle: This isn't an actual image, it's decorative */}
     <svg
+      className={styles.arrow}
       preserveAspectRatio="none"
       viewBox="0 0 100 102"
       xmlns="http://www.w3.org/2000/svg"
-      className={styles.arrow}
     >
       <path d="M0 0 L50 100 L100 0 Z" />
     </svg>

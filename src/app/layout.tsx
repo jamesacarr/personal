@@ -17,44 +17,44 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: 'James Carr',
-    template: '%s | James Carr',
-  },
   description: `Hello, I'm James Carr. I'm a full-stack web developer.`,
   icons: [
     {
-      url: '/icons/android-chrome-512x512.png',
-      type: 'image/png',
       sizes: '512x512',
+      type: 'image/png',
+      url: '/icons/android-chrome-512x512.png',
     },
     {
-      url: '/icons/android-chrome-192x192.png',
-      type: 'image/png',
       sizes: '192x192',
-    },
-    { url: '/icons/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
-    { url: '/icons/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
-    {
-      url: '/icons/apple-touch-icon.png',
       type: 'image/png',
-      sizes: '180x180',
+      url: '/icons/android-chrome-192x192.png',
+    },
+    { sizes: '32x32', type: 'image/png', url: '/icons/favicon-32x32.png' },
+    { sizes: '16x16', type: 'image/png', url: '/icons/favicon-16x16.png' },
+    {
       rel: 'apple-touch-icon',
+      sizes: '180x180',
+      type: 'image/png',
+      url: '/icons/apple-touch-icon.png',
     },
     { url: '/favicon.ico' },
   ],
   manifest: '/icons/site.webmanifest',
+  title: {
+    default: 'James Carr',
+    template: '%s | James Carr',
+  },
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
   initialScale: 1,
   minimumScale: 1,
   viewportFit: 'cover',
+  width: 'device-width',
 };
 
 const RootLayout: FC<Props> = ({ children }) => (
-  <html lang="en-AU" className={raleway.className}>
+  <html className={raleway.className} lang="en-AU">
     <body>{children}</body>
   </html>
 );

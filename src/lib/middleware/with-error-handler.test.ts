@@ -58,10 +58,10 @@ describe('withErrorHandler', () => {
     const responseBody = await response.json();
     expect(responseBody).toEqual({
       detail,
+      instance: request.url,
       status,
       title,
       type,
-      instance: request.url,
     });
   });
 
@@ -78,10 +78,10 @@ describe('withErrorHandler', () => {
     const responseBody = await response.json();
     expect(responseBody).toEqual({
       detail,
+      instance: request.url,
       status,
       title,
       type,
-      instance: request.url,
     });
   });
 });
