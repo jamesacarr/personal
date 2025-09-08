@@ -1,8 +1,8 @@
 import { ValidationError } from 'yup';
 
-import { BadRequestError } from '../../lib/errors';
-import { schema } from '../schema';
+import { BadRequestError } from '@/lib/errors';
 
+import { schema } from '../schema';
 import type { ContactRequestBody } from '../types';
 
 const getErrorMessage = (error: ValidationError) => {

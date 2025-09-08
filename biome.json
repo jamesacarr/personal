@@ -36,7 +36,12 @@
         "useConsistentArrayType": "error",
         "useForOf": "error",
         "useFragmentSyntax": "error",
-        "useImportType": "error"
+        "useImportType": {
+          "level": "error",
+          "options": {
+            "style": "separatedType"
+          }
+        }
       },
       "suspicious": {
         "noConsole": "error",
@@ -54,7 +59,19 @@
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ":NODE:",
+              ":BLANK_LINE:",
+              ":PACKAGE:",
+              ":BLANK_LINE:",
+              ":ALIAS:",
+              ":BLANK_LINE:"
+            ]
+          }
+        }
       }
     }
   }

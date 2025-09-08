@@ -1,15 +1,8 @@
 import type { NextRequest } from 'next/server';
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  type MockInstance,
-  vi,
-} from 'vitest';
-import { BadRequestError, InternalServerError } from '../errors';
+import type { MockInstance } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { BadRequestError, InternalServerError } from '../errors';
 import type { NextRoute } from './types';
 import { withErrorHandler } from './with-error-handler';
 

@@ -5,9 +5,11 @@ import { useCallback } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { schema } from '../../contact/schema';
-import type { ContactRequestBody } from '../../contact/types';
-import { Tooltip } from '../tooltip';
+
+import { Tooltip } from '@/components/tooltip';
+import { schema } from '@/contact/schema';
+import type { ContactRequestBody } from '@/contact/types';
+
 import { sendMessage } from './send-message';
 import styles from './styles.module.css';
 

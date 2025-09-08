@@ -1,7 +1,9 @@
 import GithubIcon from 'mdi-react/GithubIcon';
 import LinkedinIcon from 'mdi-react/LinkedinIcon';
 import type { FC } from 'react';
-import { Icon } from '../icon';
+
+import { Icon } from '@/components/icon';
+
 import styles from './styles.module.css';
 
 export const Footer: FC = () => (

@@ -1,5 +1,6 @@
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
 import type { FC } from 'react';
+
 import styles from './styles.module.css';
 
 interface Props {

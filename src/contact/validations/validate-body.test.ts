@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { BadRequestError } from '../../lib/errors';
-import { schema } from '../schema';
+import { BadRequestError } from '@/lib/errors';
 
+import { schema } from '../schema';
 import { validateBody } from './validate-body';
 
 describe('validateBody', () => {

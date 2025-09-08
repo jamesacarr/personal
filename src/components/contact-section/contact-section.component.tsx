@@ -1,5 +1,7 @@
 import type { FC, RefObject } from 'react';
-import { ContactForm } from '../contact-form';
+
+import { ContactForm } from '@/components/contact-form';
+
 import styles from './styles.module.css';
 
 interface Props {

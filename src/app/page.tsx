@@ -1,6 +1,7 @@
 import type { FC } from 'react';
-import { Content } from '../components/content';
-import { Footer } from '../components/footer';
+
+import { Content } from '@/components/content';
+import { Footer } from '@/components/footer';
 
 const IndexPage: FC = () => (
   <>

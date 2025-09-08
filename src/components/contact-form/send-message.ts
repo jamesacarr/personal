@@ -1,4 +1,4 @@
-import type { ContactRequestBody } from '../../contact/types';
+import type { ContactRequestBody } from '@/contact/types';
 
 export const sendMessage = async (data: ContactRequestBody) => {
   const response = await fetch('/api/contact', {

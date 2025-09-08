@@ -3,8 +3,9 @@
 import type { FC } from 'react';
 import { createRef, useCallback } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { ContactSection } from '../contact-section';
-import { Hero } from '../hero';
+
+import { ContactSection } from '@/components/contact-section';
+import { Hero } from '@/components/hero';
 
 export const Content: FC = () => {
   const scrollRef = createRef<HTMLDivElement>();

@@ -5,6 +5,7 @@
     "moduleResolution": "bundler",
     "lib": ["dom", "es2021"],
     "jsx": "preserve",
+    "baseUrl": ".",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,6 +21,11 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
+    "paths": {
+      "@/contact/*": ["src/contact/*"],
+      "@/components/*": ["src/components/*"],
+      "@/lib/*": ["src/lib/*"]
+    },
     "plugins": [{ "name": "next" }]
   },
   "include": [".next/types/**/*.ts", "src/**/*.ts*", "vitest", "./*.ts"],
