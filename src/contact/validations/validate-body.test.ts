@@ -6,10 +6,17 @@ import { schema } from '../schema';
 import { validateBody } from './validate-body';
 
 describe('validateBody', () => {
-  it('raises error invalid body type', async () => {
+  it('raises error for invalid body type', async () => {
     const body = 'testing';
     await expect(validateBody(body)).rejects.toThrow(
       new BadRequestError('invalid body'),
+    );
+  });
+
+  it('raises error for null body', async () => {
+    const body = null;
+    await expect(validateBody(body)).rejects.toThrow(
+      new BadRequestError('body required'),
     );
   });
 

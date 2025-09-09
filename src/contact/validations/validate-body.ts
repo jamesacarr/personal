@@ -16,7 +16,7 @@ const getErrorMessage = (error: ValidationError) => {
     }
 
     default: {
-      return `${error.path ?? '<unknown>'} ${error.message.toLowerCase()}`;
+      return `${error.path || 'body'} ${error.message.toLowerCase()}`;
     }
   }
 };

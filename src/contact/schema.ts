@@ -15,4 +15,4 @@ export const schema = object({
           : false,
     }),
   name: string().required('Required'),
-}).required();
+}).required('Required');
