@@ -8,29 +8,32 @@ const isHttpError = (error: unknown): error is HTTPError =>
   'isHttpError' in error &&
   Boolean(error.isHttpError);
 
-export const withErrorHandler: Middleware = handler => async request => {
-  try {
-    return await handler(request);
-  } catch (caughtError: unknown) {
-    // biome-ignore lint/suspicious/noConsole: We want to log errors so they show up in Vercel
-    console.error(caughtError);
-    const httpError: HTTPError = isHttpError(caughtError)
-      ? caughtError
-      : new InternalServerError();
-    const { detail, status, title, type } = httpError;
+export const withErrorHandler: Middleware =
+  handler => async (request, context) => {
+    try {
+      return await handler(request, context);
+    } catch (caughtError: unknown) {
+      // biome-ignore lint/suspicious/noConsole: We want to log errors so they show up in Vercel
+      console.error(caughtError);
+      const httpError: HTTPError = isHttpError(caughtError)
+        ? caughtError
+        : new InternalServerError();
+      const { detail, status, title, type } = httpError;
 
-    return new Response(
-      JSON.stringify({
-        detail,
-        instance: request.url,
-        status,
-        title,
-        type,
-      }),
-      {
-        headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
-        status,
-      },
-    );
-  }
-};
+      return new Response(
+        JSON.stringify({
+          detail,
+          instance: request.url,
+          status,
+          title,
+          type,
+        }),
+        {
+          headers: {
+            'Content-Type': 'application/problem+json; charset=utf-8',
+          },
+          status,
+        },
+      );
+    }
+  };

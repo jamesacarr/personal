@@ -2,14 +2,12 @@ import type { Metadata, Viewport } from 'next';
 import { Raleway } from 'next/font/google';
 import type { FC, ReactNode } from 'react';
 
-// eslint-disable-next-line import/no-unassigned-import
 import './global.css';
 
 interface Props {
   children: ReactNode;
 }
 
-// eslint-disable-next-line new-cap
 const raleway = Raleway({
   display: 'swap',
   subsets: ['latin'],

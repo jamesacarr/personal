@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server';
 import type { MockInstance } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import type { AppRouteHandlerRoutes } from '.next/types/routes';
 import { BadRequestError, InternalServerError } from '../errors';
 import type { NextRoute } from './types';
 import { withErrorHandler } from './with-error-handler';
@@ -12,8 +13,11 @@ const successResponse = new Response(JSON.stringify({ success: true }), {
 
 describe('withErrorHandler', () => {
   let consoleLogSpy: MockInstance<typeof console.error>;
-  const handler = vi.fn<NextRoute>();
-  const request = { url: 'https://example.com' } as NextRequest; // eslint-disable-line @typescript-eslint/consistent-type-assertions
+  const handler = vi.fn<NextRoute<AppRouteHandlerRoutes>>();
+  const request = { url: 'https://example.com' } as NextRequest;
+  const context: RouteContext<AppRouteHandlerRoutes> = {
+    params: Promise.resolve({}),
+  };
 
   beforeEach(() => {
     consoleLogSpy = vi.spyOn(console, 'error').mockImplementation(() => {
@@ -27,12 +31,12 @@ describe('withErrorHandler', () => {
   });
 
   it('calls handler with request', async () => {
-    await withErrorHandler(handler)(request);
-    expect(handler).toHaveBeenCalledWith(request);
+    await withErrorHandler(handler)(request, context);
+    expect(handler).toHaveBeenCalledWith(request, context);
   });
 
   it('returns hndler response', async () => {
-    const response = await withErrorHandler(handler)(request);
+    const response = await withErrorHandler(handler)(request, context);
     expect(response).toEqual(successResponse);
   });
 
@@ -42,7 +46,7 @@ describe('withErrorHandler', () => {
       throw error;
     });
 
-    await withErrorHandler(handler)(request);
+    await withErrorHandler(handler)(request, context);
     expect(consoleLogSpy).toHaveBeenCalledWith(error);
   });
 
@@ -52,7 +56,7 @@ describe('withErrorHandler', () => {
       throw new Error('testing');
     });
 
-    const response = await withErrorHandler(handler)(request);
+    const response = await withErrorHandler(handler)(request, context);
     expect(response.status).toEqual(status);
 
     const responseBody = await response.json();
@@ -72,7 +76,7 @@ describe('withErrorHandler', () => {
       throw badRequest;
     });
 
-    const response = await withErrorHandler(handler)(request);
+    const response = await withErrorHandler(handler)(request, context);
     expect(response.status).toEqual(status);
 
     const responseBody = await response.json();

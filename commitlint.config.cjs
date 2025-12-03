@@ -1,6 +1,5 @@
-/**
- * @type {import('@commitlint/types').UserConfig}
- */
+// @ts-check
+/** @type {import('@commitlint/types').UserConfig} */
 const config = {
   extends: ['@commitlint/config-conventional'],
 };

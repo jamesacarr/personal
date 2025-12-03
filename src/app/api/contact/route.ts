@@ -1,16 +1,19 @@
-import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 import { transformBody } from '@/contact/utils';
 import { validateBody } from '@/contact/validations';
-import { InternalServerError } from '@/lib/errors';
+import { BadRequestError, InternalServerError } from '@/lib/errors';
 import { withErrorHandler } from '@/lib/middleware';
 
 const { WEBHOOK_URL } = process.env;
 
-export const POST = withErrorHandler(async (request: NextRequest) => {
+export const POST = withErrorHandler<'/api/contact'>(async request => {
   if (!WEBHOOK_URL) {
     throw new InternalServerError('Missing WEBHOOK_URL');
+  }
+
+  if (request.headers.get('content-length') === '0') {
+    throw new BadRequestError('body required');
   }
 
   const body = await validateBody(await request.json());
