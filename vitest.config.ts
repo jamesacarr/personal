@@ -7,7 +7,6 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     coverage: {
-      all: true,
       exclude: ['**/types.ts', '**/index.ts'],
       include: ['src/**'],
     },

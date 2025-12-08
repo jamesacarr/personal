@@ -33,7 +33,6 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - run: pnpm install
-
       - run: pnpm lint:ci
 
   test:
@@ -66,7 +65,6 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - run: pnpm install
-
       - run: pnpm test
 
   typecheck:
@@ -95,5 +93,5 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - run: pnpm install
-
+      - run: pnpm next typegen
       - run: pnpm typecheck
