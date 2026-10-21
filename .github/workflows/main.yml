@@ -17,8 +17,6 @@ jobs:
           node-version-file: .tool-versions
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: latest
 
       - name: Get pnpm store directory
         id: pnpm-cache-dir-path
@@ -49,8 +47,6 @@ jobs:
           node-version-file: .tool-versions
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: latest
 
       - name: Get pnpm store directory
         id: pnpm-cache-dir-path
@@ -77,8 +73,6 @@ jobs:
           node-version-file: .tool-versions
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: latest
 
       - name: Get pnpm store directory
         id: pnpm-cache-dir-path
