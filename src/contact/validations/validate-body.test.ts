@@ -45,6 +45,26 @@ describe('validateBody', () => {
     );
   });
 
+  it('raises error when message is less than 5 words with extra whitespace', async () => {
+    const body = {
+      email: 'test@test.com',
+      message: 'one  \n\n two\t\tthree   four',
+      name: 'John Doe',
+    };
+    await expect(validateBody(body)).rejects.toThrow(
+      new BadRequestError('message must be at least 5 words'),
+    );
+  });
+
+  it.each([
+    ['newlines', 'one\ntwo\nthree\nfour\nfive'],
+    ['tabs', 'one\ttwo\tthree\tfour\tfive'],
+    ['mixed whitespace', 'one two\nthree\tfour\r\nfive'],
+  ])('accepts a 5 word message separated by %s', async (_, message) => {
+    const body = { email: 'test@test.com', message, name: 'John Doe' };
+    await expect(validateBody(body)).resolves.toEqual(body);
+  });
+
   it('raises error when no email', async () => {
     const body = { message: 'this is for a test', name: 'John Doe' };
     await expect(validateBody(body)).rejects.toThrow(
