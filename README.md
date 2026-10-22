@@ -24,4 +24,4 @@ All code pushed to `main` will be automatically deployed. Branches will be deplo
 
 ## License
 
-© James Carr 2023
+© James Carr 2026
