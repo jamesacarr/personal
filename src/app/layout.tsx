@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     },
     { url: '/favicon.ico' },
   ],
-  manifest: '/icons/site.webmanifest',
   title: {
     default: 'James Carr',
     template: '%s | James Carr',
