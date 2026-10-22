@@ -25,7 +25,7 @@
     "typecheck": "tsc -p ./tsconfig.json"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.9.2",
+    "@hookform/resolvers": "^6.0.0",
     "classnames": "^2.5.1",
     "http-status-codes": "^2.3.0",
     "mdi-react": "^9.4.0",
