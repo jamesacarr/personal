@@ -2,9 +2,13 @@
  * The slot always reserves exactly one line, so showing or clearing an error
  * never moves the fields below it. Keep messages short enough not to wrap at
  * a 320px viewport; a wrapped message would grow the slot by a line.
+ *
+ * The form sits on the contact section's neutral300 (#52606d) background.
+ * red900 is the only red that meets the WCAG AA 4.5:1 minimum for text this
+ * size on it (5.33:1); red500 measures 1.80:1 and red800 4.08:1.
  */
 .error {
-  color: var(--colour-red500);
+  color: var(--colour-red900);
   font-size: 0.8rem;
   line-height: 1rem;
   margin: 0;
