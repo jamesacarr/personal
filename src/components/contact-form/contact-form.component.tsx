@@ -9,6 +9,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
 } from 'react';
 import type { FieldErrors, SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
@@ -16,6 +17,7 @@ import { toast } from 'react-hot-toast';
 
 import { FieldError } from '@/components/field-error';
 import { sendMessage } from '@/contact/actions';
+import { HONEYPOT_FIELD } from '@/contact/honeypot';
 import { schema } from '@/contact/schema';
 import type { ContactFormState, ContactRequestBody } from '@/contact/types';
 
@@ -44,6 +46,7 @@ export const ContactForm: FC = () => {
     INITIAL_STATE,
   );
   const serverErrors = useMemo(() => toFieldErrors(state), [state]);
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -79,6 +82,8 @@ export const ContactForm: FC = () => {
       for (const [name, value] of Object.entries(data)) {
         formData.set(name, value);
       }
+      // The honeypot isn't registered with RHF, so `data` doesn't include it
+      formData.set(HONEYPOT_FIELD, honeypotRef.current?.value ?? '');
       startTransition(() => formAction(formData));
     },
     [formAction],
@@ -117,6 +122,17 @@ export const ContactForm: FC = () => {
         {...register('message')}
       />
       <FieldError id="message-error" message={errors.message?.message} />
+      <div aria-hidden="true" className={styles.honeypot}>
+        <input
+          aria-label="Website"
+          autoComplete="off"
+          defaultValue=""
+          name={HONEYPOT_FIELD}
+          ref={honeypotRef}
+          tabIndex={-1}
+          type="text"
+        />
+      </div>
 
       <input
         className={classNames(styles.button, {

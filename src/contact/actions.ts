@@ -1,5 +1,6 @@
 'use server';
 
+import { isHoneypotFilled } from './honeypot';
 import type { ContactFormFields, ContactFormState } from './types';
 import { transformBody } from './utils';
 import { validateBody } from './validations';
@@ -16,6 +17,13 @@ export const sendMessage = async (
   _prevState: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> => {
+  // Report success so a bot can't tell it was caught, whatever else it sent.
+  if (isHoneypotFilled(formData)) {
+    // biome-ignore lint/suspicious/noConsole: We want to log dropped spam so it shows up in Vercel
+    console.warn('Honeypot filled; dropping contact submission');
+    return { status: 'success' };
+  }
+
   const result = await validateBody({
     email: getField(formData, 'email'),
     message: getField(formData, 'message'),
