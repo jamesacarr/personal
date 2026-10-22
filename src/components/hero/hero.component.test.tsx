@@ -7,6 +7,18 @@ import { axe } from 'vitest-axe';
 import { Hero } from './hero.component';
 
 describe('Hero', () => {
+  describe('rendering', () => {
+    it('renders both hero lines in a single page heading', () => {
+      render(<Hero onClick={vi.fn()} />);
+
+      const headings = screen.getAllByRole('heading', { level: 1 });
+      expect(headings).toHaveLength(1);
+      expect(headings[0]).toHaveTextContent(
+        "Hello, I'm James Carr. I'm a full-stack web developer.",
+      );
+    });
+  });
+
   describe('behaviour', () => {
     it('calls onClick when Contact Me button clicked', async () => {
       const onClick = vi.fn();

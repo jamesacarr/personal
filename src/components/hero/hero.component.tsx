@@ -9,12 +9,12 @@ interface Props {
 
 export const Hero: FC<Props> = ({ onClick }) => (
   <div className={styles.wrapper}>
-    <div>
-      <h1 className={styles.header}>
+    <h1 className={styles.header}>
+      <span className={styles.line}>
         Hello, I&apos;m <span className={styles.highlight}>James Carr</span>.
-      </h1>
-      <h1 className={styles.header}>I&apos;m a full-stack web developer.</h1>
-    </div>
+      </span>{' '}
+      <span className={styles.line}>I&apos;m a full-stack web developer.</span>
+    </h1>
 
     <button className={styles.button} onClick={onClick} type="button">
       Contact Me

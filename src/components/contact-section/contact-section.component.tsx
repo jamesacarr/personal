@@ -22,8 +22,10 @@ export const ContactSection: FC<Props> = ({ scrollRef }) => (
 
     <div className={styles.content}>
       <header>
-        <h2 className={styles.header}>CONTACT</h2>
-        <h3>Have a question or just want to get in touch?</h3>
+        <h2 className={styles.header}>Contact</h2>
+        <p className={styles.subtitle}>
+          Have a question or just want to get in touch?
+        </p>
       </header>
 
       <ContactForm />
