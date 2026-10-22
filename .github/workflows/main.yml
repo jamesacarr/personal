@@ -87,5 +87,4 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - run: pnpm install
-      - run: pnpm next typegen
       - run: pnpm typecheck

@@ -22,7 +22,7 @@
     "prepare": "husky",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc -p ./tsconfig.json"
+    "typecheck": "next typegen && tsc -p ./tsconfig.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^6.0.0",
