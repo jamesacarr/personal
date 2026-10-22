@@ -18,7 +18,10 @@ export const Footer: FC = () => (
     </div>
 
     <span className={styles.copyright}>
-      James Carr <span className={styles.highlight}>&copy; 2025</span>
+      James Carr{' '}
+      <span className={styles.highlight}>
+        &copy; {new Date().getFullYear()}
+      </span>
     </span>
   </div>
 );
