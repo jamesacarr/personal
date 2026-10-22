@@ -6,7 +6,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
-import { Tooltip } from '@/components/tooltip';
+import { FieldError } from '@/components/field-error';
 import { schema } from '@/contact/schema';
 import type { ContactRequestBody } from '@/contact/types';
 
@@ -18,14 +18,19 @@ export const ContactForm: FC = () => {
     register,
     reset,
     handleSubmit,
-    formState: { errors, isSubmitting, touchedFields },
-  } = useForm<ContactRequestBody>({ resolver: yupResolver(schema) });
+    formState: { errors, isSubmitting },
+  } = useForm<ContactRequestBody>({
+    mode: 'onTouched',
+    resolver: yupResolver(schema),
+  });
 
-  const showError = useCallback(
-    (name: keyof ContactRequestBody) =>
-      Boolean(touchedFields[name] && errors[name]),
-    [errors, touchedFields],
-  );
+  const errorProps = (name: keyof ContactRequestBody) => ({
+    'aria-describedby': errors[name] ? `${name}-error` : undefined,
+    'aria-invalid': errors[name] ? ('true' as const) : ('false' as const),
+    className: classNames(styles.field, {
+      [styles.error]: Boolean(errors[name]),
+    }),
+  });
 
   const onSubmit: SubmitHandler<ContactRequestBody> = useCallback(
     async data => {
@@ -41,54 +46,33 @@ export const ContactForm: FC = () => {
   );
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <Tooltip
-        isVisible={showError('name')}
-        message={errors?.name?.message ?? ''}
-      >
-        <input
-          aria-invalid={errors?.name ? 'true' : 'false'}
-          aria-label="Name"
-          className={classNames(styles.field, {
-            [styles.error]: showError('name'),
-          })}
-          defaultValue=""
-          placeholder="Name"
-          type="text"
-          {...register('name')}
-        />
-      </Tooltip>
-      <Tooltip
-        isVisible={showError('email')}
-        message={errors?.email?.message ?? ''}
-      >
-        <input
-          aria-invalid={errors?.email ? 'true' : 'false'}
-          aria-label="Email"
-          className={classNames(styles.field, {
-            [styles.error]: showError('email'),
-          })}
-          defaultValue=""
-          placeholder="Email"
-          type="email"
-          {...register('email')}
-        />
-      </Tooltip>
-      <Tooltip
-        isVisible={showError('message')}
-        message={errors?.message?.message ?? ''}
-      >
-        <textarea
-          aria-invalid={errors?.message ? 'true' : 'false'}
-          aria-label="Message"
-          className={classNames(styles.field, {
-            [styles.error]: showError('message'),
-          })}
-          defaultValue=""
-          placeholder="Message"
-          {...register('message')}
-        />
-      </Tooltip>
+    <form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit)}>
+      <input
+        aria-label="Name"
+        defaultValue=""
+        placeholder="Name"
+        type="text"
+        {...errorProps('name')}
+        {...register('name')}
+      />
+      <FieldError id="name-error" message={errors.name?.message} />
+      <input
+        aria-label="Email"
+        defaultValue=""
+        placeholder="Email"
+        type="email"
+        {...errorProps('email')}
+        {...register('email')}
+      />
+      <FieldError id="email-error" message={errors.email?.message} />
+      <textarea
+        aria-label="Message"
+        defaultValue=""
+        placeholder="Message"
+        {...errorProps('message')}
+        {...register('message')}
+      />
+      <FieldError id="message-error" message={errors.message?.message} />
 
       <input
         className={classNames(styles.button, {

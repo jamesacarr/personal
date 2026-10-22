@@ -34,7 +34,6 @@
   color: var(--colour-neutral900);
   font-family: var(--font-family);
   font-size: var(--spacing-base);
-  margin: 0.1rem 0;
   min-width: 95%;
   outline: none;
   padding: var(--spacing-small) var(--spacing-base);
@@ -51,8 +50,13 @@
   font-family: var(--font-family);
 }
 
+/*
+ * A textarea's baseline is its bottom edge, which leaves a descender gap
+ * between it and its error message. Top alignment removes the gap.
+ */
 .field:is(textarea) {
   min-height: 6rem;
+  vertical-align: top;
 }
 
 .error {
