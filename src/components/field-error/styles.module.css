@@ -1,0 +1,22 @@
+/*
+ * The slot always reserves exactly one line, so showing or clearing an error
+ * never moves the fields below it. Keep messages short enough not to wrap at
+ * a 320px viewport; a wrapped message would grow the slot by a line.
+ */
+.error {
+  color: var(--colour-red500);
+  font-size: 0.8rem;
+  line-height: 1rem;
+  margin: 0;
+}
+
+/*
+ * An empty slot gets an invisible inline box, so it lays out the same line
+ * box as a message. `min-height: 1rem` isn't enough: the root font size is in
+ * pt, so 1rem is fractional and the browser rounds min-height and line boxes
+ * to different sub-pixel heights.
+ */
+.error:empty::before {
+  content: '';
+  display: inline-block;
+}
