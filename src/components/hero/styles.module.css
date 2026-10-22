@@ -3,11 +3,13 @@
   border: 2px solid var(--colour-neutral900);
   border-radius: 4px;
   color: var(--colour-neutral900);
+  display: inline-block;
   font-family: var(--font-family);
   font-size: 1.2rem;
   line-height: 1.65;
   margin-top: var(--spacing-large);
   padding: var(--spacing-small) var(--spacing-base);
+  text-decoration: none;
   transition: all 0.3s;
 }
 
@@ -15,6 +17,10 @@
   background-color: var(--colour-primary500);
   border-color: var(--colour-primary500);
   cursor: pointer;
+}
+
+.button:focus-visible {
+  outline-offset: 0;
 }
 
 .button:hover svg {
