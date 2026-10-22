@@ -69,7 +69,6 @@ body {
   font-size: var(--spacing-base);
   line-height: 1.65;
   margin: 0;
-  min-height: 200vh;
   text-align: center;
 }
 
