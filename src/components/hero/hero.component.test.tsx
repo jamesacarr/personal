@@ -1,7 +1,6 @@
 // @vitest-environment happy-dom
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
 
 import { Hero } from './hero.component';
@@ -9,7 +8,7 @@ import { Hero } from './hero.component';
 describe('Hero', () => {
   describe('rendering', () => {
     it('renders both hero lines in a single page heading', () => {
-      render(<Hero onClick={vi.fn()} />);
+      render(<Hero />);
 
       const headings = screen.getAllByRole('heading', { level: 1 });
       expect(headings).toHaveLength(1);
@@ -20,21 +19,18 @@ describe('Hero', () => {
   });
 
   describe('behaviour', () => {
-    it('calls onClick when Contact Me button clicked', async () => {
-      const onClick = vi.fn();
+    it('links Contact Me to the contact section', () => {
+      render(<Hero />);
 
-      render(<Hero onClick={onClick} />);
+      const link = screen.getByRole('link', { name: 'Contact Me' });
 
-      const button = screen.getByText('Contact Me');
-      await userEvent.click(button);
-
-      expect(onClick).toHaveBeenCalled();
+      expect(link).toHaveAttribute('href', '#contact');
     });
   });
 
   describe('accessibility', () => {
     it('has no violations', async () => {
-      const { container } = render(<Hero onClick={vi.fn()} />);
+      const { container } = render(<Hero />);
 
       const results = await axe(container);
       expect(results).toHaveNoViolations();

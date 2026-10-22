@@ -1,15 +1,11 @@
-import type { FC, RefObject } from 'react';
+import type { FC } from 'react';
 
 import { ContactForm } from '@/components/contact-form';
 
 import styles from './styles.module.css';
 
-interface Props {
-  scrollRef: RefObject<HTMLDivElement | null>;
-}
-
-export const ContactSection: FC<Props> = ({ scrollRef }) => (
-  <div className={styles.wrapper} ref={scrollRef}>
+export const ContactSection: FC = () => (
+  <div className={styles.wrapper} id="contact">
     {/* biome-ignore lint/a11y/noSvgWithoutTitle: This isn't an actual image, it's decorative */}
     <svg
       className={styles.arrow}

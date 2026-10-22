@@ -3,11 +3,7 @@ import type { FC } from 'react';
 
 import styles from './styles.module.css';
 
-interface Props {
-  onClick: () => void;
-}
-
-export const Hero: FC<Props> = ({ onClick }) => (
+export const Hero: FC = () => (
   <div className={styles.wrapper}>
     <h1 className={styles.header}>
       <span className={styles.line}>
@@ -16,9 +12,9 @@ export const Hero: FC<Props> = ({ onClick }) => (
       <span className={styles.line}>I&apos;m a full-stack web developer.</span>
     </h1>
 
-    <button className={styles.button} onClick={onClick} type="button">
+    <a className={styles.button} href="#contact">
       Contact Me
       <ArrowRightIcon className={styles.icon} size="1.5rem" />
-    </button>
+    </a>
   </div>
 );
