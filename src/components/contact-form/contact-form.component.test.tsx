@@ -235,6 +235,37 @@ describe('ContactForm', () => {
       expect(await screen.findByDisplayValue('SUBMIT')).toBeEnabled();
     });
 
+    it('sends an empty honeypot with valid data', async () => {
+      render(<ContactForm />);
+
+      await fillValidForm();
+      await userEvent.click(screen.getByText('SUBMIT'));
+
+      await waitFor(() => {
+        expect(sendMessageMock).toHaveBeenCalledOnce();
+      });
+      expect(sendMessageMock.mock.calls[0][1].get('website')).toBe('');
+    });
+
+    it('forwards a filled honeypot to the action', async () => {
+      const { container } = render(<ContactForm />);
+
+      await fillValidForm();
+      const honeypot = container.querySelector('input[name="website"]');
+      if (!honeypot) {
+        throw new Error('Honeypot not rendered');
+      }
+      await userEvent.type(honeypot, 'https://spam.example.com');
+      await userEvent.click(screen.getByText('SUBMIT'));
+
+      await waitFor(() => {
+        expect(sendMessageMock).toHaveBeenCalledOnce();
+      });
+      expect(sendMessageMock.mock.calls[0][1].get('website')).toBe(
+        'https://spam.example.com',
+      );
+    });
+
     it('shows server field errors inline', async () => {
       actionReturns({
         errors: { message: 'Message rejected by server' },
@@ -310,6 +341,25 @@ describe('ContactForm', () => {
   });
 
   describe('accessibility', () => {
+    it('hides the honeypot from people', () => {
+      const { container } = render(<ContactForm />);
+
+      const honeypot = container.querySelector('input[name="website"]');
+      expect(honeypot).toHaveAttribute('tabindex', '-1');
+      expect(honeypot).toHaveAttribute('autocomplete', 'off');
+      const wrapper = honeypot?.closest('[aria-hidden="true"]');
+      expect(wrapper).toHaveClass(styles.honeypot);
+    });
+
+    it('skips the honeypot when tabbing', async () => {
+      render(<ContactForm />);
+
+      await userEvent.click(screen.getByLabelText('Message'));
+      await userEvent.tab();
+
+      expect(screen.getByDisplayValue('SUBMIT')).toHaveFocus();
+    });
+
     it('has no violations', async () => {
       const { container } = render(<ContactForm />);
 

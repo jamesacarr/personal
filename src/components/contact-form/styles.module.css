@@ -67,6 +67,19 @@
   min-width: 95%;
 }
 
+/*
+ * Off-screen rather than display: none, since some bots skip fields that
+ * aren't rendered.
+ */
+.honeypot {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
 @media (min-width: 600px) {
   .field {
     min-width: 500px;

@@ -165,6 +165,53 @@ describe('sendMessage', () => {
     expect(consoleErrorSpy).toHaveBeenCalledExactlyOnceWith(networkError);
   });
 
+  describe('honeypot', () => {
+    let consoleWarnSpy: MockInstance<typeof console.warn>;
+
+    beforeEach(() => {
+      consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {
+        /* Intentionally empty */
+      });
+    });
+
+    it('returns success without calling the webhook when filled', async () => {
+      const result = await sendMessage(
+        { status: 'idle' },
+        buildFormData({ ...VALID, website: 'https://spam.example.com' }),
+      );
+
+      expect(result).toEqual({ status: 'success' });
+      expect(fetchMock).not.toHaveFetched();
+      expect(consoleWarnSpy).toHaveBeenCalledExactlyOnceWith(
+        'Honeypot filled; dropping contact submission',
+      );
+      expect(consoleErrorSpy).not.toHaveBeenCalled();
+    });
+
+    it('returns success for invalid input when filled', async () => {
+      const result = await sendMessage(
+        { status: 'idle' },
+        buildFormData({ website: 'https://spam.example.com' }),
+      );
+
+      expect(result).toEqual({ status: 'success' });
+      expect(fetchMock).not.toHaveFetched();
+    });
+
+    it('posts to the webhook when empty', async () => {
+      fetchMock.route(WEBHOOK_URL, 200);
+
+      const result = await sendMessage(
+        { status: 'idle' },
+        buildFormData({ ...VALID, website: '' }),
+      );
+
+      expect(result).toEqual({ status: 'success' });
+      expect(fetchMock).toHaveFetchedTimes(1, WEBHOOK_URL);
+      expect(consoleWarnSpy).not.toHaveBeenCalled();
+    });
+  });
+
   it('returns the generic error when WEBHOOK_URL is unset', async () => {
     vi.stubEnv('WEBHOOK_URL', undefined);
 
