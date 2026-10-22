@@ -1,25 +1,57 @@
+'use client';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 import type { FC } from 'react';
-import { useCallback } from 'react';
-import type { SubmitHandler } from 'react-hook-form';
+import {
+  startTransition,
+  useActionState,
+  useCallback,
+  useEffect,
+  useMemo,
+} from 'react';
+import type { FieldErrors, SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
 import { FieldError } from '@/components/field-error';
+import { sendMessage } from '@/contact/actions';
 import { schema } from '@/contact/schema';
-import type { ContactRequestBody } from '@/contact/types';
+import type { ContactFormState, ContactRequestBody } from '@/contact/types';
 
-import { sendMessage } from './send-message';
 import styles from './styles.module.css';
 
+const INITIAL_STATE: ContactFormState = { status: 'idle' };
+
+const toFieldErrors = (
+  state: ContactFormState,
+): FieldErrors<ContactRequestBody> | undefined => {
+  if (state.status !== 'invalid') {
+    return undefined;
+  }
+
+  return Object.fromEntries(
+    Object.entries(state.errors).map(([name, message]) => [
+      name,
+      { message, type: 'server' },
+    ]),
+  );
+};
+
 export const ContactForm: FC = () => {
+  const [state, formAction, pending] = useActionState(
+    sendMessage,
+    INITIAL_STATE,
+  );
+  const serverErrors = useMemo(() => toFieldErrors(state), [state]);
+
   const {
     register,
     reset,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<ContactRequestBody>({
+    errors: serverErrors,
     mode: 'onTouched',
     resolver: yupResolver(schema),
   });
@@ -32,21 +64,33 @@ export const ContactForm: FC = () => {
     }),
   });
 
-  const onSubmit: SubmitHandler<ContactRequestBody> = useCallback(
-    async data => {
-      try {
-        await sendMessage(data);
-        toast.success('Message Sent');
-        reset();
-      } catch (error: unknown) {
-        toast.error((error as Error).message);
+  useEffect(() => {
+    if (state.status === 'success') {
+      toast.success('Message Sent');
+      reset();
+    } else if (state.status === 'error') {
+      toast.error(state.message);
+    }
+  }, [state, reset]);
+
+  const onValid: SubmitHandler<ContactRequestBody> = useCallback(
+    data => {
+      const formData = new FormData();
+      for (const [name, value] of Object.entries(data)) {
+        formData.set(name, value);
       }
+      startTransition(() => formAction(formData));
     },
-    [reset],
+    [formAction],
   );
 
   return (
-    <form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit)}>
+    <form
+      action={formAction}
+      className={styles.form}
+      noValidate
+      onSubmit={handleSubmit(onValid)}
+    >
       <input
         aria-label="Name"
         defaultValue=""
@@ -76,12 +120,16 @@ export const ContactForm: FC = () => {
 
       <input
         className={classNames(styles.button, {
-          [styles.submitting]: isSubmitting,
+          [styles.submitting]: pending,
         })}
-        disabled={isSubmitting}
+        disabled={pending}
         type="submit"
-        value={isSubmitting ? 'SUBMITTING' : 'SUBMIT'}
+        value={pending ? 'SUBMITTING' : 'SUBMIT'}
       />
+      <noscript>
+        {state.status === 'success' && <p>Message sent.</p>}
+        {state.status === 'error' && <p>{state.message}</p>}
+      </noscript>
     </form>
   );
 };

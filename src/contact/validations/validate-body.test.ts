@@ -1,59 +1,51 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { BadRequestError } from '@/lib/errors';
-
 import { schema } from '../schema';
 import { validateBody } from './validate-body';
 
 describe('validateBody', () => {
-  it('raises error for invalid body type', async () => {
-    const body = 'testing';
-    await expect(validateBody(body)).rejects.toThrow(
-      new BadRequestError('invalid body'),
-    );
+  it('returns error when no name', async () => {
+    const body = {
+      email: 'test@test.com',
+      message: 'this is for a test',
+      name: '',
+    };
+    await expect(validateBody(body)).resolves.toEqual({
+      errors: { name: 'Required' },
+      success: false,
+    });
   });
 
-  it('raises error for null body', async () => {
-    const body = null;
-    await expect(validateBody(body)).rejects.toThrow(
-      new BadRequestError('body required'),
-    );
+  it('returns error when no message', async () => {
+    const body = { email: 'test@test.com', message: '', name: 'John Doe' };
+    await expect(validateBody(body)).resolves.toEqual({
+      errors: { message: 'Required' },
+      success: false,
+    });
   });
 
-  it('raises error when no name', async () => {
-    const body = { email: 'test@test.com', message: 'this is for a test' };
-    await expect(validateBody(body)).rejects.toThrow(
-      new BadRequestError('name required'),
-    );
-  });
-
-  it('raises error when no message', async () => {
-    const body = { email: 'test@test.com', name: 'John Doe' };
-    await expect(validateBody(body)).rejects.toThrow(
-      new BadRequestError('message required'),
-    );
-  });
-
-  it('raises error when message is less than 5 words', async () => {
+  it('returns error when message is less than 5 words', async () => {
     const body = {
       email: 'test@test.com',
       message: 'testing',
       name: 'John Doe',
     };
-    await expect(validateBody(body)).rejects.toThrow(
-      new BadRequestError('message must be at least 5 words'),
-    );
+    await expect(validateBody(body)).resolves.toEqual({
+      errors: { message: 'Must be at least 5 words' },
+      success: false,
+    });
   });
 
-  it('raises error when message is less than 5 words with extra whitespace', async () => {
+  it('returns error when message is less than 5 words with extra whitespace', async () => {
     const body = {
       email: 'test@test.com',
       message: 'one  \n\n two\t\tthree   four',
       name: 'John Doe',
     };
-    await expect(validateBody(body)).rejects.toThrow(
-      new BadRequestError('message must be at least 5 words'),
-    );
+    await expect(validateBody(body)).resolves.toEqual({
+      errors: { message: 'Must be at least 5 words' },
+      success: false,
+    });
   });
 
   it.each([
@@ -62,25 +54,46 @@ describe('validateBody', () => {
     ['mixed whitespace', 'one two\nthree\tfour\r\nfive'],
   ])('accepts a 5 word message separated by %s', async (_, message) => {
     const body = { email: 'test@test.com', message, name: 'John Doe' };
-    await expect(validateBody(body)).resolves.toEqual(body);
+    await expect(validateBody(body)).resolves.toEqual({
+      data: body,
+      success: true,
+    });
   });
 
-  it('raises error when no email', async () => {
-    const body = { message: 'this is for a test', name: 'John Doe' };
-    await expect(validateBody(body)).rejects.toThrow(
-      new BadRequestError('email required'),
-    );
+  it('returns error when no email', async () => {
+    const body = {
+      email: '',
+      message: 'this is for a test',
+      name: 'John Doe',
+    };
+    await expect(validateBody(body)).resolves.toEqual({
+      errors: { email: 'Required' },
+      success: false,
+    });
   });
 
-  it('raises error when invalid email', async () => {
+  it('returns error when invalid email', async () => {
     const body = {
       email: 'invalid',
       message: 'this is for a test',
       name: 'John Doe',
     };
-    await expect(validateBody(body)).rejects.toThrow(
-      new BadRequestError('invalid email'),
-    );
+    await expect(validateBody(body)).resolves.toEqual({
+      errors: { email: 'Invalid email' },
+      success: false,
+    });
+  });
+
+  it('returns errors for every invalid field', async () => {
+    const body = { email: 'invalid', message: 'too short', name: '' };
+    await expect(validateBody(body)).resolves.toEqual({
+      errors: {
+        email: 'Invalid email',
+        message: 'Must be at least 5 words',
+        name: 'Required',
+      },
+      success: false,
+    });
   });
 
   it('rethrows non-validation errors', async () => {
@@ -103,6 +116,9 @@ describe('validateBody', () => {
       message: 'this is for a test',
       name: 'John Doe',
     };
-    await expect(validateBody(body)).resolves.toEqual(body);
+    await expect(validateBody(body)).resolves.toEqual({
+      data: body,
+      success: true,
+    });
   });
 });

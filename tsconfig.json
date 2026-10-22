@@ -16,8 +16,7 @@
     "noUnusedParameters": true,
     "paths": {
       "@/components/*": ["src/components/*"],
-      "@/contact/*": ["src/contact/*"],
-      "@/lib/*": ["src/lib/*"]
+      "@/contact/*": ["src/contact/*"]
     },
     "plugins": [{ "name": "next" }],
     "preserveConstEnums": true,
