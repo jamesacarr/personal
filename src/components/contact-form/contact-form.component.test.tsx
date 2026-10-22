@@ -1,37 +1,40 @@
 // @vitest-environment happy-dom
-import fetchMock from '@fetch-mock/vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toast } from 'react-hot-toast';
-import {
-  afterAll,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
+
+import { sendMessage } from '@/contact/actions';
+import type { ContactFormState } from '@/contact/types';
 
 import { ContactForm } from './contact-form.component';
 import styles from './styles.module.css';
 
 vi.mock('react-hot-toast');
+vi.mock('@/contact/actions');
 const toastMock = vi.mocked(toast);
+const sendMessageMock = vi.mocked(sendMessage);
+
+const fillValidForm = async () => {
+  await userEvent.type(screen.getByLabelText('Name'), 'John Doe');
+  await userEvent.type(screen.getByLabelText('Email'), 'test@test.com');
+  await userEvent.type(
+    screen.getByLabelText('Message'),
+    'This is a test message',
+  );
+};
+
+// A real server action deserialises a fresh state object per call, so each
+// mocked call returns a new object too.
+const actionReturns = (state: ContactFormState) => {
+  sendMessageMock.mockImplementation(async () => ({ ...state }));
+};
 
 describe('ContactForm', () => {
   describe('behaviour', () => {
-    beforeAll(() => {
-      fetchMock.mockGlobal();
-    });
-
-    afterAll(() => {
-      fetchMock.unmockGlobal();
-    });
-
     beforeEach(() => {
-      fetchMock.mockReset();
+      actionReturns({ status: 'success' });
     });
 
     it('does not submit when name missing', async () => {
@@ -49,7 +52,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(name).toBeInvalid();
-      expect(fetchMock).not.toHaveFetched();
+      expect(sendMessageMock).not.toHaveBeenCalled();
     });
 
     it('does not submit when email missing', async () => {
@@ -67,7 +70,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(email).toBeInvalid();
-      expect(fetchMock).not.toHaveFetched();
+      expect(sendMessageMock).not.toHaveBeenCalled();
     });
 
     it('does not submit when email invalid', async () => {
@@ -86,7 +89,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(email).toBeInvalid();
-      expect(fetchMock).not.toHaveFetched();
+      expect(sendMessageMock).not.toHaveBeenCalled();
     });
 
     it('does not submit when message missing', async () => {
@@ -104,7 +107,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(message).toBeInvalid();
-      expect(fetchMock).not.toHaveFetched();
+      expect(sendMessageMock).not.toHaveBeenCalled();
     });
 
     it('does not submit when message too short', async () => {
@@ -123,7 +126,7 @@ describe('ContactForm', () => {
       await userEvent.click(button);
 
       expect(message).toBeInvalid();
-      expect(fetchMock).not.toHaveFetched();
+      expect(sendMessageMock).not.toHaveBeenCalled();
     });
 
     it('shows every required error at once when submitting an empty form', async () => {
@@ -145,7 +148,7 @@ describe('ContactForm', () => {
       }
       expect(screen.getAllByText('Required')).toHaveLength(3);
       expect(screen.getByLabelText('Name')).toHaveFocus();
-      expect(fetchMock).not.toHaveFetched();
+      expect(sendMessageMock).not.toHaveBeenCalled();
     });
 
     it('disables native constraint validation', () => {
@@ -166,7 +169,7 @@ describe('ContactForm', () => {
       await userEvent.click(screen.getByText('SUBMIT'));
 
       expect(screen.getByText('Invalid email')).toBeInTheDocument();
-      expect(fetchMock).not.toHaveFetched();
+      expect(sendMessageMock).not.toHaveBeenCalled();
     });
 
     it('shows an error on blur and clears it once corrected', async () => {
@@ -202,72 +205,107 @@ describe('ContactForm', () => {
       expect(document.getElementById('message-error')).toHaveTextContent(
         'Must be at least 5 words',
       );
-      expect(fetchMock).not.toHaveFetched();
+      expect(sendMessageMock).not.toHaveBeenCalled();
     });
 
-    it('submits with valid data', async () => {
-      fetchMock.route('/api/contact', 200);
-      toastMock.error = vi.fn();
-      toastMock.success = vi.fn();
+    it('sends valid data to the action', async () => {
+      let resolveAction: (state: ContactFormState) => void = () => undefined;
+      sendMessageMock.mockImplementation(
+        () =>
+          new Promise<ContactFormState>(resolve => {
+            resolveAction = resolve;
+          }),
+      );
       render(<ContactForm />);
 
-      // Fill in the form
-      const name = screen.getByLabelText('Name');
-      await userEvent.type(name, 'John Doe');
-      const email = screen.getByLabelText('Email');
-      await userEvent.type(email, 'test@test.com');
-      const message = screen.getByLabelText('Message');
-      await userEvent.type(message, 'This is a test message');
+      await fillValidForm();
+      await userEvent.click(screen.getByText('SUBMIT'));
 
-      // Submit the data
-      const button = screen.getByText('SUBMIT');
-      await userEvent.click(button);
+      const button = await screen.findByDisplayValue('SUBMITTING');
+      expect(button).toBeDisabled();
+      expect(sendMessageMock).toHaveBeenCalledOnce();
 
-      expect(name).toBeValid();
-      expect(email).toBeValid();
-      expect(message).toBeValid();
+      const formData = sendMessageMock.mock.calls[0][1];
+      expect(formData).toBeInstanceOf(FormData);
+      expect(formData.get('name')).toBe('John Doe');
+      expect(formData.get('email')).toBe('test@test.com');
+      expect(formData.get('message')).toBe('This is a test message');
 
-      expect(fetchMock).toHaveFetched('/api/contact', {
-        body: {
-          email: 'test@test.com',
-          message: 'This is a test message',
-          name: 'John Doe',
-        },
+      resolveAction({ status: 'success' });
+      expect(await screen.findByDisplayValue('SUBMIT')).toBeEnabled();
+    });
+
+    it('shows server field errors inline', async () => {
+      actionReturns({
+        errors: { message: 'Message rejected by server' },
+        status: 'invalid',
       });
+      render(<ContactForm />);
 
-      expect(toastMock.success).toHaveBeenCalledWith('Message Sent');
+      await fillValidForm();
+      await userEvent.click(screen.getByText('SUBMIT'));
+
+      await waitFor(() => {
+        expect(document.getElementById('message-error')).toHaveTextContent(
+          'Message rejected by server',
+        );
+      });
+      const message = screen.getByLabelText('Message');
+      expect(message).toHaveAttribute('aria-invalid', 'true');
+      expect(message).toHaveAttribute('aria-describedby', 'message-error');
+      expect(toastMock.success).not.toHaveBeenCalled();
       expect(toastMock.error).not.toHaveBeenCalled();
     });
 
-    it('handles errors from API', async () => {
-      fetchMock.route('/api/contact', 500);
-      toastMock.error = vi.fn();
-      toastMock.success = vi.fn();
+    it('shows a success toast and clears the form on success', async () => {
+      actionReturns({ status: 'success' });
       render(<ContactForm />);
 
-      // Fill in the form
-      const name = screen.getByLabelText('Name');
-      await userEvent.type(name, 'John Doe');
-      const email = screen.getByLabelText('Email');
-      await userEvent.type(email, 'test@test.com');
-      const message = screen.getByLabelText('Message');
-      await userEvent.type(message, 'This is a test message');
+      await fillValidForm();
+      await userEvent.click(screen.getByText('SUBMIT'));
 
-      // Submit the data
-      const button = screen.getByText('SUBMIT');
-      await userEvent.click(button);
+      await waitFor(() => {
+        expect(toastMock.success).toHaveBeenCalledWith('Message Sent');
+      });
+      expect(toastMock.error).not.toHaveBeenCalled();
+      expect(screen.getByLabelText('Name')).toHaveValue('');
+      expect(screen.getByLabelText('Email')).toHaveValue('');
+      expect(screen.getByLabelText('Message')).toHaveValue('');
+    });
 
-      // Wait for submitting to finish
-      expect(fetchMock).toHaveFetched('/api/contact', {
-        body: {
-          email: 'test@test.com',
-          message: 'This is a test message',
-          name: 'John Doe',
-        },
+    it('shows an error toast and keeps the values on error', async () => {
+      actionReturns({ message: 'Something went wrong', status: 'error' });
+      render(<ContactForm />);
+
+      await fillValidForm();
+      await userEvent.click(screen.getByText('SUBMIT'));
+
+      await waitFor(() => {
+        expect(toastMock.error).toHaveBeenCalledWith('Something went wrong');
+      });
+      expect(toastMock.success).not.toHaveBeenCalled();
+      expect(screen.getByLabelText('Name')).toHaveValue('John Doe');
+      expect(screen.getByLabelText('Email')).toHaveValue('test@test.com');
+      expect(screen.getByLabelText('Message')).toHaveValue(
+        'This is a test message',
+      );
+    });
+
+    it('shows an error toast for each consecutive error', async () => {
+      actionReturns({ message: 'Something went wrong', status: 'error' });
+      render(<ContactForm />);
+
+      await fillValidForm();
+      await userEvent.click(screen.getByText('SUBMIT'));
+      await waitFor(() => {
+        expect(toastMock.error).toHaveBeenCalledOnce();
       });
 
-      expect(toastMock.success).not.toHaveBeenCalled();
-      expect(toastMock.error).toHaveBeenCalledWith('Internal Server Error');
+      await userEvent.click(await screen.findByDisplayValue('SUBMIT'));
+      await waitFor(() => {
+        expect(toastMock.error).toHaveBeenCalledTimes(2);
+      });
+      expect(sendMessageMock).toHaveBeenCalledTimes(2);
     });
   });
 
