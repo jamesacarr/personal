@@ -13,9 +13,11 @@
   transition: all 0.3s;
 }
 
-.button:hover {
+.button:hover,
+.button:focus-visible {
   background-color: var(--colour-primary500);
   border-color: var(--colour-primary500);
+  color: var(--colour-neutral000);
   cursor: pointer;
 }
 
@@ -23,7 +25,8 @@
   outline-offset: 0;
 }
 
-.button:hover svg {
+.button:hover svg,
+.button:focus-visible svg {
   transform: rotate(90deg);
 }
 
