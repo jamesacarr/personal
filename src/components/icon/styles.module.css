@@ -13,9 +13,10 @@
   vertical-align: sub;
 }
 
-.wrapper:hover {
+.wrapper:hover,
+.wrapper:focus-visible {
   background-color: var(--colour-primary500);
   border-color: var(--colour-primary500);
-  color: var(--colour-neutral900);
+  color: var(--colour-neutral000);
   cursor: pointer;
 }

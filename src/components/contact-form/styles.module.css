@@ -15,16 +15,17 @@
   background-color: var(--colour-neutral000);
 }
 
-.button:not(:disabled):hover {
+.button:not(:disabled):hover,
+.button:not(:disabled):focus-visible {
   background-color: var(--colour-primary500);
-  color: var(--colour-neutral900);
+  color: var(--colour-neutral000);
   cursor: pointer;
 }
 
 .submitting {
   animation: color 1s ease-in-out infinite;
   background-color: var(--colour-primary500);
-  color: var(--colour-neutral900);
+  color: var(--colour-neutral000);
 }
 
 .label {
@@ -42,14 +43,14 @@
   font-family: var(--font-family);
   font-size: var(--spacing-base);
   min-width: 95%;
-  outline: none;
   padding: var(--spacing-small) var(--spacing-base);
   transition: border-color 0.3s;
   width: 100%;
 }
 
 .field:focus {
-  border-color: var(--colour-primary500);
+  outline: 2px solid var(--colour-primary500);
+  outline-offset: 2px;
 }
 
 /*
@@ -61,8 +62,16 @@
   vertical-align: top;
 }
 
+/*
+ * The error border sits between the field's neutral000 (#1f2933) fill and the
+ * contact section's neutral300 (#52606d) background, so it needs the WCAG AA
+ * 3:1 non-text minimum against both. red700 is the lowest-contrast red that
+ * meets it on both sides (7.32:1 and 3.20:1), which keeps it distinct from the
+ * red900 error text; red500 measures 4.12:1 and 1.80:1, red600 2.23:1 on the
+ * section.
+ */
 .error {
-  border: 1px solid var(--colour-red500);
+  border: 1px solid var(--colour-red700);
 }
 
 .form {
