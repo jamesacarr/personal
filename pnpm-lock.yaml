@@ -237,8 +237,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5(vitest@5.0.5)
       happy-dom:
-        specifier: ^20.14.6
-        version: 20.14.6
+        specifier: ^21.0.4
+        version: 21.0.4
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -259,7 +259,7 @@ importers:
         version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
       vitest:
         specifier: ^5.0.5
-        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@20.14.6)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@21.0.4)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
       vitest-axe:
         specifier: 1.0.0-pre.5
         version: 1.0.0-pre.5(vitest@5.0.5)
@@ -1360,8 +1360,8 @@ packages:
     peerDependencies:
       csstype: ^3.0.10
 
-  happy-dom@20.14.6:
-    resolution: {integrity: sha512-5DDsf4QmEIlRL6NkCv/fxSjYHHkZceL/IaYQdJc2h3G7DRTEai++VTjbfL0LB9geW2VrA3+vrjF3Efx+OTtX0Q==}
+  happy-dom@21.0.4:
+    resolution: {integrity: sha512-tFm+GaLBgo6o0awHnvHaNoraVo27qJ+2tZEtZ+cIa08hXbeitrxAJajLI05hsUy/2/YTKcUjQYzHe5mCcraLBw==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -2309,7 +2309,7 @@ snapshots:
   '@fetch-mock/vitest@0.2.18(vitest@5.0.5)':
     dependencies:
       fetch-mock: 12.6.0
-      vitest: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@20.14.6)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
+      vitest: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@21.0.4)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
 
   '@hookform/resolvers@6.0.0(@standard-schema/spec@1.1.0)(ajv@8.20.0)(react-hook-form@7.90.0(@types/react@19.3.0)(react@19.3.1))(yup@1.7.1)':
     dependencies:
@@ -2645,7 +2645,7 @@ snapshots:
       obug: 3.0.0
       std-env: 4.3.0
       tinyrainbow: 3.2.0
-      vitest: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@20.14.6)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
+      vitest: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@21.0.4)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
 
   '@vitest/istanbul-lib-coverage@1.0.2': {}
 
@@ -2918,7 +2918,7 @@ snapshots:
     dependencies:
       csstype: 3.2.3
 
-  happy-dom@20.14.6:
+  happy-dom@21.0.4:
     dependencies:
       '@types/node': 26.6.5
       '@types/whatwg-mimetype': 3.0.2
@@ -3419,9 +3419,9 @@ snapshots:
       axe-core: 4.14.0
       chalk: 5.6.2
       lodash-es: 4.18.1
-      vitest: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@20.14.6)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
+      vitest: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@21.0.4)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
 
-  vitest@5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@20.14.6)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1)):
+  vitest@5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@21.0.4)(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.0.5(vite@8.3.4(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
@@ -3440,7 +3440,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 26.6.5
       '@vitest/coverage-v8': 5.0.5(vitest@5.0.5)
-      happy-dom: 20.14.6
+      happy-dom: 21.0.4
     transitivePeerDependencies:
       - msw
 
