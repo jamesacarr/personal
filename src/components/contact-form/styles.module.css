@@ -27,6 +27,13 @@
   color: var(--colour-neutral900);
 }
 
+.label {
+  color: var(--colour-neutral900);
+  display: block;
+  margin-bottom: 0.25rem;
+  text-align: left;
+}
+
 .field {
   background-color: var(--colour-neutral000);
   border: 1px solid var(--colour-neutral000);
@@ -43,11 +50,6 @@
 
 .field:focus {
   border-color: var(--colour-primary500);
-}
-
-.field::placeholder {
-  color: var(--colour-neutral600);
-  font-family: var(--font-family);
 }
 
 /*

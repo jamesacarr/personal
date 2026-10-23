@@ -349,6 +349,10 @@ describe('ContactForm', () => {
       expect(honeypot).toHaveAttribute('autocomplete', 'off');
       const wrapper = honeypot?.closest('[aria-hidden="true"]');
       expect(wrapper).toHaveClass(styles.honeypot);
+      expect(
+        wrapper?.querySelector('label[for="website"]'),
+      ).toBeInTheDocument();
+      expect(honeypot).toHaveAttribute('id', 'website');
     });
 
     it('skips the honeypot when tabbing', async () => {
@@ -358,6 +362,27 @@ describe('ContactForm', () => {
       await userEvent.tab();
 
       expect(screen.getByDisplayValue('SUBMIT')).toHaveFocus();
+    });
+
+    it.each([
+      ['Name', 'name'],
+      ['Email', 'email'],
+      ['Message', 'message'],
+    ])('labels the %s field with a visible label', (label, id) => {
+      render(<ContactForm />);
+
+      const labelElement = screen.getByText(label);
+      expect(labelElement.tagName).toBe('LABEL');
+      expect(labelElement).toHaveAttribute('for', id);
+      expect(labelElement).toHaveClass(styles.label);
+      expect(labelElement.closest('[aria-hidden="true"]')).toBeNull();
+      expect(screen.getByLabelText(label)).toHaveAttribute('id', id);
+    });
+
+    it('names fields with labels rather than aria-label', () => {
+      const { container } = render(<ContactForm />);
+
+      expect(container.querySelectorAll('[aria-label]')).toHaveLength(0);
     });
 
     it('has no violations', async () => {

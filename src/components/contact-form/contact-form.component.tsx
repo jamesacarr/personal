@@ -96,37 +96,44 @@ export const ContactForm: FC = () => {
       noValidate
       onSubmit={handleSubmit(onValid)}
     >
+      <label className={styles.label} htmlFor="name">
+        Name
+      </label>
       <input
-        aria-label="Name"
         defaultValue=""
-        placeholder="Name"
+        id="name"
         type="text"
         {...errorProps('name')}
         {...register('name')}
       />
       <FieldError id="name-error" message={errors.name?.message} />
+      <label className={styles.label} htmlFor="email">
+        Email
+      </label>
       <input
-        aria-label="Email"
         defaultValue=""
-        placeholder="Email"
+        id="email"
         type="email"
         {...errorProps('email')}
         {...register('email')}
       />
       <FieldError id="email-error" message={errors.email?.message} />
+      <label className={styles.label} htmlFor="message">
+        Message
+      </label>
       <textarea
-        aria-label="Message"
         defaultValue=""
-        placeholder="Message"
+        id="message"
         {...errorProps('message')}
         {...register('message')}
       />
       <FieldError id="message-error" message={errors.message?.message} />
       <div aria-hidden="true" className={styles.honeypot}>
+        <label htmlFor="website">Website</label>
         <input
-          aria-label="Website"
           autoComplete="off"
           defaultValue=""
+          id="website"
           name={HONEYPOT_FIELD}
           ref={honeypotRef}
           tabIndex={-1}
