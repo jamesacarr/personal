@@ -1,11 +1,11 @@
 .wrapper {
+  display: inline-flex;
+  padding: var(--spacing-small);
+  margin: var(--spacing-small);
+  color: var(--colour-neutral600);
   background: var(--colour-neutral100);
   border: 1px solid var(--colour-neutral600);
   border-radius: 4px;
-  color: var(--colour-neutral600);
-  display: inline-flex;
-  margin: var(--spacing-small);
-  padding: var(--spacing-small);
   transition: all 0.3s;
 }
 
@@ -15,8 +15,8 @@
 
 .wrapper:hover,
 .wrapper:focus-visible {
-  background-color: var(--colour-primary500);
-  border-color: var(--colour-primary500);
   color: var(--colour-neutral000);
   cursor: pointer;
+  background-color: var(--colour-primary500);
+  border-color: var(--colour-primary500);
 }

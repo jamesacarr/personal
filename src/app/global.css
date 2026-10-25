@@ -68,6 +68,7 @@ html {
   }
 }
 
+/* biome-ignore-start lint/complexity/noImportantStyles: the reduced-motion reset must beat class selectors and inline animation styles */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -78,22 +79,23 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+/* biome-ignore-end lint/complexity/noImportantStyles: end of reduced-motion reset */
 
 body {
-  background-color: var(--colour-neutral000);
-  color: var(--colour-neutral900);
+  margin: 0;
   font-family: var(--font-family);
   font-size: var(--spacing-base);
   line-height: 1.65;
-  margin: 0;
+  color: var(--colour-neutral900);
   text-align: center;
+  background-color: var(--colour-neutral000);
 }
 
 h1,
 h2,
 h3 {
-  font-weight: 400;
   margin: 0 0 var(--spacing-base) 0;
+  font-weight: 400;
 }
 
 h1,

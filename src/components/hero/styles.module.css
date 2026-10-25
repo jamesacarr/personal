@@ -1,24 +1,24 @@
 .button {
-  background: transparent;
-  border: 2px solid var(--colour-neutral900);
-  border-radius: 4px;
-  color: var(--colour-neutral900);
   display: inline-block;
+  padding: var(--spacing-small) var(--spacing-base);
+  margin-top: var(--spacing-large);
   font-family: var(--font-family);
   font-size: 1.2rem;
   line-height: 1.65;
-  margin-top: var(--spacing-large);
-  padding: var(--spacing-small) var(--spacing-base);
+  color: var(--colour-neutral900);
   text-decoration: none;
+  background: transparent;
+  border: 2px solid var(--colour-neutral900);
+  border-radius: 4px;
   transition: all 0.3s;
 }
 
 .button:hover,
 .button:focus-visible {
-  background-color: var(--colour-primary500);
-  border-color: var(--colour-primary500);
   color: var(--colour-neutral000);
   cursor: pointer;
+  background-color: var(--colour-primary500);
+  border-color: var(--colour-primary500);
 }
 
 .button:focus-visible {
@@ -32,8 +32,8 @@
 
 .icon {
   margin-left: var(--spacing-small);
-  transition: transform 0.3s;
   vertical-align: sub;
+  transition: transform 0.3s;
 }
 
 .header {
@@ -49,10 +49,10 @@
 }
 
 .wrapper {
-  align-items: center;
-  background-color: var(--colour-neutral000);
   display: flex;
   flex-direction: column;
-  height: 100svh;
+  align-items: center;
   justify-content: center;
+  height: 100svh;
+  background-color: var(--colour-neutral000);
 }

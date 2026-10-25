@@ -1,14 +1,14 @@
 .button {
+  width: 100%;
+  padding: var(--spacing-small) var(--spacing-base);
+  margin: 0.1rem;
+  font-size: 1.2rem;
+  color: var(--colour-neutral600);
   appearance: none;
   background-color: var(--colour-neutral500);
   border: 0;
   border-radius: 4px;
-  color: var(--colour-neutral600);
-  font-size: 1.2rem;
-  margin: 0.1rem;
-  padding: var(--spacing-small) var(--spacing-base);
   transition: all 0.3s;
-  width: 100%;
 }
 
 .button:not(:disabled) {
@@ -17,35 +17,35 @@
 
 .button:not(:disabled):hover,
 .button:not(:disabled):focus-visible {
-  background-color: var(--colour-primary500);
   color: var(--colour-neutral000);
   cursor: pointer;
+  background-color: var(--colour-primary500);
 }
 
 .submitting {
-  animation: color 1s ease-in-out infinite;
-  background-color: var(--colour-primary500);
   color: var(--colour-neutral000);
+  background-color: var(--colour-primary500);
+  animation: color 1s ease-in-out infinite;
 }
 
 .label {
-  color: var(--colour-neutral900);
   display: block;
   margin-bottom: 0.25rem;
+  color: var(--colour-neutral900);
   text-align: left;
 }
 
 .field {
+  width: 100%;
+  min-width: 95%;
+  padding: var(--spacing-small) var(--spacing-base);
+  font-family: var(--font-family);
+  font-size: var(--spacing-base);
+  color: var(--colour-neutral900);
   background-color: var(--colour-neutral000);
   border: 1px solid var(--colour-neutral000);
   border-radius: 4px;
-  color: var(--colour-neutral900);
-  font-family: var(--font-family);
-  font-size: var(--spacing-base);
-  min-width: 95%;
-  padding: var(--spacing-small) var(--spacing-base);
   transition: border-color 0.3s;
-  width: 100%;
 }
 
 .field:focus {
@@ -83,12 +83,12 @@
  * aren't rendered.
  */
 .honeypot {
-  height: 1px;
-  left: -10000px;
-  overflow: hidden;
   position: absolute;
   top: auto;
+  left: -10000px;
   width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 @media (min-width: 600px) {

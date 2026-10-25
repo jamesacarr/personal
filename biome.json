@@ -17,7 +17,8 @@
           }
         },
         "useSortedAttributes": "on",
-        "useSortedKeys": "on"
+        "useSortedKeys": "on",
+        "useSortedProperties": "on"
       }
     },
     "enabled": true
@@ -30,6 +31,7 @@
       "*.ts",
       "src/**/*.ts",
       "src/**/*.tsx",
+      "src/**/*.css",
       "vitest/**/*.ts",
       "!next-env.d.ts",
       "!package.json"
