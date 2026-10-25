@@ -4,6 +4,8 @@ import type { FC, ReactNode } from 'react';
 
 import './global.css';
 
+import { OPEN_GRAPH, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from './site';
+
 interface Props {
   children: ReactNode;
 }
@@ -17,7 +19,7 @@ const raleway = localFont({
 });
 
 export const metadata: Metadata = {
-  description: `Hello, I'm James Carr. I'm a full-stack web developer.`,
+  description: SITE_DESCRIPTION,
   icons: [
     {
       sizes: '512x512',
@@ -39,10 +41,13 @@ export const metadata: Metadata = {
     },
     { url: '/favicon.ico' },
   ],
+  metadataBase: new URL(SITE_URL),
+  openGraph: OPEN_GRAPH,
   title: {
-    default: 'James Carr',
-    template: '%s | James Carr',
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
+  twitter: { card: 'summary_large_image' },
 };
 
 export const viewport: Viewport = {
