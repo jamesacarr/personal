@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Raleway } from 'next/font/google';
+import localFont from 'next/font/local';
 import type { FC, ReactNode } from 'react';
 
 import './global.css';
@@ -8,10 +8,12 @@ interface Props {
   children: ReactNode;
 }
 
-const raleway = Raleway({
+const raleway = localFont({
   display: 'swap',
-  subsets: ['latin'],
+  src: '../../node_modules/@fontsource/raleway/files/raleway-latin-400-normal.woff2',
+  style: 'normal',
   variable: '--font-family',
+  weight: '400',
 });
 
 export const metadata: Metadata = {
