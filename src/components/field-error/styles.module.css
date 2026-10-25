@@ -8,10 +8,10 @@
  * size on it (5.33:1); red500 measures 1.80:1 and red800 4.08:1.
  */
 .error {
-  color: var(--colour-red900);
+  margin: 0;
   font-size: 0.8rem;
   line-height: 1rem;
-  margin: 0;
+  color: var(--colour-red900);
 }
 
 /*
@@ -21,6 +21,6 @@
  * to different sub-pixel heights.
  */
 .error:empty::before {
-  content: '';
   display: inline-block;
+  content: "";
 }
