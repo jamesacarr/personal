@@ -3,20 +3,20 @@ import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
 
-import {
-  ArrowRightIcon,
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-} from './icons.component';
+import { SvgIcon } from './svg-icon.component';
 
-describe.each([
-  { Icon: ArrowRightIcon, name: 'ArrowRightIcon' },
-  { Icon: GitHubLogoIcon, name: 'GitHubLogoIcon' },
-  { Icon: LinkedInLogoIcon, name: 'LinkedInLogoIcon' },
-])('$name', ({ Icon }) => {
+const PATH = 'M0 0H15V15H0Z';
+
+describe('SvgIcon', () => {
   describe('appearance', () => {
+    it('renders the path', () => {
+      const { container } = render(<SvgIcon path={PATH} />);
+
+      expect(container.querySelector('path')).toHaveAttribute('d', PATH);
+    });
+
     it('applies the passed className', () => {
-      const { container } = render(<Icon className="custom" />);
+      const { container } = render(<SvgIcon className="custom" path={PATH} />);
 
       expect(container.querySelector('svg')).toHaveClass('custom');
     });
@@ -24,7 +24,7 @@ describe.each([
 
   describe('accessibility', () => {
     it('is hidden from assistive technology', () => {
-      const { container } = render(<Icon />);
+      const { container } = render(<SvgIcon path={PATH} />);
       const svg = container.querySelector('svg');
 
       expect(svg).toHaveAttribute('aria-hidden', 'true');
@@ -32,7 +32,7 @@ describe.each([
     });
 
     it('has no violations', async () => {
-      const { container } = render(<Icon />);
+      const { container } = render(<SvgIcon path={PATH} />);
 
       const results = await axe(container);
       expect(results).toHaveNoViolations();
