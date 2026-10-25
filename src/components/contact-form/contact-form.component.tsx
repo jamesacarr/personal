@@ -1,7 +1,6 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import classNames from 'classnames';
 import type { FC } from 'react';
 import {
   startTransition,
@@ -62,9 +61,7 @@ export const ContactForm: FC = () => {
   const errorProps = (name: keyof ContactRequestBody) => ({
     'aria-describedby': errors[name] ? `${name}-error` : undefined,
     'aria-invalid': errors[name] ? ('true' as const) : ('false' as const),
-    className: classNames(styles.field, {
-      [styles.error]: Boolean(errors[name]),
-    }),
+    className: errors[name] ? `${styles.field} ${styles.error}` : styles.field,
   });
 
   useEffect(() => {
@@ -142,9 +139,9 @@ export const ContactForm: FC = () => {
       </div>
 
       <input
-        className={classNames(styles.button, {
-          [styles.submitting]: pending,
-        })}
+        className={
+          pending ? `${styles.button} ${styles.submitting}` : styles.button
+        }
         disabled={pending}
         type="submit"
         value={pending ? 'SUBMITTING' : 'SUBMIT'}

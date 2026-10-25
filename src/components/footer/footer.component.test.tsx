@@ -20,6 +20,16 @@ describe('Footer', () => {
   });
 
   describe('accessibility', () => {
+    it('hides the decorative icons from assistive technology', () => {
+      const { container } = render(<Footer />);
+
+      const icons = Array.from(container.querySelectorAll('svg'));
+      expect(icons).toHaveLength(2);
+      for (const icon of icons) {
+        expect(icon).toHaveAttribute('aria-hidden', 'true');
+      }
+    });
+
     it('has no violations', async () => {
       const { container } = render(<Footer />);
 

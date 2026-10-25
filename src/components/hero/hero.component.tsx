@@ -1,5 +1,6 @@
-import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
 import type { FC } from 'react';
+
+import { ArrowRightIcon } from '@/components/icons';
 
 import styles from './styles.module.css';
 
@@ -14,7 +15,7 @@ export const Hero: FC = () => (
 
     <a className={styles.button} href="#contact">
       Contact Me
-      <ArrowRightIcon className={styles.icon} size="1.5rem" />
+      <ArrowRightIcon className={styles.icon} />
     </a>
   </div>
 );

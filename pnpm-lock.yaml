@@ -169,12 +169,6 @@ importers:
       '@hookform/resolvers':
         specifier: ^6.0.0
         version: 6.0.0(@standard-schema/spec@1.1.0)(ajv@8.20.0)(react-hook-form@7.90.0(@types/react@19.3.0)(react@19.3.1))(yup@1.7.1)
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
-      mdi-react:
-        specifier: ^9.4.0
-        version: 9.4.0(react@19.3.1)
       next:
         specifier: ^16.4.2
         version: 16.4.2(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -1251,9 +1245,6 @@ packages:
     resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
-  classnames@2.5.1:
-    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
-
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
 
@@ -1594,11 +1585,6 @@ packages:
 
   magicast@0.5.5:
     resolution: {integrity: sha512-UicdXN8zQ3JHlxVq+28afMXPr1z7WNY6+7EJnzTdQWkTAlMLF5fNCCKxJHBQwGaNGR11581EiQmQzx73+MvszA==}
-
-  mdi-react@9.4.0:
-    resolution: {integrity: sha512-3McdJimHT2CO+bSDGgJ1SSmU6HvXLEwLdfFi3M/nQT4aauvVxIbIGTCI8eOCcPtkyVyVuZRcCZ7Gw0oaGldYLw==}
-    peerDependencies:
-      react: '>=0.14.0'
 
   min-indent@1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
@@ -2763,8 +2749,6 @@ snapshots:
 
   chalk@5.6.2: {}
 
-  classnames@2.5.1: {}
-
   client-only@0.0.1: {}
 
   cliui@9.0.1:
@@ -3035,10 +3019,6 @@ snapshots:
       '@babel/parser': 7.29.9
       '@babel/types': 7.29.8
       source-map-js: 1.2.2
-
-  mdi-react@9.4.0(react@19.3.1):
-    dependencies:
-      react: 19.3.1
 
   min-indent@1.0.1: {}
 

@@ -1,8 +1,7 @@
-import GithubIcon from 'mdi-react/GithubIcon';
-import LinkedinIcon from 'mdi-react/LinkedinIcon';
 import type { FC } from 'react';
 
 import { Icon } from '@/components/icon';
+import { GitHubLogoIcon, LinkedInLogoIcon } from '@/components/icons';
 
 import styles from './styles.module.css';
 
@@ -10,10 +9,10 @@ export const Footer: FC = () => (
   <div className={styles.wrapper}>
     <div>
       <Icon href="https://www.linkedin.com/in/james-a-carr/" label="LinkedIn">
-        <LinkedinIcon size="1.5rem" />
+        <LinkedInLogoIcon />
       </Icon>
       <Icon href="https://github.com/jamesacarr" label="GitHub">
-        <GithubIcon size="1.5rem" />
+        <GitHubLogoIcon />
       </Icon>
     </div>
 
