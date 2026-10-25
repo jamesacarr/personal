@@ -3,6 +3,7 @@ const biome =
 const typecheck = () => 'pnpm typecheck';
 
 const config = {
+  '*.css': [biome],
   '*.json': [biome],
   '*.{js,jsx,ts,tsx}': [biome, typecheck],
 };
