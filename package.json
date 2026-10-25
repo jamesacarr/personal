@@ -11,7 +11,7 @@
   "license": "UNLICENSED",
   "private": true,
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   },
   "packageManager": "pnpm@12.14.0",
   "type": "module",
