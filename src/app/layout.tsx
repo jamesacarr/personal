@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import { headers } from 'next/headers';
 import type { FC, ReactNode } from 'react';
 
 import './global.css';
@@ -57,10 +58,24 @@ export const viewport: Viewport = {
   width: 'device-width',
 };
 
-const RootLayout: FC<Props> = ({ children }) => (
-  <html className={raleway.className} lang="en-AU">
-    <body>{children}</body>
-  </html>
-);
+// goober (react-hot-toast's styling) reads window.__nonce__ for the <style>
+// element it injects, so set it before any client code runs. Reading headers()
+// also makes every page render per request, which nonces require.
+const RootLayout: FC<Props> = async ({ children }) => {
+  const nonce = (await headers()).get('x-nonce');
+
+  return (
+    <html className={raleway.className} lang="en-AU">
+      <body>
+        {nonce && (
+          <script nonce={nonce}>
+            {`window.__nonce__=${JSON.stringify(nonce)};`}
+          </script>
+        )}
+        {children}
+      </body>
+    </html>
+  );
+};
 
 export default RootLayout;
