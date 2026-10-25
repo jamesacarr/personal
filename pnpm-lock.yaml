@@ -166,6 +166,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/raleway':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@hookform/resolvers':
         specifier: ^6.0.0
         version: 6.0.0(@standard-schema/spec@1.1.0)(ajv@8.20.0)(react-hook-form@7.91.0(@types/react@19.3.0)(react@19.3.1))(yup@1.7.1)
@@ -497,6 +500,9 @@ packages:
     engines: {node: '>=18.11.0'}
     peerDependencies:
       vitest: '*'
+
+  '@fontsource/raleway@5.3.0':
+    resolution: {integrity: sha512-BTWr1I14Ji0DWpS/KCIq/CXcvxXWgMO73gynWpbYv7A5wlPhLevozgRmdPJvZmUf0fhH+Lju+F4nigJ6Ums24A==}
 
   '@hookform/resolvers@6.0.0':
     resolution: {integrity: sha512-6iBzQnB+YwAveVc8HUi6QYLITn5X+xNKRMFIcNXHZlvp2aTI7yWbj4n/JodXxirMCcBc4VCjb2aYAJh4x07mVw==}
@@ -2265,6 +2271,8 @@ snapshots:
     dependencies:
       fetch-mock: 12.6.0
       vitest: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(happy-dom@21.0.4)(vite@8.3.5(@types/node@26.6.5)(jiti@2.6.1)(yaml@2.9.1))
+
+  '@fontsource/raleway@5.3.0': {}
 
   '@hookform/resolvers@6.0.0(@standard-schema/spec@1.1.0)(ajv@8.20.0)(react-hook-form@7.91.0(@types/react@19.3.0)(react@19.3.1))(yup@1.7.1)':
     dependencies:
