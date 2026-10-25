@@ -32,6 +32,60 @@ const actionReturns = (state: ContactFormState) => {
 };
 
 describe('ContactForm', () => {
+  describe('appearance', () => {
+    it('styles valid fields without the error class', () => {
+      render(<ContactForm />);
+
+      for (const label of ['Name', 'Email', 'Message']) {
+        expect(screen.getByLabelText(label)).toHaveAttribute(
+          'class',
+          styles.field,
+        );
+      }
+    });
+
+    it('adds the error class to invalid fields', async () => {
+      render(<ContactForm />);
+
+      await userEvent.click(screen.getByText('SUBMIT'));
+
+      expect(screen.getByLabelText('Name')).toHaveAttribute(
+        'class',
+        `${styles.field} ${styles.error}`,
+      );
+    });
+
+    it('adds the submitting class only while submitting', async () => {
+      let resolveAction: (state: ContactFormState) => void = () => undefined;
+      sendMessageMock.mockImplementation(
+        () =>
+          new Promise<ContactFormState>(resolve => {
+            resolveAction = resolve;
+          }),
+      );
+      render(<ContactForm />);
+
+      expect(screen.getByDisplayValue('SUBMIT')).toHaveAttribute(
+        'class',
+        styles.button,
+      );
+
+      await fillValidForm();
+      await userEvent.click(screen.getByText('SUBMIT'));
+
+      expect(await screen.findByDisplayValue('SUBMITTING')).toHaveAttribute(
+        'class',
+        `${styles.button} ${styles.submitting}`,
+      );
+
+      resolveAction({ status: 'success' });
+      expect(await screen.findByDisplayValue('SUBMIT')).toHaveAttribute(
+        'class',
+        styles.button,
+      );
+    });
+  });
+
   describe('behaviour', () => {
     beforeEach(() => {
       actionReturns({ status: 'success' });
