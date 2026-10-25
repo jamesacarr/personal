@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
 
-import IndexPage from './page';
+import IndexPage, { metadata } from './page';
 
 describe('IndexPage', () => {
   describe('behaviour', () => {
@@ -16,6 +16,21 @@ describe('IndexPage', () => {
 
       expect(href.startsWith('#')).toBe(true);
       expect(document.getElementById(href.slice(1))).not.toBeNull();
+    });
+  });
+
+  describe('metadata', () => {
+    it('sets the canonical URL to the site root', () => {
+      expect(metadata.alternates?.canonical).toEqual('/');
+    });
+
+    it('sets og:url to the site root alongside the shared Open Graph fields', () => {
+      expect(metadata.openGraph).toEqual({
+        locale: 'en_AU',
+        siteName: 'James Carr',
+        type: 'website',
+        url: '/',
+      });
     });
   });
 

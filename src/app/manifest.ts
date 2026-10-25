@@ -1,8 +1,10 @@
 import type { MetadataRoute } from 'next';
 
+import { SITE_DESCRIPTION, SITE_NAME } from './site';
+
 const manifest = (): MetadataRoute.Manifest => ({
   background_color: '#1f2933',
-  description: `Hello, I'm James Carr. I'm a full-stack web developer.`,
+  description: SITE_DESCRIPTION,
   display: 'standalone',
   icons: [
     {
@@ -16,8 +18,8 @@ const manifest = (): MetadataRoute.Manifest => ({
       type: 'image/png',
     },
   ],
-  name: 'James Carr',
-  short_name: 'James Carr',
+  name: SITE_NAME,
+  short_name: SITE_NAME,
   start_url: '/',
   theme_color: '#1f2933',
 });
