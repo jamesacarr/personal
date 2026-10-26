@@ -23,6 +23,15 @@ describe('proxy', () => {
     expect(nonceOf(response.headers.get(CSP_HEADER_NAME))).toBeDefined();
   });
 
+  it('enforces the CSP rather than only reporting violations', () => {
+    const response = callProxy();
+
+    expect(response.headers.get('Content-Security-Policy')).toBeTruthy();
+    expect(response.headers.has('Content-Security-Policy-Report-Only')).toBe(
+      false,
+    );
+  });
+
   it('uses a fresh nonce for every request', () => {
     const first = nonceOf(callProxy().headers.get(CSP_HEADER_NAME));
     const second = nonceOf(callProxy().headers.get(CSP_HEADER_NAME));

@@ -1,6 +1,6 @@
-// Report-Only until the policy is checked on a preview deployment. Next.js reads
-// the nonce from either header name.
-export const CSP_HEADER_NAME = 'Content-Security-Policy-Report-Only';
+// Switch to Content-Security-Policy-Report-Only to trial a policy change on a
+// preview deployment first. Next.js reads the nonce from either header name.
+export const CSP_HEADER_NAME = 'Content-Security-Policy';
 
 // `script-src` must stay the first directive whose name starts with
 // "script-src": Next.js takes the nonce for its own scripts from that one.
