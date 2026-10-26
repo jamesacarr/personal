@@ -30,10 +30,12 @@ export const FONT_PATH = path.join(
   'node_modules/@fontsource/raleway/files/raleway-latin-400-normal.woff',
 );
 
-const raleway = await readFile(FONT_PATH);
+// Read the font when rendering, not at import: pages import this module per
+// request for its metadata, and the font isn't in their function bundle.
+const OpenGraphImage = async () => {
+  const raleway = await readFile(FONT_PATH);
 
-const OpenGraphImage = () =>
-  new ImageResponse(
+  return new ImageResponse(
     <div
       style={{
         alignItems: 'center',
@@ -72,5 +74,6 @@ const OpenGraphImage = () =>
       fonts: [{ data: raleway, name: 'Raleway', style: 'normal', weight: 400 }],
     },
   );
+};
 
 export default OpenGraphImage;

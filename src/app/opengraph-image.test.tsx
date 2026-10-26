@@ -2,7 +2,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import OpenGraphImage, {
   COLOURS,
@@ -31,8 +31,25 @@ describe('opengraph-image', () => {
     expect(existsSync(FONT_PATH)).toBe(true);
   });
 
+  // Pages import this module per request to resolve their metadata, and the
+  // font isn't in the deployed function bundle, so importing must not read it.
+  it('exposes its metadata without reading the font', async () => {
+    vi.resetModules();
+    vi.doMock('node:fs/promises', () => ({
+      readFile: () => Promise.reject(new Error('ENOENT')),
+    }));
+
+    try {
+      const metadata = await import('./opengraph-image');
+      expect(metadata.alt).toEqual('James Carr - full-stack web developer');
+      expect(metadata.size).toEqual({ height: 630, width: 1200 });
+    } finally {
+      vi.doUnmock('node:fs/promises');
+    }
+  });
+
   it('renders a 1200x630 PNG', async () => {
-    const response = OpenGraphImage();
+    const response = await OpenGraphImage();
     const bytes = new Uint8Array(await response.arrayBuffer());
     const view = new DataView(bytes.buffer);
 
