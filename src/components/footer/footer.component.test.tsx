@@ -19,6 +19,15 @@ describe('Footer', () => {
     expect(screen.getByText('© 2031')).toBeInTheDocument();
   });
 
+  it('links to the privacy page', () => {
+    render(<Footer />);
+
+    expect(screen.getByRole('link', { name: 'Privacy' })).toHaveAttribute(
+      'href',
+      '/privacy',
+    );
+  });
+
   describe('accessibility', () => {
     it('hides the decorative icons from assistive technology', () => {
       const { container } = render(<Footer />);

@@ -36,6 +36,14 @@ describe('ContactSection', () => {
         screen.getByRole('heading', { name: 'Contact' }),
       );
     });
+
+    it('links to the privacy notice', () => {
+      render(<ContactSection />);
+
+      expect(
+        screen.getByRole('link', { name: 'privacy notice' }),
+      ).toHaveAttribute('href', '/privacy');
+    });
   });
 
   describe('accessibility', () => {

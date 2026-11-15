@@ -8,6 +8,8 @@ export const CSP_HEADER_NAME = 'Content-Security-Policy';
 // style elements drop the nonce to let the dev overlay inject styles.
 // react-hot-toast server-renders a style attribute, and nonces can't apply to
 // attributes, hence `style-src-attr 'unsafe-inline'`.
+// Allowing a new third-party source means updating
+// src/components/privacy-notice/ and its last-updated date.
 export const buildCsp = (nonce: string, isDev: boolean) =>
   [
     "default-src 'self'",

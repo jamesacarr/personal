@@ -40,6 +40,7 @@ export const sendMessage = async (
       throw new Error('Missing WEBHOOK_URL');
     }
 
+    // Changing where submissions go means updating src/components/privacy-notice/ and its last-updated date.
     const res = await fetch(WEBHOOK_URL, {
       body: JSON.stringify(transformBody(result.data)),
       headers: { 'Content-Type': 'application/json' },

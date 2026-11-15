@@ -1,0 +1,32 @@
+.link {
+  color: var(--colour-primary500);
+  text-decoration: underline;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--colour-neutral900);
+}
+
+.notice {
+  max-width: 40rem;
+  padding: var(--spacing-large) var(--spacing-base);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.notice h1,
+.notice h2 {
+  margin-top: var(--spacing-large);
+}
+
+.updated {
+  margin-top: var(--spacing-large);
+  font-size: 0.8rem;
+  color: var(--colour-neutral600);
+}
+
+.wrapper {
+  min-height: calc(100svh - var(--footer-height));
+  background-color: var(--colour-neutral000);
+}

@@ -4,6 +4,9 @@ import { SITE_URL } from './site';
 
 // No lastModified: new Date() would change on every build and tell crawlers
 // the page changed when it didn't.
-const sitemap = (): MetadataRoute.Sitemap => [{ url: SITE_URL }];
+const sitemap = (): MetadataRoute.Sitemap => [
+  { url: SITE_URL },
+  { url: `${SITE_URL}/privacy` },
+];
 
 export default sitemap;

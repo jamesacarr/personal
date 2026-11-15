@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { FC } from 'react';
 
 import { ContactForm } from '@/components/contact-form';
@@ -21,6 +22,13 @@ export const ContactSection: FC = () => (
         <h2 className={styles.header}>Contact</h2>
         <p className={styles.subtitle}>
           Have a question or just want to get in touch?
+        </p>
+        <p className={styles.note}>
+          Read what happens to your details in the{' '}
+          <Link className={styles.link} href="/privacy">
+            privacy notice
+          </Link>
+          .
         </p>
       </header>
 
