@@ -44,6 +44,8 @@
   --spacing-small: 0.5rem;
   --spacing-base: 1rem;
   --spacing-large: 2rem;
+
+  --footer-height: 5rem;
 }
 
 html {

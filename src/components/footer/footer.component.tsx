@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { FC } from 'react';
 
 import { GITHUB_URL, LINKEDIN_URL } from '@/app/site';
@@ -21,7 +22,11 @@ export const Footer: FC = () => (
       James Carr{' '}
       <span className={styles.highlight}>
         &copy; {new Date().getFullYear()}
-      </span>
+      </span>{' '}
+      <span aria-hidden="true">·</span>{' '}
+      <Link className={styles.link} href="/privacy">
+        Privacy
+      </Link>
     </span>
   </div>
 );

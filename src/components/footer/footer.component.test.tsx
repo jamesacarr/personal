@@ -19,6 +19,15 @@ describe('Footer', () => {
     expect(screen.getByText('© 2031')).toBeInTheDocument();
   });
 
+  it('links to the privacy page', () => {
+    render(<Footer />);
+
+    expect(screen.getByRole('link', { name: 'Privacy' })).toHaveAttribute(
+      'href',
+      '/privacy',
+    );
+  });
+
   it('links to the LinkedIn and GitHub profiles', () => {
     render(<Footer />);
 
