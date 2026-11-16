@@ -83,6 +83,15 @@ describe('PrivacyNotice', () => {
       ).toHaveAttribute('href', '/');
     });
 
+    it('keeps the home link in a navigation bar outside the notice', () => {
+      render(<PrivacyNotice />);
+
+      const link = screen.getByRole('link', { name: 'Back to home' });
+
+      expect(screen.getByRole('navigation')).toContainElement(link);
+      expect(screen.getByRole('article')).not.toContainElement(link);
+    });
+
     it('sends deletion requests to the contact form', () => {
       const { container } = render(<PrivacyNotice />);
 
