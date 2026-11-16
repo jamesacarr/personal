@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { FC } from 'react';
 
+import { GITHUB_URL, LINKEDIN_URL } from '@/app/site';
 import { Icon } from '@/components/icon';
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@/components/icons';
 
@@ -9,10 +10,10 @@ import styles from './styles.module.css';
 export const Footer: FC = () => (
   <div className={styles.wrapper}>
     <div>
-      <Icon href="https://www.linkedin.com/in/james-a-carr/" label="LinkedIn">
+      <Icon href={LINKEDIN_URL} label="LinkedIn">
         <LinkedInLogoIcon />
       </Icon>
-      <Icon href="https://github.com/jamesacarr" label="GitHub">
+      <Icon href={GITHUB_URL} label="GitHub">
         <GitHubLogoIcon />
       </Icon>
     </div>
