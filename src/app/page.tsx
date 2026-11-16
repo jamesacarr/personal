@@ -9,6 +9,7 @@ import { Hero } from '@/components/hero';
 import { serialiseJsonLd } from './json-ld';
 import {
   GITHUB_URL,
+  KNOWS_ABOUT,
   LINKEDIN_URL,
   OPEN_GRAPH,
   SITE_DESCRIPTION,
@@ -27,17 +28,7 @@ const PERSON_JSON_LD = {
   '@type': 'Person',
   description: SITE_DESCRIPTION,
   jobTitle: 'Senior Full-Stack Engineer',
-  knowsAbout: [
-    'TypeScript',
-    'JavaScript',
-    'React',
-    'Next.js',
-    'Node.js',
-    'Full-stack web development',
-    'Python',
-    'Go',
-    'SQL',
-  ],
+  knowsAbout: KNOWS_ABOUT,
   name: SITE_NAME,
   sameAs: [LINKEDIN_URL, GITHUB_URL],
   url: SITE_URL,

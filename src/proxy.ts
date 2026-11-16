@@ -30,7 +30,7 @@ export const config = {
         { key: 'purpose', type: 'header', value: 'prefetch' },
       ],
       source:
-        '/((?!(?:api|_next/static|_next/image|favicon\\.ico|icons|manifest\\.webmanifest|robots\\.txt|sitemap\\.xml|opengraph-image)(?:/|$)).*)',
+        '/((?!(?:api|_next/static|_next/image|favicon\\.ico|icons|manifest\\.webmanifest|llms\\.txt|robots\\.txt|sitemap\\.xml|opengraph-image)(?:/|$)).*)',
     },
   ],
 };
