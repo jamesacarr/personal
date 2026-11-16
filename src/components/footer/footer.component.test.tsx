@@ -19,6 +19,17 @@ describe('Footer', () => {
     expect(screen.getByText('© 2031')).toBeInTheDocument();
   });
 
+  it('links to the LinkedIn and GitHub profiles', () => {
+    render(<Footer />);
+
+    expect(
+      screen.getByRole('link', { name: 'Visit my LinkedIn account' }),
+    ).toHaveAttribute('href', 'https://www.linkedin.com/in/james-a-carr/');
+    expect(
+      screen.getByRole('link', { name: 'Visit my GitHub account' }),
+    ).toHaveAttribute('href', 'https://github.com/jamesacarr');
+  });
+
   describe('accessibility', () => {
     it('hides the decorative icons from assistive technology', () => {
       const { container } = render(<Footer />);
