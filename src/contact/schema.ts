@@ -1,6 +1,6 @@
 import { object, string } from 'yup';
 
-const MIN_WORDS = 5;
+export const MIN_WORDS = 5;
 
 export const schema = object({
   email: string().email('Invalid email').required('Required'),

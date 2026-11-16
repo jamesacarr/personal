@@ -10,6 +10,19 @@ export const LINKEDIN_URL = 'https://www.linkedin.com/in/james-a-carr/';
 
 export const GITHUB_URL = 'https://github.com/jamesacarr';
 
+// Read by the home page JSON-LD and by llms.txt.
+export const KNOWS_ABOUT = [
+  'TypeScript',
+  'JavaScript',
+  'React',
+  'Next.js',
+  'Node.js',
+  'Full-stack web development',
+  'Python',
+  'Go',
+  'SQL',
+] as const;
+
 // Shared Open Graph fields. Routes that set their own `openGraph` replace the
 // layout's object wholesale (metadata merges shallowly), so they spread this.
 export const OPEN_GRAPH = {

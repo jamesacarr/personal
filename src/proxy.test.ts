@@ -84,6 +84,7 @@ describe('proxy', () => {
       '/_next/static/chunks/x.js',
       '/_next/image?url=%2Fx.png&w=64&q=75',
       '/api/ping',
+      '/llms.txt',
       '/robots.txt',
       '/sitemap.xml',
       '/manifest.webmanifest',
