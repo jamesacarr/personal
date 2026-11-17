@@ -16,10 +16,10 @@
   "packageManager": "pnpm@12.14.0",
   "type": "module",
   "scripts": {
-    "check": "turbo run lint:ci typecheck test",
+    "check": "turbo run lint typecheck test",
     "dev": "next",
-    "lint": "biome check --write .",
-    "lint:ci": "biome check .",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "prepare": "husky",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",

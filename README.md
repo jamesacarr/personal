@@ -21,8 +21,8 @@ The website has hot module reloading, so changes made will show up instantly.
 Lint, typecheck and tests run as cached [Turborepo](https://turborepo.dev/) tasks. The commands are:
 
 - `pnpm check` runs lint, typecheck and tests. Unchanged tasks are restored from the local cache.
-- `pnpm turbo run <task>` runs a single cached task (`lint:ci`, `typecheck` or `test`).
-- `pnpm lint` runs Biome with `--write`. It isn't cached because it modifies files.
+- `pnpm turbo run <task>` runs a single cached task (`lint`, `typecheck` or `test`).
+- `pnpm lint:fix` runs Biome with `--write`. It isn't cached because it modifies files.
 - `pnpm test:watch` runs Vitest in watch mode. It isn't cached.
 - `pnpm test:coverage` runs the tests with coverage. It isn't cached.
 

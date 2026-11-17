@@ -1,7 +1,7 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
   "tasks": {
-    "lint:ci": {
+    "lint": {
       "inputs": ["$TURBO_DEFAULT$", "!**/*.md", "!.github/**", "!.husky/**"]
     },
     "test": {
