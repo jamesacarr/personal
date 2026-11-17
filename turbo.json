@@ -9,13 +9,7 @@
       "inputs": ["$TURBO_DEFAULT$", "!**/*.md", "!.github/**", "!.husky/**"]
     },
     "typecheck": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "!**/*.md",
-        "!.github/**",
-        "!.husky/**",
-        ".next/dev/types/**"
-      ],
+      "inputs": ["$TURBO_DEFAULT$", "!**/*.md", "!.github/**", "!.husky/**"],
       "outputs": [".next/types/**", "next-env.d.ts"]
     }
   }

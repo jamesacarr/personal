@@ -12,6 +12,7 @@ pids
 *.seed
 *.pid.lock
 tsconfig.tsbuildinfo
+tsconfig.typecheck.tsbuildinfo
 
 # Bundlers
 .cache

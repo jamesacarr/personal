@@ -1,0 +1,7 @@
+// Config for `pnpm typecheck`. It drops `.next/dev/types`, which only `next dev`
+// refreshes, so stale dev route types can't fail the check. This can't live in
+// tsconfig.json: Next rewrites that file's `include` and `exclude`.
+{
+  "exclude": ["node_modules", ".next/dev/types"],
+  "extends": "./tsconfig.json"
+}
