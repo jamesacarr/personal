@@ -16,12 +16,14 @@
   "packageManager": "pnpm@12.14.0",
   "type": "module",
   "scripts": {
+    "check": "turbo run lint typecheck test",
     "dev": "next",
-    "lint": "biome check --write .",
-    "lint:ci": "biome check .",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "prepare": "husky",
-    "test": "vitest",
+    "test": "vitest run",
     "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
     "typecheck": "next typegen && tsc -p ./tsconfig.json"
   },
   "dependencies": {
@@ -53,6 +55,7 @@
     "happy-dom": "^21.0.4",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
+    "turbo": "^2.11.11",
     "type-fest": "^5.10.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.5",

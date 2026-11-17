@@ -1,0 +1,22 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "tasks": {
+    "lint": {
+      "inputs": ["$TURBO_DEFAULT$", "!**/*.md", "!.github/**", "!.husky/**"]
+    },
+    "test": {
+      "env": ["TZ"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/*.md", "!.github/**", "!.husky/**"]
+    },
+    "typecheck": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!**/*.md",
+        "!.github/**",
+        "!.husky/**",
+        ".next/dev/types/**"
+      ],
+      "outputs": [".next/types/**", "next-env.d.ts"]
+    }
+  }
+}
